@@ -1,0 +1,52 @@
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel class="keep-c-expansion-panel" [expanded]="step === 0">
+        <mat-expansion-panel-header>
+      <mat-panel-title>
+        Search Jobs
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+
+<div class="keep-c-input-form">
+  <label class="error-message">{{errMessage}}</label>
+    <mat-form-field class="input-full-width">
+	    <input type="text" placeholder="Skill Set" aria-label="Number" matInput [formControl]="techControl" [matAutocomplete]="auto" matInput [(ngModel)]='usersearch.skillSet'>
+	    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+	      <mat-option *ngFor="let option of filteredTechOptions | async" [value]="option">
+	        {{ option }}
+	      </mat-option>
+	    </mat-autocomplete>
+    </mat-form-field>
+	 <br>
+	 <label>Experience: {{usersearch.experience}} years</label>
+	  <mat-slider class="input-full-width" [(ngModel)]='usersearch.experience'> </mat-slider><br>
+	  
+	  <label>Salary Expectation: {{usersearch.salaryExpectation}} lakhs </label>
+	  <mat-slider class="input-full-width" [(ngModel)]='usersearch.salaryExpectation'> </mat-slider><br>
+	  
+	  <mat-select placeholder="Preferred location" [formControl]="locationControl" multiple  [(ngModel)]='usersearch.location'>
+	    <mat-optgroup *ngFor="let group of locationGroups" [label]="group.name"
+	                  [disabled]="group.disabled">
+	      <mat-option *ngFor="let location of group.location" [value]="location.value">
+	        {{ location.viewValue }}
+	      </mat-option>
+	    </mat-optgroup>
+	  </mat-select><br>
+	  <br>
+	    <div class="keep-c-done-btn">
+	    <button mat-raised-button color="primary" mat-button (click)="searchJob()">Search</button>
+	  	</div>   
+  </div>
+  </mat-expansion-panel>
+  </mat-accordion>
+  
+  <mat-list-item *ngFor="let jobresult of jobresults">
+    <br>
+    <label class="label-message"> {{jobresult.role}}</label><br>
+    <label>Company Name : {{jobresult.companyName}}</label><br>
+    <label>Max Salary : {{jobresult.maxSalary}}</label><br>
+    <label>Domain : {{jobresult.domain}}</label>
+    <button mat-raised-button color="primary" mat-button (click)="applyJob(jobresult.jobId)">Apply</button><br>
+    <mat-divider></mat-divider>
+    <br>
+  </mat-list-item>

@@ -1,0 +1,75 @@
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+<mat-step [stepControl]="firstFormGroup">
+<form [formGroup]="firstFormGroup">
+	<ng-template matStepLabel>Personal Deatils</ng-template>
+	<mat-form-field class="input-full-width"> <input
+		matInput placeholder="Last name, First name"
+		formControlName="firstCtrl" [(ngModel)]="userprofile.name"> </mat-form-field>
+	<br>
+	<mat-form-field class="input-full-width"> <input
+		matInput placeholder="Contact Number" formControlName="firstCtrl"
+		class="input-full-width" [(ngModel)]="userprofile.number"> </mat-form-field>
+	<br>
+	<mat-form-field class="input-full-width"> <input
+		matInput placeholder="Email Address" formControlName="firstCtrl"
+		class="input-full-width" [(ngModel)]="userprofile.email"> </mat-form-field>
+	<div>
+		<button mat-raised-button matStepperNext color="primary">Next</button>
+	</div>
+</form>
+</mat-step> <mat-step [stepControl]="secondFormGroup">
+<form [formGroup]="secondFormGroup">
+	<ng-template matStepLabel>Office Details</ng-template>
+
+	<mat-form-field class="input-full-width"> <input
+		type="text" placeholder="Skill Set" formControlName="thirdCtrl"
+		class="input-full-width" aria-label="Number" matInput
+		[formControl]="techControl" [matAutocomplete]="auto" matInput
+		[(ngModel)]="userprofile.skillSet" (submit)="openDialog()"> <mat-autocomplete
+		autoActiveFirstOption #auto="matAutocomplete"> <mat-option
+		*ngFor="let option of filteredTechOptions | async" [value]="option">
+	{{ option }} </mat-option> </mat-autocomplete> </mat-form-field>
+
+	Experience : {{userprofile.experience}} years <br>
+	<mat-slider placeholder="Experience" formControlName="secondCtrl"
+		class="input-full-width" [(ngModel)]="userprofile.experience">
+	</mat-slider>
+	Salary Expectation : {{userprofile.salaryExpectation}} lakhs <br>
+	<mat-slider placeholder="Salary Expectation"
+		formControlName="secondCtrl" class="input-full-width"
+		[(ngModel)]="userprofile.salaryExpectation"> </mat-slider>
+	<br>
+
+	<mat-select placeholder="Current Location"
+		[formControl]="locationControl" multiple
+		[(ngModel)]='userprofile.location'> <mat-optgroup
+		*ngFor="let group of locationGroups" [label]="group.name"
+		[disabled]="group.disabled"> <mat-option
+		*ngFor="let location of group.location" [value]="location.value">
+	{{ location.viewValue }} </mat-option> </mat-optgroup> </mat-select>
+	<br>
+
+	<mat-form-field class="input-full-width"> <input
+		matInput [matDatepicker]="picker" placeholder="Last working day"
+		formControlName="secondCtrl" [(ngModel)]="userprofile.lastWorking">
+	<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+	<mat-datepicker #picker></mat-datepicker> </mat-form-field>
+	<br> Notice period : {{userprofile.noticePeriod}} days <br>
+	<mat-slider placeholder="Notice period" formControlName="secondCtrl"
+		class="input-full-width" [(ngModel)]="userprofile.noticePeriod">
+	</mat-slider>
+	<br>
+	<mat-form-field class="input-full-width"> <input
+		matInput placeholder="Reference Name" formControlName="secondCtrl"
+		class="input-full-width" [(ngModel)]="userprofile.referenceName">
+	</mat-form-field>
+	<br>
+	<mat-form-field class="input-full-width"> <input
+		matInput placeholder="Reference Number" formControlName="secondCtrl"
+		class="input-full-width" [(ngModel)]="userprofile.referenceNumber">
+	</mat-form-field>
+	<div>
+		<button mat-raised-button color="primary">Done</button>
+	</div>
+</form>
+</mat-step> </mat-vertical-stepper>

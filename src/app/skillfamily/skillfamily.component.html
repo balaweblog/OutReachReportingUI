@@ -1,0 +1,21 @@
+<div mat-dialog-content>
+  <p>Select Additional skill</p>
+</div>
+
+<mat-form-field>
+  <mat-select placeholder="Secondary skill" [formControl]="toppings" multiple [(ngModel)]="data.skillfamily">
+    <mat-select-trigger>
+      {{toppings.value ? toppings.value[0] : ''}}
+      <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+        (+{{toppings.value.length - 1}} others)
+      </span>
+    </mat-select-trigger>
+    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.skillfamily" cdkFocusInitial>Ok</button>
+</div>

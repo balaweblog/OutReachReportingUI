@@ -1,0 +1,19 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "Java",
+      "text": "Java"
+    },
+    {
+      "id": 2,
+      "title": ".Net",
+      "text": ".Net"
+    },
+    {
+      "title": "Angular",
+      "text": "Angular",
+      "id": 3
+    }
+  ]
+}
