@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { NoteComponent } from './note/note.component';
 
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -25,7 +24,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDatepickerModule,MatNativeDateModule} from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {FormsModule,  ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import {NotesService} from './notes.service';
@@ -34,6 +33,7 @@ import { RouterService } from './router.service';
 import { DetailsService } from './details.service';
 import { SearchjobComponent } from './searchjob/searchjob.component';
 import { SkillfamilyComponent } from './skillfamily/skillfamily.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 
 const appRoutes: Routes = [
@@ -75,8 +75,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [NotesService,RouterService,DetailsService],
-  entryComponents: [AppComponent,SkillfamilyComponent],
+  providers: [NotesService, RouterService, DetailsService],
+  entryComponents: [AppComponent, SkillfamilyComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
