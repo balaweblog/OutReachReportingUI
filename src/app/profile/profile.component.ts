@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterService } from '../router.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { SkillfamilyComponent } from '../skillfamily/skillfamily.component';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
 import {map, startWith} from 'rxjs/operators';
-import {Userprofile} from '../userprofile';
-import { DetailsService } from '../details.service';
+
+import { DetailsService } from '../core/details.service';
+import { SkillfamilyComponent } from '../shared/skillfamily/skillfamily.component';
+import {Userprofile} from '../models/userprofile';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
+
 userprofile: Userprofile;
 skillfamily: string;
 firstFormGroup: FormGroup;
@@ -42,12 +44,10 @@ ngOnInit() {
 
 filter(val: string): string[] {
    this.userprofile.skillFamily = '';
-
    if (this.detailsService.isValidSkillSet(val)) {
     const dialogRef = this.dialog.open(SkillfamilyComponent, { width: '250px',
-    data: { skillfamily: this.userprofile.skillFamily, skillset: this.userprofile.skillSet}});
-
-    dialogRef.afterClosed().subscribe(result => { this.skillfamily = result; });
+    data: { skillfamily: this.userprofile.skillFamily, skillset: this.userprofile.skillSet}}); dialogRef.afterClosed().
+    subscribe(result => { this.skillfamily = result; });
    }
   return this.techoptions.filter(option => option.toLowerCase().indexOf(val.toLowerCase()) === 0);
  }

@@ -1,6 +1,7 @@
 <mat-vertical-stepper #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
+      <!-- 1 Personal Details -->
 	    <ng-template matStepLabel>Personal Deatils</ng-template>
 	  <mat-form-field class="input-full-width">
       <input matInput placeholder="Last name, First name" formControlName="firstCtrl" [(ngModel)]="userprofile.name"/>
@@ -19,18 +20,20 @@
 	  </div>
    </form>
   </mat-step>
+
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
+      <!-- 2 Office Details -->
 	    <ng-template matStepLabel>Office Details</ng-template>
-	  <mat-form-field class="input-full-width">
-      <input type="text" placeholder="Skill Set" formControlName="thirdCtrl"  class="input-full-width" aria-label="Number" matInput
-      [formControl]="techControl" [matAutocomplete]="auto" matInput [(ngModel)]="userprofile.skillSet" (submit)="openDialog()">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-         <mat-option *ngFor="let option of filteredTechOptions | async" [value]="option">
-            {{ option }}
-         </mat-option>
-      </mat-autocomplete>
-     </mat-form-field>
+      <mat-form-field class="input-full-width">
+        <input type="text" placeholder="Skill Set" class="input-full-width" aria-label="Number" matInput
+        [formControl]="techControl" [matAutocomplete]="auto" matInput [(ngModel)]="userprofile.skillSet" (submit)="openDialog()">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+           <mat-option *ngFor="let option of filteredTechOptions | async" [value]="option">
+              {{ option }}
+           </mat-option>
+        </mat-autocomplete>
+       </mat-form-field>
     Experience : {{userprofile.experience}} years <br>
 	  <mat-slider placeholder="Experience" formControlName="secondCtrl"class="input-full-width" [(ngModel)]="userprofile.experience">
 	  </mat-slider>
@@ -65,7 +68,7 @@
     <input matInput placeholder="Reference Number" formControlName="secondCtrl" class="input-full-width" [(ngModel)]="userprofile.referenceNumber">
 	</mat-form-field>
 	<div>
-		<button mat-raised-button color="primary">Done</button>
+		<button mat-raised-button color="primary">Submit</button>
 	</div>
 </form>
 </mat-step>

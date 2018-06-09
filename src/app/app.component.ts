@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterService } from './router.service';
-import {DetailsService} from './details.service';
+import { Router } from '@angular/router';
+import { DetailsService } from './core/details.service';
 
 
 @Component({
@@ -9,16 +9,12 @@ import {DetailsService} from './details.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-email = 'suryaecw@gmail.com';
-  constructor(private routerService: RouterService,private detailsService:DetailsService ){
-    if(this.detailsService.isUserRegistered(this.email)){
-    	this.routerService.routeToSearchJob();
-    }else{
-    	this.routerService.routeToProfile();
+  email = 'suryaecw@gmail.com';
+  constructor(private detailsService:DetailsService, private router: Router ) {
+    if (this.detailsService.isUserRegistered(this.email)) {
+    	router.navigate['search'];
+    } else {
+    	router.navigate['profile'];
     }
-  	
   }
-  
-  
-  
 }
