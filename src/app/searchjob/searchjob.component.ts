@@ -9,6 +9,10 @@ import { DetailsService } from '../core/details.service';
 import {SkillfamilyComponent} from '../shared/skillfamily/skillfamily.component';
 import {Usersearch} from '../models/usersearch';
 import {Jobresult} from '../models/jobresult';
+import { UtilitiesService } from '../core/utilities.service';
+import { Skillset } from '../models/skillset';
+import 'rxjs/Rx';
+
 
 @Component({
   selector: 'app-searchjob',
@@ -24,35 +28,46 @@ userId = '1';
 skillfamily: string;
 skillset: string;
 techControl:FormControl;
-techoptions:any;
+techoptions:string[] = [];
 filteredTechOptions: Observable<string[]>;
 locationControl: FormControl;
 step = 0;
 locationGroups:any;
 
-constructor(public dialog: MatDialog, private detailsService:DetailsService ) {
+constructor(public dialog: MatDialog, private detailsService:DetailsService, private utilitiesService:UtilitiesService) {
 }
 
 ngOnInit() {
   this.techControl = new FormControl();
-  this.techoptions = this.detailsService.getSkillSet();
   this.locationControl = new FormControl();
-  this.locationGroups =  this.detailsService.getLocationDeatils();
-  this.filteredTechOptions = this.techControl.valueChanges.pipe(startWith(''), map(val => this.filter(val)));
 
+  // populate skillset
+  this.utilitiesService.getskillset().subscribe(
+    data => {
+         for (let key in data) {
+           if (!this.techoptions.some(x => x === data[key].primary)) {
+                  this.techoptions.push(data[key].primary);
+           }
+         }
+      }
+   );
+   // populate job locations
+  this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res['joblocations']);
+
+  // filter tech options
+  this.filteredTechOptions = this.techControl.valueChanges.pipe(startWith(''), map(val => this.filter(val)));
 }
 
 filter(val: string): string[] {
-   this.skillfamily = "";
+  this.skillfamily = "";
 
-   if (this.detailsService.isValidSkillSet(val)) {
-    let dialogRef = this.dialog.open(SkillfamilyComponent, {width: '250px', data: { skillfamily: this.skillfamily}
+  if (this.techoptions.some(x => x === val)) {
+        let dialogRef = this.dialog.open(SkillfamilyComponent, {width: '250px', data: { skillfamily: this.skillfamily, primary: val}
     });
-
     dialogRef.afterClosed().subscribe(result => { console.log('The dialog was closed'); this.skillfamily = result; });
   }
   return this.techoptions.filter(option => option.toLowerCase().indexOf(val.toLowerCase()) === 0);
-  }
+}
 
   searchJob() {
       if (this.usersearch.skillSet === '') {

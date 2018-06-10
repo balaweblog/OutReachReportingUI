@@ -5,7 +5,7 @@ export class DetailsService {
 
   constructor() { }
 
-  getSkillSet() {
+  getSkillSet(): string[] {
  	return ['Java', '.Net', 'JavaScript', 'C#', 'Python', 'PHP', 'Swift'];
   }
 
@@ -61,28 +61,6 @@ export class DetailsService {
     } else {
     	return false;
     }
-  }
-
-
-  getLocationDeatils() {
-   return [
-    {
-      name: 'Tamil Nadu',
-      location: [
-        { value: 'Chennai', viewValue: 'Chennai' },
-        { value: 'Coimbatore', viewValue: 'Coimbatore' },
-        { value: 'Madurai', viewValue: 'Madurai' }
-      ]
-    },
-    {
-      name: 'Karnataka',
-      location: [
-        { value: 'Bengaluru', viewValue: 'Bengaluru' },
-        { value: 'Mysore', viewValue: 'Mysore' },
-        { value: 'Mangalore', viewValue: 'Mangalore' }
-      ]
-    }
-  ];
   }
 
   isUserRegistered(email) {

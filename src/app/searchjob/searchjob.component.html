@@ -24,9 +24,9 @@
 	  <label>Salary Expectation: {{usersearch.salaryExpectation}} lakhs </label>
 	  <mat-slider class="input-full-width" [(ngModel)]='usersearch.salaryExpectation'> </mat-slider><br>
 	  <mat-select placeholder="Preferred location" [formControl]="locationControl" multiple  [(ngModel)]='usersearch.location'>
-	    <mat-optgroup *ngFor="let group of locationGroups" [label]="group.name"  [disabled]="group.disabled">
-	      <mat-option *ngFor="let location of group.location" [value]="location.value">
-	        {{ location.viewValue }}
+	    <mat-optgroup>
+	      <mat-option *ngFor="let location of locationGroups" [value]="location.city">
+	        {{ location.city }}
 	      </mat-option>
 	    </mat-optgroup>
 	  </mat-select><br>

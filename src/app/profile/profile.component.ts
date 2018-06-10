@@ -8,6 +8,7 @@ import {map, startWith} from 'rxjs/operators';
 import { DetailsService } from '../core/details.service';
 import { SkillfamilyComponent } from '../shared/skillfamily/skillfamily.component';
 import {Userprofile} from '../models/userprofile';
+import { UtilitiesService } from '../core/utilities.service';
 
 @Component({
   selector: 'app-profile',
@@ -22,31 +23,45 @@ skillfamily: string;
 firstFormGroup: FormGroup;
 secondFormGroup: FormGroup;
 techControl: FormControl;
-techoptions: any;
+techoptions: string[] = [];
 filteredTechOptions: Observable<string[]>;
 locationControl: FormControl;
 locationGroups: any;
 
-constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private detailsService: DetailsService) {
+constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private detailsService: DetailsService,
+  private utilitiesService: UtilitiesService) {
   this.userprofile = new Userprofile();
   this.techControl = new FormControl();
   this.locationControl = new FormControl();
 }
 
 ngOnInit() {
-  this.techoptions = this.detailsService.getSkillSet();
-  this.locationGroups = this.detailsService.getLocationDeatils();
+   // populate skillset
+   this.utilitiesService.getskillset().subscribe(
+    data => {
+         for (let key in data) {
+           if (!this.techoptions.some(x => x === data[key].primary)) {
+                  this.techoptions.push(data[key].primary);
+           }
+         }
+      }
+   );
+  // populate job locations
+  this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res['joblocations']);
 
+  // filter tech options
   this.filteredTechOptions = this.techControl.valueChanges.pipe(startWith(''), map(val => this.filter(val)));
+
   this.firstFormGroup = this._formBuilder.group({ firstCtrl: ['', Validators.required]});
   this.secondFormGroup = this._formBuilder.group({ secondCtrl: ['', Validators.required]});
 }
 
 filter(val: string): string[] {
    this.userprofile.skillFamily = '';
-   if (this.detailsService.isValidSkillSet(val)) {
+
+  if (this.techoptions.some(x => x === val)) {
     const dialogRef = this.dialog.open(SkillfamilyComponent, { width: '250px',
-    data: { skillfamily: this.userprofile.skillFamily, skillset: this.userprofile.skillSet}}); dialogRef.afterClosed().
+    data: { skillfamily: this.userprofile.skillFamily, skillset: this.userprofile.skillSet, primary: val}}); dialogRef.afterClosed().
     subscribe(result => { this.skillfamily = result; });
    }
   return this.techoptions.filter(option => option.toLowerCase().indexOf(val.toLowerCase()) === 0);

@@ -42,9 +42,10 @@
     </mat-slider>
 	  <br>
     <mat-select placeholder="Current Location" [formControl]="locationControl" multiple [(ngModel)]='userprofile.location'>
-      <mat-optgroup *ngFor="let group of locationGroups" [label]="group.name"[disabled]="group.disabled">
-        <mat-option *ngFor="let location of group.location" [value]="location.value">{{ location.viewValue }}
-        </mat-option>
+      <mat-optgroup>
+        <mat-option *ngFor="let location of locationGroups" [value]="location.city">
+	        {{ location.city }}
+	      </mat-option>
       </mat-optgroup>
     </mat-select>
   	<br>

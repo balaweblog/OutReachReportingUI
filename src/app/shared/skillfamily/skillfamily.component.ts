@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormControl} from '@angular/forms';
 
 import { DetailsService } from '../../core/details.service';
+import { UtilitiesService } from '../../core/utilities.service';
 
 @Component({
   selector: 'app-skillfamily',
@@ -13,14 +14,25 @@ import { DetailsService } from '../../core/details.service';
 export class SkillfamilyComponent implements OnInit {
 
   toppings:FormControl;
-  toppingList:any;
+  toppingList: string[] = [];
+  primary: string;
 
- constructor(public dialogRef: MatDialogRef<SkillfamilyComponent>, private detailsService:DetailsService,
-   @Inject(MAT_DIALOG_DATA) public data: any) { }
+ constructor(public dialogRef: MatDialogRef<SkillfamilyComponent>, private utilitiesService:UtilitiesService,
+   @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.primary = this.data.primary;
+   }
 
   ngOnInit() {
     this.toppings = new FormControl();
-    this.toppingList = this.detailsService.getSkillFamily(this.data.skillset);
+    this.utilitiesService.getskillset().subscribe(
+      data => {
+           for (let key in data) {
+             if (this.primary === data[key].primary) {
+                    this.toppingList.push(data[key].secondary);
+             }
+           }
+        }
+     );
   }
 
   onNoClick(): void {
