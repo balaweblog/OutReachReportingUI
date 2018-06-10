@@ -5,15 +5,6 @@ export class DetailsService {
 
   constructor() { }
 
-  getSkillSet(): string[] {
- 	return ['Java', '.Net', 'JavaScript', 'C#', 'Python', 'PHP', 'Swift'];
-  }
-
-  getSkillFamily(skillSet) {
-
-    return ['Jenkins', 'Docker', 'AWS', 'Spring Cloud', 'github', 'Spring Integration'];
-  }
-
   getJobList(userId, skillSet, skillFamily) {
 
     return [
@@ -50,17 +41,6 @@ export class DetailsService {
 			      jobId: '4'
 			    }
 			  ];
-  }
-
-
-
-  isValidSkillSet(skillSet) {
-  console.log(skillSet);
-   if (skillSet === 'Java') {
-    	return true;
-    } else {
-    	return false;
-    }
   }
 
   isUserRegistered(email) {
