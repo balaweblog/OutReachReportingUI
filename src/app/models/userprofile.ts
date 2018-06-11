@@ -1,29 +1,14 @@
 export class Userprofile {
-  name: string;
-  number: string;
-  email: string;
-  noticePeriod : string;
-  skillSet: string;
-  skillFamily: string;
-  experience: string;
-  salaryExpectation: string;
-  location: string;
-  lastWorking: string;
-  referenceName: string;
-  referenceNumber: string;
-
-  constructor() {
-	  this.name = '';
-	  this.number = '';
-	  this.email = '';
-	  this.noticePeriod  = '';
-	  this.skillSet = '';
-	  this.skillFamily = '';
-	  this.experience = '';
-	  this.salaryExpectation = '';
-	  this.location = '';
-	  this.lastWorking = '';
-	  this.referenceName = '';
-	  this.referenceNumber = '';
-  }
+  fullname: string;
+  contactnumber: string;
+  emailaddress: string;
+  primaryskillset : string;
+  secondaryskillset:string;
+  experience: Number;
+  salaryexpectation: Number;
+  lastworkingday: Date;
+  location:string[] = [];
+  noticeperiod: Number;
+  referencename: string;
+  referencenumber: string;
 }

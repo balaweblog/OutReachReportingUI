@@ -36,6 +36,6 @@ export class SkillfamilyComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close({data: this.toppingList});
   }
 }

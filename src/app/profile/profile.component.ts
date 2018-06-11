@@ -9,6 +9,7 @@ import { DetailsService } from '../core/details.service';
 import { SkillfamilyComponent } from '../shared/skillfamily/skillfamily.component';
 import {Userprofile} from '../models/userprofile';
 import { UtilitiesService } from '../core/utilities.service';
+import { ProfileService } from '../core/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +30,7 @@ locationControl: FormControl;
 locationGroups: any;
 
 constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private detailsService: DetailsService,
-  private utilitiesService: UtilitiesService) {
+  private utilitiesService: UtilitiesService, private profileService: ProfileService) {
   this.userprofile = new Userprofile();
   this.techControl = new FormControl();
   this.locationControl = new FormControl();
@@ -57,13 +58,19 @@ ngOnInit() {
 }
 
 filter(val: string): string[] {
-   this.userprofile.skillFamily = '';
+   this.userprofile.secondaryskillset = '';
 
   if (this.techoptions.some(x => x === val)) {
     const dialogRef = this.dialog.open(SkillfamilyComponent, { width: '250px',
-    data: { skillfamily: this.userprofile.skillFamily, skillset: this.userprofile.skillSet, primary: val}}); dialogRef.afterClosed().
-    subscribe(result => { this.skillfamily = result; });
+    data: {skillset: this.userprofile.secondaryskillset, primary: val}}); dialogRef.afterClosed().
+    subscribe(result => { this.userprofile.secondaryskillset = result; });
    }
   return this.techoptions.filter(option => option.toLowerCase().indexOf(val.toLowerCase()) === 0);
  }
+
+submitprofile() {
+  this.profileService.addprofile(this.userprofile).then(userprof => {
+  });
 }
+}
+
