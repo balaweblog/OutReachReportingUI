@@ -40,11 +40,11 @@
 
   <mat-list-item *ngFor="let jobresult of jobresults">
     <br>
-      <label class="label-message"> {{jobresult.role}}</label><br>
-      <label>Company Name : {{jobresult.companyName}}</label><br>
-      <label>Max Salary : {{jobresult.maxSalary}}</label><br>
+      <label class="label-message"> {{ jobresult.role }}</label><br>
+      <label>Company Name : {{jobresult.companyname}}</label><br>
+      <label>Max Salary : {{jobresult.maxsalary}}</label><br>
       <label>Domain : {{jobresult.domain}}</label>
-      <button mat-raised-button color="primary" mat-button (click)="applyJob(jobresult.jobId)">Apply</button><br>
+      <button mat-raised-button color="primary" mat-button (click)="applyJob()">Apply</button><br>
       <mat-divider></mat-divider>
     <br>
   </mat-list-item>

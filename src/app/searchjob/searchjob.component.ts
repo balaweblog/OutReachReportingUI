@@ -12,6 +12,7 @@ import {Jobresult} from '../models/jobresult';
 import { UtilitiesService } from '../core/utilities.service';
 import { Skillset } from '../models/skillset';
 import 'rxjs/Rx';
+import { JobService } from '../core/job.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ import 'rxjs/Rx';
 
 export class SearchjobComponent implements OnInit {
 usersearch:Usersearch = new Usersearch();
-jobresults:Array<Object> = [];
+jobresults:Array<Jobresult> = [];
 errMessage = '';
 userId = '1';
 skillfamily: string;
@@ -34,7 +35,8 @@ locationControl: FormControl;
 step = 0;
 locationGroups:any;
 
-constructor(public dialog: MatDialog, private detailsService:DetailsService, private utilitiesService:UtilitiesService) {
+constructor(public dialog: MatDialog, private detailsService:DetailsService, private utilitiesService:UtilitiesService,
+private jobservice: JobService) {
 }
 
 ngOnInit() {
@@ -73,8 +75,9 @@ filter(val: string): string[] {
       if (this.usersearch.skillSet === '') {
           this.errMessage = "Skill Set are Required";
       } else {
-      		this.step = 1;
-      		this.jobresults = this.detailsService.getJobList(this.userId, this.usersearch.skillSet, this.skillfamily);
+          this.step = 1;
+          this.jobservice.getjobs(this.usersearch.skillSet).subscribe(res => this.jobresults = res);
+          console.log(this.jobresults);
           this.usersearch = new Usersearch();
         	this.errMessage = "";
       }

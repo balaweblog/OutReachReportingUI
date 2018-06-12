@@ -1,13 +1,13 @@
 export class Jobresult {
-companyName: string;
+companyname: string;
 role: string;
 domain: string;
-maxSalary: string;
+maxsalary: string;
 
   constructor() {
-    this.companyName = '';
+    this.companyname = '';
     this.role = '';
     this.domain = '';
-    this.maxSalary = '';
+    this.maxsalary = '';
   }
 }
