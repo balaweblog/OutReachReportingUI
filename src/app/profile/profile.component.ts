@@ -5,7 +5,6 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
 import {map, startWith} from 'rxjs/operators';
 
-import { DetailsService } from '../core/details.service';
 import { SkillfamilyComponent } from '../shared/skillfamily/skillfamily.component';
 import {Userprofile} from '../models/userprofile';
 import { UtilitiesService } from '../core/utilities.service';
@@ -29,7 +28,7 @@ filteredTechOptions: Observable<string[]>;
 locationControl: FormControl;
 locationGroups: any;
 
-constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private detailsService: DetailsService,
+constructor(private _formBuilder: FormBuilder, public dialog: MatDialog,
   private utilitiesService: UtilitiesService, private profileService: ProfileService) {
   this.userprofile = new Userprofile();
   this.techControl = new FormControl();

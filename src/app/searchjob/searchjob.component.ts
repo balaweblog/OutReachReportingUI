@@ -5,7 +5,6 @@ import {Observable} from 'rxjs/Rx';
 import { startWith} from 'rxjs/operators';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { DetailsService } from '../core/details.service';
 import {SkillfamilyComponent} from '../shared/skillfamily/skillfamily.component';
 import {Usersearch} from '../models/usersearch';
 import {Jobresult} from '../models/jobresult';
@@ -35,7 +34,7 @@ locationControl: FormControl;
 step = 0;
 locationGroups:any;
 
-constructor(public dialog: MatDialog, private detailsService:DetailsService, private utilitiesService:UtilitiesService,
+constructor(public dialog: MatDialog, private utilitiesService:UtilitiesService,
 private jobservice: JobService) {
 }
 

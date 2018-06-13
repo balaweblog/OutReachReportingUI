@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {FormControl} from '@angular/forms';
 
-import { DetailsService } from '../../core/details.service';
 import { UtilitiesService } from '../../core/utilities.service';
 
 @Component({
