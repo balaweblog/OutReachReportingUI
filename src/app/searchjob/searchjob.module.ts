@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatAutocompleteModule,
    MatStepperModule, MatDialogModule, MatListModule, MatDatepickerModule, MatNativeDateModule, MatInputModule,
-   MatExpansionModule, MatCardModule } from '@angular/material';
+   MatExpansionModule, MatCardModule,MatProgressBarModule,MatChipsModule} from '@angular/material';
+   
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +14,8 @@ import { SkillfamilyComponent } from '../shared/skillfamily/skillfamily.componen
 import { SharedModule } from '../shared/shared.module';
 import { SearchjobComponent } from './searchjob.component';
 import { SearchjobRoutingModule } from './searchjob-routing.module';
+import { IonRangeSliderModule } from "ng2-ion-range-slider";
+ 
 
 @NgModule({
   imports: [
@@ -35,6 +38,8 @@ import { SearchjobRoutingModule } from './searchjob-routing.module';
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressBarModule,
+    MatChipsModule,
     BrowserModule,
     MatToolbarModule,
     BrowserAnimationsModule,
@@ -48,7 +53,8 @@ import { SearchjobRoutingModule } from './searchjob-routing.module';
     HttpClientModule,
     MatDialogModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    IonRangeSliderModule
   ],
   exports:[
     SearchjobComponent

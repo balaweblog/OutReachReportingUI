@@ -13,3 +13,10 @@
 .input-full-width {
   width: 100%;
 }
+
+
+.loadingBarFixed {
+  overflow: hidden;
+  position: fixed;
+    top: 0;
+}

@@ -15,6 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatListModule} from '@angular/material/list';
 import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule,  ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';

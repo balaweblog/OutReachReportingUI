@@ -24,3 +24,28 @@
 .label-message{
   color:blue;
 }
+
+.jobliststyle
+{
+    
+    background-color: #eaeaea;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+}
+
+.loadingBarFixed {
+  overflow: hidden;
+  position: fixed;
+    top: 0;
+}
+
+.filter{
+	overflow: hidden;
+  position: fixed;
+    bottom: 10px;
+    right:10px;
+}
+
+.materialicons {
+  font-size: 17px;
+}

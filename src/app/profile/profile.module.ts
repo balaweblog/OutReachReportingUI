@@ -13,13 +13,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatListModule} from '@angular/material/list';
-import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {MatDatepickerModule, MatNativeDateModule,MatProgressBarModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {FormsModule,  ReactiveFormsModule} from '@angular/forms';
 
 
 import { ProfileComponent } from './profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { IonRangeSliderModule } from "ng2-ion-range-slider";
 
 
 @NgModule({
@@ -43,6 +44,8 @@ import { ProfileRoutingModule } from './profile-routing.module';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressBarModule,
+    IonRangeSliderModule
 
   ],
   exports:[

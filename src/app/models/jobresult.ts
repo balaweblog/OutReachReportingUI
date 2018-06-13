@@ -3,6 +3,8 @@ companyname: string;
 role: string;
 domain: string;
 maxsalary: string;
+location: string;
+jobid: string;
 
   constructor() {
     this.companyname = '';

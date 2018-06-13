@@ -1,3 +1,5 @@
+<br><br><br>
+ <mat-progress-bar [mode]="mode" class="loadingBarFixed"></mat-progress-bar>
 <mat-vertical-stepper #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
@@ -35,12 +37,29 @@
         </mat-autocomplete>
        </mat-form-field>
     Experience : {{userprofile.experience}} years <br>
-	  <mat-slider placeholder="Experience" formControlName="secondCtrl"class="input-full-width" [(ngModel)]="userprofile.experience">
-	  </mat-slider>
-	  Salary Expectation : {{userprofile.salaryexpectation}} lakhs <br>
-	  <mat-slider placeholder="Salary Expectation" formControlName="secondCtrl" class="input-full-width" [(ngModel)]="userprofile.salaryexpectation">
-    </mat-slider>
-	  <br>
+    
+    <ion-range-slider #sliderElement
+          min="1"
+          max="30"
+          from="3"
+          hide_min_max="true"
+           hide_from_to= "true" 
+          (onChange)="experienceUpdate($event)"></ion-range-slider>
+          <br>
+          
+	  
+	  Salary Expectation : {{userprofile.salaryexpectation}} - {{userprofile.salaryexpectationto}} lakhs <br>
+	  <ion-range-slider #sliderElement
+          type="double"
+          min="1"
+          max="50"
+          from="4"
+          to="7"
+          to_min="1"
+          to_max="50"
+          hide_min_max="true"
+           hide_from_to= "true" 
+          (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
     <mat-select placeholder="Current Location" [formControl]="locationControl" multiple [(ngModel)]='userprofile.location'>
       <mat-optgroup>
         <mat-option *ngFor="let location of locationGroups" [value]="location.city">
@@ -58,9 +77,14 @@
   </mat-form-field>
   <br>
   Notice period : {{userprofile.noticeperiod}} days <br>
-	<mat-slider placeholder="Notice period" formControlName="secondCtrl" class="input-full-width" [(ngModel)]="userprofile.noticeperiod">
-	</mat-slider>
-	<br>
+	<ion-range-slider #sliderElement
+          min="1"
+          max="14"
+          from="1"
+          hide_min_max="true"
+           hide_from_to= "true" 
+          (onChange)="noticePeriodUpdate($event)"></ion-range-slider>
+          <br>
 	<mat-form-field class="input-full-width">
     <input matInput placeholder="Reference Name" formControlName="secondCtrl" class="input-full-width" [(ngModel)]="userprofile.referencename">
 	</mat-form-field>

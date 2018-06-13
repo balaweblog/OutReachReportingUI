@@ -71,5 +71,17 @@ submitprofile() {
   this.profileService.addprofile(this.userprofile).then(userprof => {
   });
 }
+
+experienceUpdate(event){
+    this.userprofile.experience = event.from;
+ }
+ salaryExpectationOnUpdate(event){
+  this.userprofile.salaryexpectation = event.from;
+  this.userprofile.salaryexpectationto = event.to;
+  }
+  
+  noticePeriodUpdate(event){
+  	this.userprofile.noticeperiod = event.from;
+  }
 }
 
