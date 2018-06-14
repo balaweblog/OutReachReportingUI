@@ -37,17 +37,17 @@
         </mat-autocomplete>
        </mat-form-field>
     Experience : {{userprofile.experience}} years <br>
-    
+
     <ion-range-slider #sliderElement
           min="1"
           max="30"
           from="3"
           hide_min_max="true"
-           hide_from_to= "true" 
+           hide_from_to= "true"
           (onChange)="experienceUpdate($event)"></ion-range-slider>
           <br>
-          
-	  
+
+
 	  Salary Expectation : {{userprofile.salaryexpectation}} - {{userprofile.salaryexpectationto}} lakhs <br>
 	  <ion-range-slider #sliderElement
           type="double"
@@ -58,7 +58,7 @@
           to_min="1"
           to_max="50"
           hide_min_max="true"
-           hide_from_to= "true" 
+           hide_from_to= "true"
           (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
     <mat-select placeholder="Current Location" [formControl]="locationControl" multiple [(ngModel)]='userprofile.location'>
       <mat-optgroup>
@@ -82,7 +82,7 @@
           max="14"
           from="1"
           hide_min_max="true"
-           hide_from_to= "true" 
+           hide_from_to= "true"
           (onChange)="noticePeriodUpdate($event)"></ion-range-slider>
           <br>
 	<mat-form-field class="input-full-width">

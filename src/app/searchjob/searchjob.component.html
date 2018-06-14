@@ -19,7 +19,7 @@
 	      </mat-option>
 	    </mat-autocomplete>
     </mat-form-field>-->
-    
+
       <mat-form-field class="input-full-width">
   <mat-chip-list #chipList>
     <mat-chip
@@ -55,7 +55,7 @@
           max="30"
           from="3"
           hide_min_max="true"
-           hide_from_to= "true" 
+           hide_from_to= "true"
           (onChange)="experienceUpdate($event)"></ion-range-slider>
           <br>
 	  <label>Salary Expectation: {{usersearch.salaryExpectation}} - {{usersearch.salaryExpectationTo}} lakhs </label>
@@ -68,12 +68,12 @@
           to_min="1"
           to_max="50"
           hide_min_max="true"
-           hide_from_to= "true" 
+           hide_from_to= "true"
           (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
 	  <mat-select placeholder="Preferred location" [formControl]="locationControl" multiple  [(ngModel)]='usersearch.location'>
-	    <mat-optgroup *ngFor="let group of locationGroups" [label]="group.name"  [disabled]="group.disabled">
-	      <mat-option *ngFor="let location of group.location" [value]="location.value">
-	        {{ location.viewValue }}
+	    <mat-optgroup>
+	      <mat-option *ngFor="let location of locationGroups" [value]="location.city">
+	        {{ location.city }}
 	      </mat-option>
 	    </mat-optgroup>
 	  </mat-select><br>
@@ -84,34 +84,34 @@
   </div>
   </mat-expansion-panel>
   </mat-accordion>
-  
+
 
 
   <mat-list-item *ngFor="let jobresult of jobresults">
   <div class="jobliststyle">
    <br>
      <label>{{jobresult.role}} </label> &nbsp;&nbsp;
-     
-     <br>     
-     <span>{{jobresult.companyname}}</span> &nbsp;&nbsp; <a ><font size="1">+12 locations</font> </a> <br>  
-     <span>Keyskills: Java, J2EE, Core JAVA..., Advanced Java, Spring, Hibernate</span><br>    
+
+     <br>
+     <span>{{jobresult.companyname}}</span> &nbsp;&nbsp; <a ><font size="1">+12 locations</font> </a> <br>
+     <span>Keyskills: Java, J2EE, Core JAVA..., Advanced Java, Spring, Hibernate</span><br>
     <mat-icon class ="materialicons">work_outline </mat-icon>&nbsp;&nbsp; 5 - 9 Years <br>
     <mat-icon class ="materialicons">location_on</mat-icon>&nbsp;&nbsp; {{jobresult.location}}  <br>
     <mat-icon class ="materialicons">whatshot </mat-icon>&nbsp;&nbsp; <span>Posted 3 days ago</span>
-    <span style="float:right;"> <mat-icon (click)="applyJob(jobresult.jobId)">favorite_border</mat-icon></span>
-    
+    <span style="float:right;"> <mat-icon (click)="applyJob()">favorite_border</mat-icon></span>
+
    <mat-divider></mat-divider>
     </div>
-     
+
   </mat-list-item>
-  
+
    <button mat-mini-fab class="filter" color="primary" [disabled]="filterDisplay">
     <mat-icon>filter_list</mat-icon>
   </button>
 
-  
-  
-  
-  
-  
+
+
+
+
+
 

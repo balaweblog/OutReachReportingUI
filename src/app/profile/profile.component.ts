@@ -72,15 +72,14 @@ submitprofile() {
   });
 }
 
-experienceUpdate(event){
+experienceUpdate(event) {
     this.userprofile.experience = event.from;
  }
- salaryExpectationOnUpdate(event){
+ salaryExpectationOnUpdate(event) {
   this.userprofile.salaryexpectation = event.from;
   this.userprofile.salaryexpectationto = event.to;
   }
-  
-  noticePeriodUpdate(event){
+  noticePeriodUpdate(event) {
   	this.userprofile.noticeperiod = event.from;
   }
 }

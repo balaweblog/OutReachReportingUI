@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class JobService {
-  apiUrl = 'https://localhost:3000/api';
+  apiUrl = 'https://18.220.137.145:3000/api';
 
   constructor(private http: Http) { }
 

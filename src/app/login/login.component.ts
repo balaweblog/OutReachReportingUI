@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../core/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,21 +9,18 @@ import { Router } from '@angular/router';
 })
 
 export class  LoginComponent implements OnInit {
-  googleurl = 'https://localhost:3000/api/auth/google';
-  facebookurl = 'https://localhost:3000/api/auth/facebook';
-  twitterurl = 'https://localhost:3000/api/auth/twitter';
 
-  constructor(private router: Router) { }
+  constructor(private loginservice: LoginService) { }
 
   ngOnInit() {
   }
   facebooklogin() {
-    window.document.location.href = this.facebookurl;
+    this.loginservice.facebookredirect();
   }
   googlelogin() {
-    window.document.location.href = this.googleurl;
+    this.loginservice.googleredirect();
   }
   twitterlogin() {
-    window.document.location.href = this.twitterurl;
+    this.loginservice.twitterredirect();
   }
 }

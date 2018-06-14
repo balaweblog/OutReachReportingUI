@@ -52,10 +52,10 @@ filterDisplay = true;
 
   fruits = [];
 
-  //allFruits = this.detailsService.getSkillSet(); 
+  //allFruits = this.detailsService.getSkillSet();
 
   @ViewChild('fruitInput') fruitInput: ElementRef;
-  
+
 
 constructor(public dialog: MatDialog, private utilitiesService:UtilitiesService,
 private jobservice: JobService) {
@@ -95,8 +95,8 @@ ngOnInit() {
     });
 
     dialogRef.afterClosed().subscribe(result => { console.log('The dialog was closed'); this.skillfamily = result; this.mode = '';});
-    
-    
+
+
   }
   return this.techoptions.filter(option => option.toLowerCase().indexOf(val.toLowerCase()) === 0);
   }*/
@@ -109,7 +109,7 @@ ngOnInit() {
       		this.step = 1;
       		this.filterDisplay = false;
 			//this.jobservice.getjobs(this.usersearch.skillSet).subscribe(res => this.jobresults = res);
-			
+
 			this.jobresults = [
 			    {
 			      companyname: 'Vertical Management Consultancy',
@@ -195,7 +195,7 @@ ngOnInit() {
 			console.log(this.jobresults);
 			this.usersearch = new Usersearch();
         	this.errMessage = "";
-        	
+
         	this.mode = '';
       //}
   }
@@ -203,15 +203,14 @@ ngOnInit() {
   applyJob(jobId) {
   	console.log(jobId);
   }
-  
-  experienceUpdate(event){
+
+  experienceUpdate(event) {
     this.usersearch.experience = event.from;
   }
-  salaryExpectationOnUpdate(event){
+  salaryExpectationOnUpdate(event) {
   this.usersearch.salaryExpectation = event.from;
   this.usersearch.salaryExpectationTo = event.to;
   }
-  
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
