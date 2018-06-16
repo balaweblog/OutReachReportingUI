@@ -15,7 +15,7 @@ export class JobService {
   constructor(private http: Http) { }
 
 
-  getjobs(skillset: string): Observable<Jobresult[]> {
+  getjobs(skillset: any[]): Observable<Jobresult[]> {
     return this.http.get(`${this.apiUrl}/core/jobs/` + skillset).map((res:Response) => {return <Jobresult[]>res.json().jobinfo; })
     .catch(this.handleError);
 

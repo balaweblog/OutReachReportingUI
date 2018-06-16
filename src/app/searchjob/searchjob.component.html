@@ -2,110 +2,65 @@
  <mat-progress-bar [mode]="mode" class="loadingBarFixed"></mat-progress-bar>
 <mat-accordion class="example-headers-align">
   <mat-expansion-panel class="keep-c-expansion-panel" [expanded]="step === 0">
-        <mat-expansion-panel-header>
-      <mat-panel-title>
-        Search Jobs
-      </mat-panel-title>
+    <mat-expansion-panel-header>
+        <mat-panel-title>Search Jobs </mat-panel-title>
     </mat-expansion-panel-header>
-
 
 <div class="keep-c-input-form">
   <label class="error-message">{{errMessage}}</label>
-    <!--  <mat-form-field class="input-full-width">
-	    <input type="text" placeholder="Skill Set" aria-label="Number" matInput [formControl]="techControl" [matAutocomplete]="auto" matInput [(ngModel)]='usersearch.skillSet'>
-	    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-	      <mat-option *ngFor="let option of filteredTechOptions | async" [value]="option">
-	        {{ option }}
-	      </mat-option>
-	    </mat-autocomplete>
-    </mat-form-field>-->
-
-      <mat-form-field class="input-full-width">
+  <mat-form-field class="input-full-width">
   <mat-chip-list #chipList>
-    <mat-chip
-      *ngFor="let fruit of fruits"
-      [selectable]="selectable"
-      [removable]="removable"
-      (removed)="remove(fruit)">
+    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
       {{fruit}}
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
-    <input
-      placeholder="Job Title, Keywords"
-      #fruitInput
-      [formControl]="fruitCtrl"
-      [matAutocomplete]="auto"
-      [matChipInputFor]="chipList"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      [matChipInputAddOnBlur]="addOnBlur"
-      (matChipInputTokenEnd)="add($event)"
-    />
+    <input placeholder="Job Title, Keywords" #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"/>
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-      {{ fruit }}
-    </mat-option>
+    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit"> {{ fruit }} </mat-option>
   </mat-autocomplete>
 </mat-form-field>
-
-	 <br>
+<br>
 	 <label>Experience: {{usersearch.experience}} years</label>
-	 <ion-range-slider #sliderElement
-          min="1"
-          max="30"
-          from="3"
-          hide_min_max="true"
-           hide_from_to= "true"
-          (onChange)="experienceUpdate($event)"></ion-range-slider>
-          <br>
+	 <ion-range-slider #sliderElement min="1" max="30" from="3" hide_min_max="true" hide_from_to= "true" (onChange)="experienceUpdate($event)"></ion-range-slider>
+<br>
 	  <label>Salary Expectation: {{usersearch.salaryExpectation}} - {{usersearch.salaryExpectationTo}} lakhs </label>
-	  <ion-range-slider #sliderElement
-          type="double"
-          min="1"
-          max="50"
-          from="1"
-          to="12"
-          to_min="1"
-          to_max="50"
-          hide_min_max="true"
-           hide_from_to= "true"
-          (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
+    <ion-range-slider #sliderElement type="double" min="1" max="50" from="1" to="12" to_min="1" to_max="50"
+     hide_min_max="true"hide_from_to= "true" (onChange)="salaryExpectationOnUpdate($event)">
+    </ion-range-slider>
+<br>
 	  <mat-select placeholder="Preferred location" [formControl]="locationControl" multiple  [(ngModel)]='usersearch.location'>
 	    <mat-optgroup>
 	      <mat-option *ngFor="let location of locationGroups" [value]="location.city">
-	        {{ location.city }}
+          {{ location.city }}
 	      </mat-option>
 	    </mat-optgroup>
 	  </mat-select><br>
-	  <br>
+<br>
 	    <div class="keep-c-done-btn">
 	      <button mat-raised-button color="primary" mat-button (click)="searchJob()">Search</button>
 	  	</div>
   </div>
-  </mat-expansion-panel>
-  </mat-accordion>
+</mat-expansion-panel>
+</mat-accordion>
 
-
-
-  <mat-list-item *ngFor="let jobresult of jobresults">
+<mat-list-item *ngFor="let jobresult of jobresults">
   <div class="jobliststyle">
-   <br>
+<br>
      <label>{{jobresult.role}} </label> &nbsp;&nbsp;
+<br>
+    <span>{{jobresult.companyname}}</span> &nbsp;&nbsp; <a ><font size="1">+12 locations</font> </a> <br>
+    <span>Keyskills: Java, J2EE, Core JAVA..., Advanced Java, Spring, Hibernate</span><br>
 
-     <br>
-     <span>{{jobresult.companyname}}</span> &nbsp;&nbsp; <a ><font size="1">+12 locations</font> </a> <br>
-     <span>Keyskills: Java, J2EE, Core JAVA..., Advanced Java, Spring, Hibernate</span><br>
     <mat-icon class ="materialicons">work_outline </mat-icon>&nbsp;&nbsp; 5 - 9 Years <br>
     <mat-icon class ="materialicons">location_on</mat-icon>&nbsp;&nbsp; {{jobresult.location}}  <br>
     <mat-icon class ="materialicons">whatshot </mat-icon>&nbsp;&nbsp; <span>Posted 3 days ago</span>
     <span style="float:right;"> <mat-icon (click)="applyJob()">favorite_border</mat-icon></span>
-
-   <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
     </div>
-
   </mat-list-item>
-
-   <button mat-mini-fab class="filter" color="primary" [disabled]="filterDisplay">
+  <button mat-mini-fab class="filter" color="primary" [disabled]="filterDisplay">
     <mat-icon>filter_list</mat-icon>
   </button>
 
