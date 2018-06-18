@@ -1,5 +1,5 @@
 <br><br><br>
- <mat-progress-bar [mode]="mode" class="loadingBarFixed"></mat-progress-bar>
+ <mat-progress-bar class="loadingBarFixed"></mat-progress-bar>
 <mat-vertical-stepper #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
@@ -29,7 +29,7 @@
 	    <ng-template matStepLabel>Office Details</ng-template>
       <mat-form-field class="input-full-width">
         <input type="text" placeholder="Skill Set" class="input-full-width" aria-label="Number" matInput
-        [formControl]="techControl" [matAutocomplete]="auto" matInput [(ngModel)]="userprofile.primaryskillset" (submit)="openDialog()">
+        [formControl]="techControl" [matAutocomplete]="auto" matInput [(ngModel)]="userprofile.primaryskillset">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
            <mat-option *ngFor="let option of filteredTechOptions | async" [value]="option">
               {{ option }}

@@ -12,10 +12,4 @@ export class Userprofile {
   noticeperiod: Number;
   referencename: string;
   referencenumber: string;
-  
-  constructor() {
-  this.experience = 1;
-  this.salaryexpectation = 4;
-  this.salaryexpectationto = 7;
-  }
 }
