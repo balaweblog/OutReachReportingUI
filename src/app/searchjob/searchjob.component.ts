@@ -137,4 +137,11 @@ searchJob() {
     this.fruitInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
   }
+  datediff(date1): Number {
+    var dateOut1 = new Date(date1);
+    var dateOut2 = new Date(Date.now());
+   var timeDiff = Math.abs(dateOut2.getTime() - dateOut1.getTime());
+   var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+   return diffDays;
+  }
 }

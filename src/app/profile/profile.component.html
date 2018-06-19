@@ -29,7 +29,7 @@
 	    <ng-template matStepLabel>Office Details</ng-template>
       <mat-form-field class="input-full-width">
         <input type="text" placeholder="Skill Set" class="input-full-width" aria-label="Number" matInput
-        [formControl]="techControl" [matAutocomplete]="auto" matInput [(ngModel)]="userprofile.primaryskillset">
+        [formControl]="techControl" [matAutocomplete]="auto" matInput [(ngModel)]="userprofile.skillset">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
            <mat-option *ngFor="let option of filteredTechOptions | async" [value]="option">
               {{ option }}
@@ -48,7 +48,7 @@
           <br>
 
 
-	  Salary Expectation : {{userprofile.salaryexpectation}} - {{userprofile.salaryexpectationto}} lakhs <br>
+	  Salary Expectation : {{userprofile.salaryexpectationmin}} - {{userprofile.salaryexpectationmax}} lakhs <br>
 	  <ion-range-slider #sliderElement
           type="double"
           min="1"

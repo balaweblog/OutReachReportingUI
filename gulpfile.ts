@@ -30,9 +30,9 @@ gulp.task("build", ["clean", "tslint"] , (cb) => {
 });
 
 // deploy
-gulp.task('deploy', ['compress'], function () {
+gulp.task('deploy', function () {
   connect.server({
-    root: 'dist/',
+    root: 'dist',
     port: 4200
   });
 });

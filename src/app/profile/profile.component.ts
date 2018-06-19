@@ -49,23 +49,9 @@ ngOnInit() {
   // populate job locations
   this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res['joblocations']);
 
-  // filter tech options
-  this.filteredTechOptions = this.techControl.valueChanges.pipe(startWith(''), map(val => this.filter(val)));
-
   this.firstFormGroup = this._formBuilder.group({ firstCtrl: ['', Validators.required]});
   this.secondFormGroup = this._formBuilder.group({ secondCtrl: ['', Validators.required]});
 }
-
-filter(val: string): string[] {
-   this.userprofile.secondaryskillset = '';
-
-  if (this.techoptions.some(x => x === val)) {
-    const dialogRef = this.dialog.open(SkillfamilyComponent, { width: '250px',
-    data: {skillset: this.userprofile.secondaryskillset, primary: val}}); dialogRef.afterClosed().
-    subscribe(result => { this.userprofile.secondaryskillset = result; });
-   }
-  return this.techoptions.filter(option => option.toLowerCase().indexOf(val.toLowerCase()) === 0);
- }
 
 submitprofile() {
   this.profileService.addprofile(this.userprofile).then(userprof => {
@@ -76,8 +62,8 @@ experienceUpdate(event) {
     this.userprofile.experience = event.from;
  }
  salaryExpectationOnUpdate(event) {
-  this.userprofile.salaryexpectation = event.from;
-  this.userprofile.salaryexpectationto = event.to;
+  this.userprofile.salaryexpectationmin = event.from;
+  this.userprofile.salaryexpectationmax = event.to;
   }
   noticePeriodUpdate(event) {
   	this.userprofile.noticeperiod = event.from;

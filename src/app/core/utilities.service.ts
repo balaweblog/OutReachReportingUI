@@ -6,7 +6,7 @@ import { Skillset } from '../models/skillset';
 
 @Injectable()
 export class UtilitiesService {
-  apiUrl = 'https://18.220.137.145:3000/api';
+  apiUrl = 'https://localhost:3000/api';
 
   constructor(private http: Http) { }
 

@@ -48,15 +48,15 @@
 <mat-list-item *ngFor="let jobresult of jobresults">
   <div class="jobliststyle">
 <br>
-     <label>{{jobresult.role}} </label> &nbsp;&nbsp;
+     <label>{{jobresult.companyname}} </label> &nbsp;&nbsp;
 <br>
-    <span>{{jobresult.companyname}}</span> &nbsp;&nbsp; <a ><font size="1">+12 locations</font> </a> <br>
-    <span>Keyskills: Java, J2EE, Core JAVA..., Advanced Java, Spring, Hibernate</span><br>
+    <span>{{jobresult.role}}</span> &nbsp;&nbsp; <a ><font size="1">+12 locations</font> </a> <br>
+    <span>Keyskills: {{ jobresult.skillset }}</span><br>
 
-    <mat-icon class ="materialicons">work_outline </mat-icon>&nbsp;&nbsp; 5 - 9 Years <br>
+    <mat-icon class ="materialicons">work_outline </mat-icon>&nbsp;&nbsp; {{ jobresult.minexperience }} - {{ jobresult.maxexperience }} Years <br>
     <mat-icon class ="materialicons">location_on</mat-icon>&nbsp;&nbsp; {{jobresult.location}}  <br>
-    <mat-icon class ="materialicons">whatshot </mat-icon>&nbsp;&nbsp; <span>Posted 3 days ago</span>
-    <span style="float:right;"> <mat-icon (click)="applyJob()">favorite_border</mat-icon></span>
+    <mat-icon class ="materialicons">whatshot </mat-icon>&nbsp;&nbsp; <span> Posted {{ datediff(jobresult.createddate) }}  days ago </span>
+    <span style="float:right;"> <mat-icon (click)="applyJob(jobresult._id)">favorite_border</mat-icon></span>
     <mat-divider></mat-divider>
     </div>
   </mat-list-item>

@@ -2,11 +2,10 @@ export class Userprofile {
   fullname: string;
   contactnumber: string;
   emailaddress: string;
-  primaryskillset : string;
-  secondaryskillset:string;
+  skillset : string;
   experience: Number;
-  salaryexpectation: Number;
-  salaryexpectationto: Number;
+  salaryexpectationmin: Number;
+  salaryexpectationmax: Number;
   lastworkingday: Date;
   location:string[] = [];
   noticeperiod: Number;
