@@ -33,6 +33,8 @@ gulp.task("build", ["clean", "tslint"] , (cb) => {
 gulp.task('deploy', function () {
   connect.server({
     root: 'dist',
-    port: 4200
+    port: 4200,
+    livereload: true,
+    fallback: 'dist/index.html'
   });
 });
