@@ -87,8 +87,43 @@ searchJob() {
  this.step = 1;
  this.filterDisplay = false;
  this.usersearch.skillSet = this.fruits;
- this.jobservice.getjobs(this.usersearch.skillSet).subscribe(res => this.jobresults = res);
+ //this.jobservice.getjobs(this.usersearch.skillSet).subscribe(res => this.jobresults = res);
 
+this.jobresults = [
+			    {
+			      companyname: 'Vertical Management Consultancy',
+			      role : 'Core Java Developer',
+			      domain : 'BFS',
+			      minexperience :'0',
+			      maxexperience :'1',
+			      maxsalary : '1lakhs',
+			      location : 'Chenni',
+			      jobid: '1',
+			      createddate : '12/12/12'
+			    },
+			    {
+			      companyname: 'Vertical Management Consultancy',
+			      role : 'Core Java Developer',
+			      domain : 'BFS',
+			      minexperience :'0',
+			      maxexperience :'1',
+			      maxsalary : '1lakhs',
+			      location : 'Chenni',
+			      jobid: '1',
+			      createddate : '12/12/12'
+			    },
+			    {
+			      companyname: 'Vertical Management Consultancy',
+			      role : 'Core Java Developer',
+			      domain : 'BFS',
+			      minexperience :'0',
+			      maxexperience :'1',
+			      maxsalary : '1lakhs',
+			      location : 'Chenni',
+			      jobid: '1',
+			      createddate : '12/12/12'
+			    }
+			    ];
     this.errMessage = "";
     this.mode = '';
   }

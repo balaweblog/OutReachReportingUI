@@ -3,3 +3,14 @@
   position: fixed;
     top: 0;
 }
+
+.profileimages{
+	right:100px;
+}
+.example-icon {
+  padding: 0 5px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

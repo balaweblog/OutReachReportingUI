@@ -28,9 +28,11 @@
 .jobliststyle
 {
     
-    background-color: #eaeaea;
+    background-color: #dbdbdb;
     border: 2px solid #ffffff;
     border-radius: 5px;
+    border-style: solid;
+    border-color: #7e7e7f;
 }
 
 .loadingBarFixed {
@@ -42,7 +44,7 @@
 .filter{
 	overflow: hidden;
   position: fixed;
-    bottom: 10px;
+    bottom: 50px;
     right:10px;
 }
 

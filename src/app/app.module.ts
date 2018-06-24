@@ -32,6 +32,7 @@ import { LoginModule } from './login/login.module';
 import { ProfileModule } from './profile/profile.module';
 import { SearchjobModule } from './searchjob/searchjob.module';
 import { SharedModule } from './shared/shared.module';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 @NgModule({

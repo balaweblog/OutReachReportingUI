@@ -3,7 +3,7 @@
 <mat-accordion class="example-headers-align">
   <mat-expansion-panel class="keep-c-expansion-panel" [expanded]="step === 0">
     <mat-expansion-panel-header>
-        <mat-panel-title>Search Jobs </mat-panel-title>
+        <mat-panel-title style="font-weight: bold;">Search Jobs </mat-panel-title>
     </mat-expansion-panel-header>
 
 <div class="keep-c-input-form">
@@ -39,7 +39,7 @@
 	  </mat-select><br>
 <br>
 	    <div class="keep-c-done-btn">
-	      <button mat-raised-button color="primary" mat-button (click)="searchJob()">Search</button>
+	      <mat-chip color="primary" selected="true" mat-button (click)="searchJob()">Search</mat-chip>
 	  	</div>
   </div>
 </mat-expansion-panel>
@@ -47,9 +47,10 @@
 
 <mat-list-item *ngFor="let jobresult of jobresults">
   <div class="jobliststyle">
-<br>
-     <label>{{jobresult.companyname}} </label> &nbsp;&nbsp;
-<br>
+     <div style="background-color: #D4D7FE;">
+     <label>{{jobresult.companyname}} </label>
+     </div>
+     <mat-divider></mat-divider>
     <span>{{jobresult.role}}</span> &nbsp;&nbsp; <a ><font size="1">+12 locations</font> </a> <br>
     <span>Keyskills: {{ jobresult.skillset }}</span><br>
 
@@ -57,8 +58,9 @@
     <mat-icon class ="materialicons">location_on</mat-icon>&nbsp;&nbsp; {{jobresult.location}}  <br>
     <mat-icon class ="materialicons">whatshot </mat-icon>&nbsp;&nbsp; <span> Posted {{ datediff(jobresult.createddate) }}  days ago </span>
     <span style="float:right;"> <mat-icon (click)="applyJob(jobresult._id)">favorite_border</mat-icon></span>
-    <mat-divider></mat-divider>
+    
     </div>
+    <mat-divider></mat-divider>
   </mat-list-item>
   <button mat-mini-fab class="filter" color="primary" [disabled]="filterDisplay">
     <mat-icon>filter_list</mat-icon>
