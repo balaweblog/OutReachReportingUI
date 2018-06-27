@@ -41,6 +41,7 @@
     "onsenui": "^2.10.1",
     "run-sequence": "^2.2.1",
     "rxjs": "^5.5.6",
+    "url-crypt": "^1.2.1",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

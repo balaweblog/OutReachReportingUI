@@ -10,7 +10,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 
 import { HeaderComponent } from './header/header.component';
 import { SkillfamilyComponent } from './skillfamily/skillfamily.component';
@@ -43,7 +42,6 @@ import { SkillfamilyComponent } from './skillfamily/skillfamily.component';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule ,
     MatDialogModule,
     FormsModule
   ],

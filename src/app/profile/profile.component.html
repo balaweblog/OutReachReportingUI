@@ -6,15 +6,15 @@
       <!-- 1 Personal Details -->
 	    <ng-template matStepLabel>Personal Details</ng-template>
 	  <mat-form-field class="input-full-width">
-      <input matInput placeholder="Last name, First name" formControlName="firstCtrl" [(ngModel)]="userprofile.fullname"/>
+      <input matInput placeholder="Last name, First name" formControlName="fullname" [(ngModel)]="userprofile.fullname"/>
     </mat-form-field>
 	  <br>
 	  <mat-form-field class="input-full-width">
-      <input matInput placeholder="Contact Number" formControlName="firstCtrl"class="input-full-width" [(ngModel)]="userprofile.contactnumber"/>
+      <input matInput placeholder="Contact Number" formControlName="contactnumber"class="input-full-width" [(ngModel)]="userprofile.contactnumber"/>
     </mat-form-field>
 	  <br>
 	  <mat-form-field class="input-full-width">
-      <input matInput placeholder="Email Address" formControlName="firstCtrl" class="input-full-width" [(ngModel)]="userprofile.emailaddress"/>
+      <input matInput placeholder="Email Address" formControlName="emailaddress" class="input-full-width" [(ngModel)]="userprofile.emailaddress"/>
     </mat-form-field>
     <br>
 	  <div>
@@ -29,7 +29,7 @@
 	    <ng-template matStepLabel>Office Details</ng-template>
       <mat-form-field class="input-full-width">
         <input type="text" placeholder="Skill Set" class="input-full-width" aria-label="Number" matInput
-        [formControl]="techControl" [matAutocomplete]="auto" matInput [(ngModel)]="userprofile.skillset">
+        [formControl]="techControl" [matAutocomplete]="auto" formControlName="skillset" matInput [(ngModel)]="userprofile.skillset">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
            <mat-option *ngFor="let option of filteredTechOptions | async" [value]="option">
               {{ option }}
@@ -47,7 +47,6 @@
           (onChange)="experienceUpdate($event)"></ion-range-slider>
           <br>
 
-
 	  Salary Expectation : {{userprofile.salaryexpectationmin}} - {{userprofile.salaryexpectationmax}} lakhs <br>
 	  <ion-range-slider #sliderElement
           type="double"
@@ -60,16 +59,16 @@
           hide_min_max="true"
            hide_from_to= "true"
           (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
-    <mat-select placeholder="Current Location" [formControl]="locationControl" multiple [(ngModel)]='userprofile.location'>
+    <mat-select placeholder="Current Location" [formControl]="locationControl"  multiple [(ngModel)]='userprofile.location'>
       <mat-optgroup>
-        <mat-option *ngFor="let location of locationGroups" [value]="location.city">
+        <mat-option *ngFor="let location of locationGroups" [value]="location.city" >
 	        {{ location.city }}
 	      </mat-option>
       </mat-optgroup>
     </mat-select>
   	<br>
 	<mat-form-field class="input-full-width">
-    <input matInput [matDatepicker]="picker" placeholder="Last working day" formControlName="secondCtrl" [(ngModel)]="userprofile.lastworkingday">
+    <input matInput [matDatepicker]="picker" placeholder="Last working day" formControlName="lastworkingday" [(ngModel)]="userprofile.lastworkingday">
 	  <mat-datepicker-toggle matSuffix [for]="picker">
     </mat-datepicker-toggle>
 	  <mat-datepicker #picker>
@@ -79,18 +78,19 @@
   Notice period : {{userprofile.noticeperiod}} days <br>
 	<ion-range-slider #sliderElement
           min="1"
-          max="14"
-          from="1"
+          max="30"
+          from="3"
           hide_min_max="true"
            hide_from_to= "true"
           (onChange)="noticePeriodUpdate($event)"></ion-range-slider>
           <br>
+
 	<mat-form-field class="input-full-width">
-    <input matInput placeholder="Reference Name" formControlName="secondCtrl" class="input-full-width" [(ngModel)]="userprofile.referencename">
+    <input matInput placeholder="Reference Name" formControlName="referencename" class="input-full-width" [(ngModel)]="userprofile.referencename">
 	</mat-form-field>
 	<br>
 	<mat-form-field class="input-full-width">
-    <input matInput placeholder="Reference Number" formControlName="secondCtrl" class="input-full-width" [(ngModel)]="userprofile.referencenumber">
+    <input matInput placeholder="Reference Number" formControlName="referencenumber" class="input-full-width" [(ngModel)]="userprofile.referencenumber">
 	</mat-form-field>
 	<div>
 		<button mat-raised-button color="primary" (click)="submitprofile()">Submit</button>

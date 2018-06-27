@@ -8,7 +8,6 @@ import { MatSliderModule } from '@angular/material/slider';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 import { SkillfamilyComponent } from '../shared/skillfamily/skillfamily.component';
 import { SharedModule } from '../shared/shared.module';
@@ -50,7 +49,6 @@ import { IonRangeSliderModule } from "ng2-ion-range-slider";
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     MatDialogModule,
     SharedModule,
     FormsModule,

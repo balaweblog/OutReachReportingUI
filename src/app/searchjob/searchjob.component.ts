@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
 import { startWith} from 'rxjs/operators';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import 'rxjs/Rx';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
@@ -12,8 +12,6 @@ import {MatAutocompleteSelectedEvent, MatChipInputEvent} from '@angular/material
 import {Usersearch} from '../models/usersearch';
 import {Jobresult} from '../models/jobresult';
 import { UtilitiesService } from '../core/utilities.service';
-import { Skillset } from '../models/skillset';
-import {SkillfamilyComponent} from '../shared/skillfamily/skillfamily.component';
 import { JobService } from '../core/job.service';
 
 
