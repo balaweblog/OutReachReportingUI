@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HeaderComponent } from './header/header.component';
 import { SkillfamilyComponent } from './skillfamily/skillfamily.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -46,8 +47,8 @@ import { SkillfamilyComponent } from './skillfamily/skillfamily.component';
     FormsModule
   ],
   exports: [
-   HeaderComponent, SkillfamilyComponent
+   HeaderComponent,FooterComponent, SkillfamilyComponent
   ],
-  declarations: [ HeaderComponent, SkillfamilyComponent]
+  declarations: [ HeaderComponent,FooterComponent, SkillfamilyComponent]
 })
 export class SharedModule { }

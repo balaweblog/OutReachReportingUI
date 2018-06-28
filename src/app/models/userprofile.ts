@@ -7,7 +7,7 @@ export class Userprofile {
   salaryexpectationmin: Number;
   salaryexpectationmax: Number;
   lastworkingday: Date;
-  location:string[];
+  location:string;
   noticeperiod: Number;
   referencename: string;
   referencenumber: string;

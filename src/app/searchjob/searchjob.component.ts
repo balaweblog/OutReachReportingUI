@@ -86,10 +86,7 @@ searchJob() {
  this.filterDisplay = false;
  this.usersearch.skillSet = this.fruits;
  this.jobservice.getjobs(this.usersearch.skillSet).subscribe(res => this.jobresults = res);
-
-    this.errMessage = "";
-    this.mode = '';
-  }
+}
 
   applyJob(jobId) {
   	console.log(jobId);

@@ -18,12 +18,13 @@ export class CryptoService {
     return  this.http.get(`${this.apiUrl}/account/decrypt/` + ciphertext).map(res => { return res.json(); }).
     catch(this.handleError);
   }
-private handleErrorPromise (error: Response | any) {
-  console.error(error.message || error);
-  return Promise.reject(error.message || error);
+
+  private handleErrorPromise (error: Response | any) {
+    console.error(error.message || error);
+    return Promise.reject(error.message || error);
 }
-handleError (error: Response | any) {
-  return Observable.throw(error.message || error);
-}
+  handleError (error: Response | any) {
+    return Observable.throw(error.message || error);
+  }
 }
 

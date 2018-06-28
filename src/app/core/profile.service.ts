@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Http, Response} from '@angular/http';
-import { Userprofile } from '../models/userprofile';
+import { Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import { HttpClient } from '@angular/common/http';
+
+import { Userprofile } from '../models/userprofile';
+
 
 @Injectable()
 export class ProfileService {
@@ -16,12 +18,7 @@ export class ProfileService {
 
   addprofile(userprofile: Userprofile): Promise<string> {
     return this.http.post(`${this.apiUrl}/core/userprofile`, userprofile, {responseType: "text"}).toPromise()
-    .then(res => res.toString()).catch(this.handleErrorPromise);
-  }
-
-  private handleErrorPromise (error: Response | any) {
-    console.error(error.message || error);
-    return Promise.reject(error.message || error);
+    .then(res => res).catch(this.handleErrorPromise);
   }
 
   getprofile(emailaddress: string): Promise<Userprofile> {
@@ -34,9 +31,10 @@ export class ProfileService {
    .then(res =>  res as boolean).catch(this.handleErrorPromise);
  }
 
-handleError (error: Response | any) {
-  return Observable.throw(error.message || error);
-}
-
-
+  handleError (error: Response | any) {
+    return Observable.throw(error.message || error);
+  }
+  private handleErrorPromise (error: Response | any) {
+    return Promise.reject(error.message || error);
+  }
 }
