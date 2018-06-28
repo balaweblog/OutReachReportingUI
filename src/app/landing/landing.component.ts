@@ -22,6 +22,7 @@ export class LandingComponent implements OnInit {
             localStorage.setItem('token', output['token']);
             localStorage.setItem('photo', output['photo']);
             this.headercomponent.photoimage = localStorage.getItem('photo');
+            console.log(this.headercomponent.photoimage);
             this.router.navigate(['profile']);
       });
   }

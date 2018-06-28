@@ -98,7 +98,6 @@ userphoto: string;
 
 submitprofile() {
   this.profileService.addprofile(this.userprofile).then(userprof => {
-    console.log(userprof);
     this.router.navigate(['/searchjob']);
   });
 }

@@ -10,7 +10,7 @@ import { ProfileModule } from './profile/profile.module';
 import { SearchjobModule } from './searchjob/searchjob.module';
 import { SharedModule } from './shared/shared.module';
 import { LandingModule } from './landing/landing.module';
-import { FooterComponent } from './shared/footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent

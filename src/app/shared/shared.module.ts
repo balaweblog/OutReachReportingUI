@@ -47,8 +47,8 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule
   ],
   exports: [
-   HeaderComponent,FooterComponent, SkillfamilyComponent
+   HeaderComponent, FooterComponent, SkillfamilyComponent
   ],
-  declarations: [ HeaderComponent,FooterComponent, SkillfamilyComponent]
+  declarations: [ HeaderComponent, FooterComponent, SkillfamilyComponent]
 })
 export class SharedModule { }
