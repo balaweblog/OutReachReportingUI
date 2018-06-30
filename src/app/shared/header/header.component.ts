@@ -23,6 +23,8 @@ export class HeaderComponent implements OnInit {
           this.router.navigate(['profile']);
       } else if (page === 'search') {
           this.router.navigate(['searchjob']);
+      } else if (page === 'apply') {
+          this.router.navigate(['applyjob']);
       } else if (page === 'logout') {
           localStorage.clear();
           this.router.navigate(['login']);

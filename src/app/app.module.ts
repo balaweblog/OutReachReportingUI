@@ -8,8 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 import { ProfileModule } from './profile/profile.module';
 import { SearchjobModule } from './searchjob/searchjob.module';
+import { ApplyjobModule } from './applyjob/applyjob.module';
 import { SharedModule } from './shared/shared.module';
 import { LandingModule } from './landing/landing.module';
+import { ApplyjobComponent } from './applyjob/applyjob.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { LandingModule } from './landing/landing.module';
   BrowserModule,
   AppRoutingModule,
   SearchjobModule,
+  ApplyjobModule,
   ProfileModule,
   FormsModule,
   ReactiveFormsModule,
