@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../core/job.service';
 import {Jobresult} from '../models/jobresult';
+import { AppliedJob } from '../models/appliedjob';
 
 
 
@@ -12,34 +13,29 @@ import {Jobresult} from '../models/jobresult';
 export class ApplyjobComponent implements OnInit {
 mode = '';
 filterDisplay = true;
+searchitem: any[];
 jobresults:Array<Jobresult> = [];
+appliedjobs:string;
+
 
   constructor(private jobservice: JobService) {
-  	this.filterDisplay = true; 
+  	this.filterDisplay = true;
   	}
 
   ngOnInit() {
-  		this.mode = 'indeterminate';
-  		this.jobresults = [
-			    {
-			      companyname: 'Vertical Management Consultancy',
-			      role : 'Core Java Developer',
-			      domain : 'BFS',
-			      maxsalary : '1',
-			      location : 'Chenni'
-			    },
-			    {
-			      companyname: 'Vertical Management Consultancy',
-			      role : 'Core Java Developer',
-			      domain : 'BFS',
-			      maxsalary : '1',
-			      location : 'Chenni'
-			    }
-			  ];
-			  
+      this.mode = 'indeterminate';
+      console.log(localStorage.getItem('email'));
+      this.jobservice.getappliedjobbyemail(localStorage.getItem('email')).subscribe(
+         (data) => {
+          this.appliedjobs = data.map(function(a) {return a["jobid"]; }).join();
+          this.jobservice.getappliedjobbyjobid(this.appliedjobs).subscribe(
+            res => this.jobresults = res);
+            }
+          );
+
 	this.mode = '';
   }
-  
+
   datediff(date1): Number {
     var dateOut1 = new Date(date1);
     var dateOut2 = new Date(Date.now());
@@ -47,7 +43,7 @@ jobresults:Array<Jobresult> = [];
    	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
    	return diffDays;
   }
-  
+
   deleteJob(jobId) {
   	console.log(jobId);
   }

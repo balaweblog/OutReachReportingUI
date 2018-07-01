@@ -13,6 +13,7 @@ import {Usersearch} from '../models/usersearch';
 import {Jobresult} from '../models/jobresult';
 import { UtilitiesService } from '../core/utilities.service';
 import { JobService } from '../core/job.service';
+import { AppliedJob } from '../models/appliedjob';
 
 
 @Component({
@@ -45,6 +46,7 @@ separatorKeysCodes = [ENTER, COMMA];
 fruitCtrl: FormControl;
 filteredFruits: Observable<any[]>;
 fruits = [];
+appliedjob: AppliedJob;
 
 @ViewChild('fruitInput') fruitInput: ElementRef;
 
@@ -89,7 +91,15 @@ searchJob() {
 }
 
   applyJob(jobId) {
-  	console.log(jobId);
+    console.log(jobId);
+    this.appliedjob = {
+            "emailaddress" : localStorage.getItem('email'),
+            "jobid":  jobId,
+            "appliedon":  new Date(),
+            "status":  "Submitted"
+    };
+    this.jobservice.applyjob(this.appliedjob).then(userprof => {
+    });
   }
 
   experienceUpdate(event) {
