@@ -1,7 +1,12 @@
 .footer{
 	overflow: hidden;
   position: fixed;
+  display: table;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
     bottom: 0px;
     height: 40px;
      width: 100%;
 }
+

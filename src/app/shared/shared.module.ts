@@ -11,9 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HeaderComponent } from './header/header.component';
 import { SkillfamilyComponent } from './skillfamily/skillfamily.component';
-import { FooterComponent } from './footer/footer.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -47,8 +46,8 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule
   ],
   exports: [
-   HeaderComponent, FooterComponent, SkillfamilyComponent
+    SkillfamilyComponent
   ],
-  declarations: [ HeaderComponent, FooterComponent, SkillfamilyComponent]
+  declarations: [ SkillfamilyComponent]
 })
 export class SharedModule { }

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-masterheader',
+  templateUrl: './masterheader.component.html',
+  styleUrls: ['./masterheader.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class MasterheaderComponent implements OnInit {
+
   photoimage: string;
   tempimage: string = 'https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/user-male-circle-blue-512.png';
   isLoggedIn: boolean;

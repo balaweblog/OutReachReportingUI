@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { ApplyjobComponent } from './applyjob.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MasterlayoutComponent } from '../layout/masterlayout/masterlayout.component';
 
 const routes: Routes = [
-  { path: 'applyjob',  component: ApplyjobComponent }
+  {
+    path: '',
+    component: MasterlayoutComponent,
+    children: [
+      { path: 'applyjob', component: ApplyjobComponent },
+    ]
+},
 ];
 
 @NgModule({

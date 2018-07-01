@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { SearchjobComponent } from './searchjob.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MasterlayoutComponent } from '../layout/masterlayout/masterlayout.component';
 
 const routes: Routes = [
-  { path: 'searchjob',  component: SearchjobComponent }
+  {
+    path: '',
+    component: MasterlayoutComponent,
+    children: [
+      { path: 'searchjob', component: SearchjobComponent },
+    ]
+}
 ];
 
 @NgModule({
