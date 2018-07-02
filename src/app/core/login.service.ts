@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class LoginService {
 
-  googleurl = 'https://localhost:3000/api/auth/google';
+  googleurl = 'https://ec2-18-220-137-145.us-east-2.compute.amazonaws.com:3000/api/auth/google';
   facebookurl = 'https://18.220.137.145:3000/api/auth/facebook';
   twitterurl = 'https://ec2-18-220-137-145.us-east-2.compute.amazonaws.com:3000/api/auth/twitter';
 
