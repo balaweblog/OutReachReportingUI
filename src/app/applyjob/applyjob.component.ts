@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JobService } from '../core/job.service';
 import {Jobresult} from '../models/jobresult';
 import { AppliedJob } from '../models/appliedjob';
+import { Router } from '@angular/router';
 
 
 
@@ -18,7 +19,7 @@ jobresults:Array<Jobresult> = [];
 appliedjobs:string;
 
 
-  constructor(private jobservice: JobService) {
+  constructor(private jobservice: JobService, private router: Router) {
   	this.filterDisplay = true;
   	}
 
@@ -34,6 +35,12 @@ appliedjobs:string;
           );
 
 	this.mode = '';
+  }
+  viewprofile() {
+    this.router.navigate(['profile']);
+  }
+  searchjob() {
+    this.router.navigate(['searchjob']);
   }
 
   datediff(date1): Number {

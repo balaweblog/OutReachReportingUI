@@ -14,10 +14,15 @@
     <mat-icon class ="materialicons">location_on</mat-icon>&nbsp;&nbsp; {{jobresult.location}}  <br>
     <mat-icon class ="materialicons">whatshot </mat-icon>&nbsp;&nbsp; <span> Posted {{ datediff(jobresult.createddate) }}  days ago </span>
     <span style="float:right;"> <mat-icon (click)="deleteJob(jobresult._id)">delete_outline</mat-icon></span>
-    
+
     </div>
     <mat-divider></mat-divider>
   </mat-list-item>
   <button mat-mini-fab class="filter" color="primary" [disabled]="filterDisplay">
     <mat-icon>filter_list</mat-icon>
   </button>
+  <br><br>
+  <div>
+    <button mat-raised-button color="primary" (click)="viewprofile()">Profile</button>
+    <button mat-raised-button color="primary" (click)="searchjob()">Search Job</button>
+  </div>

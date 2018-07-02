@@ -40,6 +40,11 @@ export class JobService {
 deletejobbyjobid(jobid: string): Promise<string> {
  return this.http.delete(`${this.apiUrl}/core/appliedjob/` + jobid).toPromise().then(e => <string>e).catch(this.handleErrorPromise);
 }
+hasappliedjobbyemail(email: string): Promise<Boolean> {
+  return this.http.get(`${this.apiUrl}/core/appliedjobbyemail/` + email).toPromise().then(e => <Boolean>e).catch(this.handleErrorPromise);
+ }
+
+
   private handleErrorPromise (error: Response | any) {
     return Promise.reject(error.message || error);
   }
