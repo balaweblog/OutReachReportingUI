@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 
 import { Jobresult } from '../models/jobresult';
 import { AppliedJob } from '../models/appliedjob';
+import { PreloadAllModules } from '@angular/router';
 
 @Injectable()
 export class JobService {
@@ -35,6 +36,9 @@ export class JobService {
   return this.http.get(`${this.apiUrl}/core/appliedjobs/` + jobid).map((res:Response) => {
      return <Jobresult[]>res['jobinfo']; })
   .catch(this.handleError);
+}
+deletejobbyjobid(jobid: string): Promise<string> {
+ return this.http.delete(`${this.apiUrl}/core/appliedjob/` + jobid).toPromise().then(e => <string>e).catch(this.handleErrorPromise);
 }
   private handleErrorPromise (error: Response | any) {
     return Promise.reject(error.message || error);

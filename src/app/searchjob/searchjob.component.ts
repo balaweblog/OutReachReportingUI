@@ -88,6 +88,7 @@ searchJob() {
  this.filterDisplay = false;
  this.usersearch.skillSet = this.fruits;
  this.jobservice.getjobs(this.usersearch.skillSet).subscribe(res => this.jobresults = res);
+
 }
 
   applyJob(jobId) {
@@ -100,6 +101,11 @@ searchJob() {
     };
     this.jobservice.applyjob(this.appliedjob).then(userprof => {
     });
+
+    let index = this.jobresults.findIndex(c => c._id = jobId);
+    if (index !== -1) {
+          this.jobresults.splice(index);
+    }
   }
 
   experienceUpdate(event) {

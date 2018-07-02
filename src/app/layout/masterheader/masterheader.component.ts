@@ -16,6 +16,7 @@ export class MasterheaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.photoimage = localStorage.getItem('photo');
   }
 
   routePage(page) {

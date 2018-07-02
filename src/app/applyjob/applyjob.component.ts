@@ -45,7 +45,11 @@ appliedjobs:string;
   }
 
   deleteJob(jobId) {
-  	console.log(jobId);
-  }
+    this.jobservice.deletejobbyjobid(jobId).then(e => e);
 
+    let index = this.jobresults.findIndex(c => c._id = jobId);
+    if (index !== -1) {
+          this.jobresults.splice(index);
+    }
+  }
 }

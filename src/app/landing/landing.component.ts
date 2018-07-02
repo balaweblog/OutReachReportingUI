@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CryptoService } from '../core/crypto.service';
+import { MasterheaderComponent } from '../layout/masterheader/masterheader.component';
 
 @Component({
   selector: 'app-landing',
@@ -9,7 +10,8 @@ import { CryptoService } from '../core/crypto.service';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
-  constructor( private router: Router, private route: ActivatedRoute, private cryptoservice: CryptoService) { }
+  constructor( private router: Router, private route: ActivatedRoute, private cryptoservice: CryptoService,
+  private masterheadercomponent: MasterheaderComponent) { }
 
   ngOnInit() {
     var backAgain = this.route.snapshot.params;
@@ -19,8 +21,6 @@ export class LandingComponent implements OnInit {
             localStorage.setItem('email', output['email']);
             localStorage.setItem('token', output['token']);
             localStorage.setItem('photo', output['photo']);
-            //this.headercomponent.photoimage = localStorage.getItem('photo');
-            //console.log(this.headercomponent.photoimage);
             this.router.navigate(['profile']);
       });
   }
