@@ -12,6 +12,7 @@
 }
 .input-full-width {
   width: 100%;
+  color: #ffffff;
 }
 
 
@@ -19,4 +20,10 @@
   overflow: hidden;
   position: fixed;
     top: 0;
+}
+
+
+.label{
+	color: #ffffff;
+	
 }

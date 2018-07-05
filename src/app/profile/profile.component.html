@@ -33,7 +33,7 @@
            </mat-option>
         </mat-autocomplete>
        </mat-form-field>
-    Experience : {{userprofile.experience}} years <br>
+   <label class="label"> Experience : {{userprofile.experience}} years </label> <br>
 
     <ion-range-slider #sliderElement
           min="1"
@@ -44,7 +44,7 @@
           (onChange)="experienceUpdate($event)"></ion-range-slider>
           <br>
 
-	  Salary Expectation : {{userprofile.salaryexpectationmin}} - {{userprofile.salaryexpectationmax}} lakhs <br>
+	 <label class="label"> Salary Expectation : {{userprofile.salaryexpectationmin}} - {{userprofile.salaryexpectationmax}} lakhs </label> <br>
 	  <ion-range-slider #sliderElement
           type="double"
           min="1"
@@ -72,7 +72,7 @@
     </mat-datepicker>
   </mat-form-field>
   <br>
-  Notice period : {{userprofile.noticeperiod}} days <br>
+ <label class="label">Notice period : {{userprofile.noticeperiod}} days </label><br>
 	<ion-range-slider #sliderElement
           min="1"
           max="30"
