@@ -12,8 +12,8 @@ import {MatToolbarModule } from '@angular/material';
     MatToolbarModule
   ],
   exports:[
-    BaseheaderComponent, MasterheaderComponent, BaselayoutComponent, MasterlayoutComponent, FooterComponent
+    //BaseheaderComponent, MasterheaderComponent, BaselayoutComponent, MasterlayoutComponent, FooterComponent
   ],
-  declarations: [BaseheaderComponent, MasterheaderComponent, BaselayoutComponent, MasterlayoutComponent, FooterComponent]
+ // declarations: [BaseheaderComponent, MasterheaderComponent, BaselayoutComponent, MasterlayoutComponent, FooterComponent]
 })
 export class LayoutModule { }
