@@ -93,12 +93,8 @@ searchJob() {
 
   applyJob(jobId) {
     console.log(jobId);
-    this.appliedjob = {
-            "emailaddress" : localStorage.getItem('email'),
-            "jobid":  jobId,
-            "appliedon":  new Date(),
-            "status":  "Submitted"
-    };
+    this.appliedjob = new AppliedJob(localStorage.getItem('email'), new Date(), jobId, "Submitted");
+
     this.jobservice.applyjob(this.appliedjob).then(userprof => {
     });
 

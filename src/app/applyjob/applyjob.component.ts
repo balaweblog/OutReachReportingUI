@@ -16,6 +16,8 @@ mode = '';
 filterDisplay = true;
 searchitem: any[];
 jobresults:Array<Jobresult> = [];
+appliedjob:Array<AppliedJob> = [];
+
 appliedjobs:string;
 
 
@@ -26,22 +28,15 @@ appliedjobs:string;
   ngOnInit() {
       this.mode = 'indeterminate';
       console.log(localStorage.getItem('email'));
-      this.jobservice.getappliedjobbyemail(localStorage.getItem('email')).subscribe(
-         (data) => {
-          this.appliedjobs = data.map(function(a) {return a["jobid"]; }).join();
-          this.jobservice.getappliedjobbyjobid(this.appliedjobs).subscribe(
-            res => this.jobresults = res);
-            }
+      this.jobservice.getappliedjobbyemail(localStorage.getItem('email')).subscribe( res => {
+            this.appliedjob = res;
+          }
           );
+
 
 	this.mode = '';
   }
-  viewprofile() {
-    this.router.navigate(['profile']);
-  }
-  searchjob() {
-    this.router.navigate(['searchjob']);
-  }
+
 
   datediff(date1): Number {
     var dateOut1 = new Date(date1);
