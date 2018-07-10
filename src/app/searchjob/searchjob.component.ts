@@ -96,12 +96,14 @@ searchJob() {
     this.appliedjob = new AppliedJob(localStorage.getItem('email'), new Date(), jobId, "Submitted");
 
     this.jobservice.applyjob(this.appliedjob).then(userprof => {
+      var filterarr = this.jobresults.filter(e => e._id === jobId);
+      const index = this.jobresults.indexOf(filterarr[0]);
+      if (index >= 0) {
+        console.log(filterarr);
+        console.log(index);
+        this.jobresults.splice(index, 1);
+      }
     });
-
-    let index = this.jobresults.findIndex(c => c._id = jobId);
-    if (index !== -1) {
-          this.jobresults.splice(index);
-    }
   }
 
   experienceUpdate(event) {

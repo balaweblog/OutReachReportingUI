@@ -47,11 +47,14 @@ appliedjobs:string;
   }
 
   deleteJob(jobId) {
-    this.jobservice.deletejobbyjobid(jobId).then(e => e);
+    this.jobservice.deletejobbyjobid(jobId).then(jobinfo => {
 
-    let index = this.jobresults.findIndex(c => c._id = jobId);
-    if (index !== -1) {
-          this.jobresults.splice(index);
+    var filterarr = this.appliedjob.filter(e => e._id === jobId);
+    const index = this.appliedjob.indexOf(filterarr[0]);
+    console.log(index);
+    if (index >= 0) {
+      this.appliedjob.splice(index, 1);
     }
+    });
   }
 }
