@@ -3,6 +3,6 @@ export class Usersearch {
   experience: string;
   salaryExpectation: string;
   salaryExpectationTo: string;
-  location: string;
+  location: string[];
 
 }

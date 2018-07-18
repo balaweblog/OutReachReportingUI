@@ -2,7 +2,7 @@ export class Userprofile {
   fullname: string;
   contactnumber: string;
   emailaddress: string;
-  skillset : string;
+  skillset : any[];
   experience: Number;
   salaryexpectationmin: Number;
   salaryexpectationmax: Number;

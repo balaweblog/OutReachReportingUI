@@ -14,6 +14,8 @@ import {Jobresult} from '../models/jobresult';
 import { UtilitiesService } from '../core/utilities.service';
 import { JobService } from '../core/job.service';
 import { AppliedJob } from '../models/appliedjob';
+import { ProfileService } from '../core/profile.service';
+import { Userprofile } from '../models/userprofile';
 
 
 @Component({
@@ -47,11 +49,13 @@ fruitCtrl: FormControl;
 filteredFruits: Observable<any[]>;
 fruits = [];
 appliedjob: AppliedJob;
-
+useremail: string;
+skillsetfromprofile: string;
 @ViewChild('fruitInput') fruitInput: ElementRef;
 
 
-constructor(public dialog: MatDialog, private utilitiesService:UtilitiesService, private jobservice: JobService) {
+constructor(public dialog: MatDialog, private utilitiesService:UtilitiesService, private jobservice: JobService
+, private profileService: ProfileService) {
 this.usersearch  = new Usersearch();
 this.locationControl = new FormControl();
 this.fruitCtrl = new FormControl();
@@ -64,6 +68,8 @@ this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
 ngOnInit() {
   this.techControl = new FormControl();
   this.locationControl = new FormControl();
+  this.useremail = localStorage.getItem('email');
+
 
   // populate skillset
   this.utilitiesService.getskillset().subscribe(
@@ -80,6 +86,25 @@ ngOnInit() {
 
   // filter tech options
   this.filteredTechOptions = this.techControl.valueChanges.pipe(startWith(''), map(val => this.filter(val)));
+
+  //load your data.
+  this.profileService.hasuserprofile(this.useremail).then(
+    res => {
+        if (res) {
+          this.profileService.getprofile(this.useremail).then(
+            res1  => {
+              this.usersearch.experience = res1.experience.toString();
+              this.usersearch.salaryExpectation = res1.salaryexpectationmin.toString();
+              this.usersearch.salaryExpectationTo = res1.salaryexpectationmax.toString();
+              this.usersearch.location = res1.location.split(',');
+              for (let i = 0; i < res1.skillset.toString().split(',').length; i++) {
+                this.fruits.push(res1.skillset.toString().split(',')[i]);
+              }
+              }
+          );
+        }
+    }
+  );
 }
 
 searchJob() {
@@ -87,7 +112,7 @@ searchJob() {
  this.step = 1;
  this.filterDisplay = false;
  this.usersearch.skillSet = this.fruits;
- this.jobservice.getjobs(this.usersearch.skillSet).subscribe(res => this.jobresults = res);
+ this.jobservice.getjobs(this.usersearch.skillSet, this.useremail).subscribe(res => this.jobresults = res);
 
 }
 

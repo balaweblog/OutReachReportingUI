@@ -20,7 +20,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class ProfileComponent implements OnInit {
 
-userprofile: Userprofile = new Userprofile();
+userprofile: Userprofile;
+
 skillfamily: string;
 firstFormGroup: FormGroup;
 secondFormGroup: FormGroup;
@@ -29,7 +30,8 @@ techoptions: string[] = [];
 allFruits:string[] = [];
 filteredTechOptions: Observable<string[]>;
 locationControl: FormControl;
-locationGroups: any;
+locationGroups: any[];
+locationInfo = [];
 visible: boolean = true;
 selectable: boolean = true;
 removable: boolean = true;
@@ -41,6 +43,8 @@ fruits = [];
 useremail: string;
 userphoto: string;
 
+
+
 @ViewChild('fruitInput') fruitInput: ElementRef;
 
 
@@ -50,6 +54,8 @@ userphoto: string;
   this.techControl = new FormControl();
   this.locationControl = new FormControl();
   this.fruitCtrl = new FormControl();
+  this.userprofile  = new Userprofile();
+
   this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
   startWith(null),
   map((fruit: string | null) => fruit ? this.filter(fruit) : this.allFruits.slice()));
@@ -58,16 +64,16 @@ userphoto: string;
   this.useremail = localStorage.getItem('email');
   this.userphoto = localStorage.getItem('photo');
 
-   // populate skillset
-   this.utilitiesService.getskillset().subscribe(
-    data => {
-         for (let key in data) {
-           if (!this.techoptions.some(x => x === data[key].primary)) {
-                  this.techoptions.push(data[key].primary);
-           }
+ // populate skillset
+ this.utilitiesService.getskillset().subscribe(
+  data => {
+       for (let key in data) {
+         if (!this.allFruits.some(x => x === data[key].primary)) {
+                this.allFruits.push(data[key].primary);
          }
-      }
-   );
+       }
+    }
+ );
   // populate job locations
   this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res['joblocations']);
 
@@ -87,16 +93,28 @@ userphoto: string;
     res => {
         if (res) {
           this.profileService.getprofile(this.useremail).then(
-            res1  => this.userprofile = res1
+            res1  => {
+              this.userprofile = res1;
+
+              for (let i = 0; i < this.userprofile.skillset.toString().split(',').length; i++) {
+                this.fruits.push(this.userprofile.skillset.toString().split(',')[i]);
+              }
+              for ( let i = 0; i < this.userprofile.location.split(',').length; i++ ) {
+                  this.locationInfo.push(this.userprofile.location.split(',')[i]);
+              }
+            }
           );
         } else {
           this.userprofile.emailaddress = this.useremail;
         }
     }
   );
+
+
 }
 
 submitprofile() {
+  this.userprofile.skillset = this.fruits;
   this.profileService.addprofile(this.userprofile).then(userprof => {
     this.router.navigate(['/searchjob']);
   });

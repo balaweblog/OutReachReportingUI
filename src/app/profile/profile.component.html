@@ -24,7 +24,7 @@
     <form [formGroup]="secondFormGroup">
       <!-- 2 Office Details -->
 	    <ng-template matStepLabel>Office Details</ng-template>
-      <mat-form-field class="input-full-width">
+      <!-- <mat-form-field class="input-full-width">
         <input type="text" placeholder="Skill Set" class="input-full-width" aria-label="Number" matInput
         [formControl]="techControl" [matAutocomplete]="auto" formControlName="skillset" matInput [(ngModel)]="userprofile.skillset">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -32,7 +32,23 @@
               {{ option }}
            </mat-option>
         </mat-autocomplete>
-       </mat-form-field>
+       </mat-form-field> -->
+
+       <mat-form-field class="input-full-width">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)"  >
+            {{fruit}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Job Title, Keywords" #fruitInput [formControl]="fruitCtrl"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" [(ngModel)] = 'userprofile.skillset'/>
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit"> {{ fruit }} </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+
    <label class="label"> Experience : {{userprofile.experience}} years </label> <br>
 
     <ion-range-slider #sliderElement
@@ -56,13 +72,18 @@
           hide_min_max="true"
            hide_from_to= "true"
           (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
-    <mat-select placeholder="Current Location" [formControl]="locationControl"  multiple [(ngModel)]='userprofile.location'>
+
+    <mat-select placeholder="Current Location" [formControl]="locationControl"  multiple [(ngModel)]='locationInfo' >
       <mat-optgroup>
         <mat-option *ngFor="let location of locationGroups" [value]="location.city" >
 	        {{ location.city }}
 	      </mat-option>
       </mat-optgroup>
     </mat-select>
+
+
+
+
   	<br>
 	<mat-form-field class="input-full-width">
     <input matInput [matDatepicker]="picker" placeholder="Last working day" formControlName="lastworkingday" [(ngModel)]="userprofile.lastworkingday">

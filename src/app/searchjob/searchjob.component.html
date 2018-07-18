@@ -10,17 +10,19 @@
   <label class="error-message">{{errMessage}}</label>
   <mat-form-field class="input-full-width">
   <mat-chip-list #chipList>
-    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)" >
       {{fruit}}
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
-    <input placeholder="Job Title, Keywords" #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+    <input placeholder="Job Title, Keywords" #fruitInput [formControl]="fruitCtrl"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"/>
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit"> {{ fruit }} </mat-option>
   </mat-autocomplete>
 </mat-form-field>
+
+
 <br>
 	 <label>Experience: {{usersearch.experience}} years</label>
 	 <ion-range-slider #sliderElement min="1" max="30" from="3" hide_min_max="true" hide_from_to= "true" (onChange)="experienceUpdate($event)"></ion-range-slider>
