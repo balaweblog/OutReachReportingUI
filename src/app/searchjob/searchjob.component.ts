@@ -112,7 +112,8 @@ searchJob() {
  this.step = 1;
  this.filterDisplay = false;
  this.usersearch.skillSet = this.fruits;
- this.jobservice.getjobs(this.usersearch.skillSet, this.useremail).subscribe(res => this.jobresults = res);
+ this.jobservice.getjobs(this.usersearch.skillSet, this.useremail, this.usersearch.experience, this.usersearch.salaryExpectation
+, this.usersearch.salaryExpectationTo, this.usersearch.location).subscribe(res => this.jobresults = res);
 
 }
 

@@ -16,8 +16,10 @@ export class JobService {
 
   constructor(private http: HttpClient) { }
 
-  getjobs(skillset: any[], emailaddress: string ): Observable<Jobresult[]> {
-    return this.http.get(`${this.apiUrl}/core/jobs/` + skillset  + '/' + emailaddress)
+  getjobs(skillset: any[], emailaddress: string, experience: string, minsalary:string, maxsalary:string
+  , location: any[]): Observable<Jobresult[]> {
+    return this.http.get(`${this.apiUrl}/core/jobs/` + skillset  + '/' + emailaddress + '/' + experience + '/' +
+     minsalary + "/" + maxsalary + "/" + location)
     .map((res:Response) => {return <Jobresult[]>res['jobinfo']; })
     .catch(this.handleError);
   }
