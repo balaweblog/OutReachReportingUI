@@ -7,15 +7,14 @@
      <label style="text-transform: uppercase; color: #ffffff;">{{jobresult.jobinfo["0"].companyname}} </label>
      </div>
      <mat-divider></mat-divider>
-    <span>{{jobresult.jobinfo["0"].role}}</span> &nbsp;&nbsp; <br>
-    <span>Keyskills: {{ jobresult.jobinfo["0"].skillset }}</span><br>
-
-    <mat-icon class ="materialicons">work_outline </mat-icon>&nbsp;&nbsp; {{ jobresult.jobinfo["0"].minexperience }} - {{ jobresult.jobinfo["0"].maxexperience }} Years <br>
-    <mat-icon class ="materialicons">location_on</mat-icon>&nbsp;&nbsp; {{jobresult.jobinfo["0"].location}}  <br>
-    <mat-icon class ="materialicons">whatshot </mat-icon>&nbsp;&nbsp; <span> Posted {{ datediff(jobresult.jobinfo["0"].createddate) }}  days ago </span> &nbsp; &nbsp;
-    <mat-icon class ="materialicons">update </mat-icon>&nbsp;&nbsp; <span> Applied On  {{ jobresult.appliedon | date }}  </span> <br>
-    <mat-icon class ="materialicons">thumb_up_alt </mat-icon>&nbsp;&nbsp; <span> Your profile is   {{ jobresult.status }}  </span>
-    <span style="float:right;"> <mat-icon (click)="deleteJob(jobresult._id)">delete_outline</mat-icon></span>
+    <mat-icon color="warn" class ="materialicons">airplay</mat-icon>   {{jobresult.jobinfo["0"].role}} <br>
+    <mat-icon color="warn" class ="materialicons">note</mat-icon> {{ jobresult.jobinfo["0"].skillset }} <br>
+    <mat-icon color="warn" class ="materialicons">work_outline </mat-icon> {{ jobresult.jobinfo["0"].minexperience }} - {{ jobresult.jobinfo["0"].maxexperience }} Years <br>
+    <mat-icon color="warn" class ="materialicons">location_on</mat-icon> {{jobresult.jobinfo["0"].location}}  <br>
+    <mat-icon color="warn" class ="materialicons">whatshot </mat-icon> <span> Posted {{ datediff(jobresult.jobinfo["0"].createddate) }}  days ago </span> &nbsp; &nbsp;
+    <mat-icon color="warn" class ="materialicons">update </mat-icon> <span> Applied On  {{ jobresult.appliedon | date }}  </span> <br>
+    <mat-icon color="accent" class ="materialicons">thumb_up_alt </mat-icon> <span> Your profile is   {{ jobresult.status }}  </span>
+    <span style="float:right;"> <mat-icon color="warn" (click)="deleteJob(jobresult._id)">delete_outline</mat-icon></span>
 
     </div>
     <mat-divider></mat-divider>

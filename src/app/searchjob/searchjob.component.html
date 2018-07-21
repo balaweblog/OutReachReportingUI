@@ -9,12 +9,12 @@
 <div class="keep-c-input-form">
   <label class="error-message">{{errMessage}}</label>
   <mat-form-field class="input-full-width">
-  <mat-chip-list #chipList>
+  <mat-chip-list #chipList >
     <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)" >
       {{fruit}}
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
-    <input placeholder="Job Title, Keywords" #fruitInput [formControl]="fruitCtrl"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+    <input placeholder="Job Title" #fruitInput [formControl]="fruitCtrl"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"/>
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
@@ -53,13 +53,13 @@
      <label style="text-transform: uppercase; color: #ffffff;">{{jobresult.companyname}} </label>
      </div>
      <mat-divider></mat-divider>
-    <span>{{jobresult.role}}</span> &nbsp;&nbsp; <a ><font size="1">+12 locations</font> </a> <br>
-    <span>Keyskills: {{ jobresult.skillset }}</span><br>
-
-    <mat-icon class ="materialicons">work_outline </mat-icon>&nbsp;&nbsp; {{ jobresult.minexperience }} - {{ jobresult.maxexperience }} Years <br>
-    <mat-icon class ="materialicons">location_on</mat-icon>&nbsp;&nbsp; {{jobresult.location}}  <br>
-    <mat-icon class ="materialicons">whatshot </mat-icon>&nbsp;&nbsp; <span> Posted {{ datediff(jobresult.createddate) }}  days ago </span>
-    <span style="float:right;"> <mat-icon (click)="applyJob(jobresult._id)">favorite_border</mat-icon></span>
+     <mat-icon color="warn" class ="materialicons">airplay</mat-icon><span>{{jobresult.role}}</span> <br>
+    <mat-icon color="warn" class ="materialicons">note</mat-icon> {{ jobresult.skillset }} <br>
+    <mat-icon color="warn" class ="materialicons">work_outline </mat-icon> {{ jobresult.minexperience }} - {{ jobresult.maxexperience }} Years <br>
+    <mat-icon color="warn" class ="materialicons">location_on</mat-icon> {{jobresult.location}}  <br>
+    <mat-icon color="warn" class ="materialicons">whatshot </mat-icon> <span> Posted {{ datediff(jobresult.createddate) }}  days ago </span>
+    <span style="float:right;">
+      <mat-icon  (click)="applyJob(jobresult._id)" color="warn" >favorite_border</mat-icon></span>
 
     </div>
     <mat-divider></mat-divider>

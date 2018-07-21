@@ -118,6 +118,7 @@ searchJob() {
 }
 
   applyJob(jobId) {
+
     console.log(jobId);
     this.appliedjob = new AppliedJob(localStorage.getItem('email'), new Date(), jobId, "Submitted");
 
@@ -131,6 +132,7 @@ searchJob() {
       }
     });
   }
+
 
   experienceUpdate(event) {
     this.usersearch.experience = event.from;

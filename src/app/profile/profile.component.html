@@ -48,8 +48,7 @@
         </mat-autocomplete>
       </mat-form-field>
 
-
-   <label class="label"> Experience : {{userprofile.experience}} years </label> <br>
+   <label class="label" > Experience : {{userprofile.experience}} years </label> <br>
 
     <ion-range-slider #sliderElement
           min="1"
@@ -68,11 +67,10 @@
           from="4"
           to="7"
           to_min="1"
-          to_max="50"
+          to_max="50"locationInfo
           hide_min_max="true"
            hide_from_to= "true"
           (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
-
     <mat-select placeholder="Current Location" [formControl]="locationControl"  multiple [(ngModel)]='locationInfo' >
       <mat-optgroup>
         <mat-option *ngFor="let location of locationGroups" [value]="location.city" >

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatAutocompleteModule,
    MatStepperModule, MatDialogModule, MatListModule, MatDatepickerModule, MatNativeDateModule, MatInputModule,
-   MatExpansionModule, MatCardModule, MatProgressBarModule, MatChipsModule} from '@angular/material';
+   MatExpansionModule, MatCardModule, MatProgressBarModule, MatChipsModule, MatTooltip} from '@angular/material';
 
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserModule } from '@angular/platform-browser';

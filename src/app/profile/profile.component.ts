@@ -115,6 +115,7 @@ userphoto: string;
 
 submitprofile() {
   this.userprofile.skillset = this.fruits;
+  this.userprofile.location = this.locationInfo.toString();
   this.profileService.addprofile(this.userprofile).then(userprof => {
     this.router.navigate(['/searchjob']);
   });
