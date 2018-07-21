@@ -12,7 +12,7 @@ import { Userprofile } from '../models/userprofile';
 @Injectable()
 export class ProfileService {
 
-  apiUrl = 'https://ec2-18-220-137-145.us-east-2.compute.amazonaws.com:3000/api';
+  apiUrl = 'https://ec2-18-218-31-146.us-east-2.compute.amazonaws.com:3000/api';
  //apiUrl = 'https://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
