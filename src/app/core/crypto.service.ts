@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class CryptoService {
 
-  apiUrl = 'https://ec2-18-218-31-146.us-east-2.compute.amazonaws.com:3000/api';
+  apiUrl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api';
 
   constructor(private http: Http) { }
 
