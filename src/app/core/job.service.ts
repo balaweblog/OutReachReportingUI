@@ -51,5 +51,16 @@ hasappliedjobbyemail(email: string): Promise<Boolean> {
   private handleErrorPromise (error: Response | any) {
     return Promise.reject(error.message || error);
   }
+  
+  validate(usersearch){
+  	if(usersearch.skillSet.length == 0 ||
+  	  usersearch.experience == undefined ||
+  	  usersearch.salaryExpectation == undefined ||
+  	  usersearch.salaryExpectationTo == undefined ){
+  	  
+  		return 'All fileds are Required';
+  	}
+  	return '';
+  }
 
 }
