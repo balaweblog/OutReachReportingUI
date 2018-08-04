@@ -11,4 +11,5 @@ export class Userprofile {
   noticeperiod: Number;
   referencename: string;
   referencenumber: string;
+  status: string;
 }

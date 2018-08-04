@@ -57,6 +57,8 @@
     <mat-icon color="warn" class ="materialicons">note</mat-icon> {{ jobresult.skillset }} <br>
     <mat-icon color="warn" class ="materialicons">work_outline </mat-icon> {{ jobresult.minexperience }} - {{ jobresult.maxexperience }} Years <br>
     <mat-icon color="warn" class ="materialicons">location_on</mat-icon> {{jobresult.location}}  <br>
+    <mat-icon color="warn" class ="materialicons">attach_money</mat-icon> Max salary  {{jobresult.maxsalary}} lacs per annum  <br>
+
     <mat-icon color="warn" class ="materialicons">whatshot </mat-icon> <span> Posted {{ datediff(jobresult.createddate) }}  days ago </span>
     <span style="float:right;">
       <mat-icon  (click)="applyJob(jobresult._id)" color="warn" >arrow_forward</mat-icon></span>
