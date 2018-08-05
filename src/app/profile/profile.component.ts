@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent, MatAutocompleteSelectedEvent} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent, MatAutocompleteSelectedEvent, MatSnackBar} from '@angular/material';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
 import {map, startWith} from 'rxjs/operators';
@@ -43,6 +43,8 @@ fruits = [];
 useremail: string;
 userphoto: string;
 
+validationError = '';
+
 
 
 @ViewChild('fruitInput') fruitInput: ElementRef;
@@ -50,7 +52,7 @@ userphoto: string;
 
  constructor(private _formBuilder: FormBuilder, public dialog: MatDialog,
   private utilitiesService: UtilitiesService, private profileService: ProfileService
-, private router: Router) {
+, private router: Router, private snackBar: MatSnackBar) {
   this.techControl = new FormControl();
   this.locationControl = new FormControl();
   this.fruitCtrl = new FormControl();
@@ -120,6 +122,16 @@ submitprofile() {
   this.profileService.addprofile(this.userprofile).then(userprof => {
     this.router.navigate(['/searchjob']);
   });
+
+	this.userprofile.skillset = this.fruits;
+  	this.userprofile.location = this.locationInfo.toString();
+   	this.validationError = this.profileService.validate(this.userprofile);
+
+	  if (this.validationError === '') {
+	  	this.profileService.addprofile(this.userprofile).then(userprof => {
+	    	this.router.navigate(['/searchjob']);
+	  	});
+	  }
 }
 
 experienceUpdate(event) {
@@ -172,5 +184,11 @@ experienceUpdate(event) {
    var timeDiff = Math.abs(dateOut2.getTime() - dateOut1.getTime());
    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
    return diffDays;
+  }
+
+  openErrorBar(message: string) {
+    this.snackBar.open(message, '', {
+      duration: 5000,
+    });
   }
 }

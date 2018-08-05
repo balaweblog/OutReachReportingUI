@@ -52,4 +52,15 @@ hasappliedjobbyemail(email: string): Promise<Boolean> {
     return Promise.reject(error.message || error);
   }
 
+  validate(usersearch) {
+  	if (usersearch.skillSet.length === 0 ||
+  	  usersearch.experience === undefined ||
+  	  usersearch.salaryExpectation === undefined ||
+  	  usersearch.salaryExpectationTo === undefined ) {
+
+  		return 'All fileds are Required';
+  	}
+  	return '';
+  }
+
 }

@@ -9,6 +9,7 @@ createddate: String;
 minexperience: Number;
 maxexperience: Number;
 skillset: string;
+enddate: Date;
 
   constructor() {
     this.companyname = '';

@@ -108,6 +108,8 @@
 	<mat-form-field class="input-full-width">
     <input matInput placeholder="Reference Number" formControlName="referencenumber" class="input-full-width" [(ngModel)]="userprofile.referencenumber">
 	</mat-form-field>
+	
+	<p><span class="error">{{validationError}}</span></p> 
 	<div>
 		<button mat-raised-button color="primary" (click)="submitprofile()">Submit</button>
 	</div>
