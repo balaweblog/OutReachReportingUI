@@ -119,18 +119,30 @@ submitprofile() {
   this.userprofile.skillset = this.fruits;
   this.userprofile.location = this.locationInfo.toString();
   this.userprofile.status = "Active";
-  this.profileService.addprofile(this.userprofile).then(userprof => {
-    this.router.navigate(['/searchjob']);
-  });
+
 
 	this.userprofile.skillset = this.fruits;
   	this.userprofile.location = this.locationInfo.toString();
    	this.validationError = this.profileService.validate(this.userprofile);
 
 	  if (this.validationError === '') {
-	  	this.profileService.addprofile(this.userprofile).then(userprof => {
-	    	this.router.navigate(['/searchjob']);
-	  	});
+      this.profileService.getreferencestatus(this.userprofile.emailaddress, this.userprofile.referencename
+        , this.userprofile.referencenumber).then(
+          res1  => {
+            console.log(res1);
+            if (res1 === undefined || res1 === null) {
+                this.userprofile.referencestatus = "Reference Verification Pending";
+            } else  {
+              if (res1["referencestatus"] !== "Reference Verification Completed") {
+              this.userprofile.referencestatus = "Reference Verification Pending";
+              }
+            }
+            this.profileService.addprofile(this.userprofile).then(userprof => {
+              this.router.navigate(['/searchjob']);
+            });
+          }
+        );
+
 	  }
 }
 

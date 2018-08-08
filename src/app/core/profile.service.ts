@@ -31,6 +31,10 @@ export class ProfileService {
     return  this.http.get(`${this.apiUrl}/core/hasuserprofile/` + emailaddress).toPromise()
    .then(res =>  res as boolean).catch(this.handleErrorPromise);
  }
+  getreferencestatus(emailaddress: string, referencename: string, referencenumber: string): Promise<string> {
+  return  this.http.get(`${this.apiUrl}/core/userprofile/` + emailaddress + "/" + referencename + "/" + referencenumber).toPromise()
+  .then(res =>  res as string).catch(this.handleErrorPromise);
+ }
 
   handleError (error: Response | any) {
     return Observable.throw(error.message || error);

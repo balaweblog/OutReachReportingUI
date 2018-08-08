@@ -12,4 +12,5 @@ export class Userprofile {
   referencename: string;
   referencenumber: string;
   status: string;
+  referencestatus: string;
 }
