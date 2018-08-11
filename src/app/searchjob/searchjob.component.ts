@@ -68,6 +68,9 @@ this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
 }
 
 ngOnInit() {
+  this.usersearch.experience = "3";
+  this.usersearch.salaryExpectation = "3";
+  this.usersearch.salaryExpectationTo = "12";
   this.techControl = new FormControl();
   this.locationControl = new FormControl();
   this.useremail = localStorage.getItem('email');

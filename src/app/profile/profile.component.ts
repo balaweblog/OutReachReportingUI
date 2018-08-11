@@ -65,6 +65,10 @@ validationError = '';
  ngOnInit() {
   this.useremail = localStorage.getItem('email');
   this.userphoto = localStorage.getItem('photo');
+  this.userprofile.experience = 3;
+  this.userprofile.salaryexpectationmin = 3;
+  this.userprofile.salaryexpectationmax = 12;
+  this.userprofile.noticeperiod = 10;
 
  // populate skillset
  this.utilitiesService.getskillset().subscribe(
