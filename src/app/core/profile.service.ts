@@ -7,6 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import { HttpClient } from '@angular/common/http';
 
 import { Userprofile } from '../models/userprofile';
+import { Skillset } from '../models/skillset';
 
 
 @Injectable()
@@ -35,6 +36,10 @@ export class ProfileService {
   return  this.http.get(`${this.apiUrl}/core/userprofile/` + emailaddress + "/" + referencename + "/" + referencenumber).toPromise()
   .then(res =>  res as string).catch(this.handleErrorPromise);
  }
+  getereferencestatusbyemail(emailaddress:string): Promise<string> {
+  return  this.http.get(`${this.apiUrl}/core/profilereferencestatusbyemail/` + emailaddress).toPromise()
+  .then(res => res as string).catch(this.handleErrorPromise);
+ }
 
   handleError (error: Response | any) {
     return Observable.throw(error.message || error);
@@ -52,7 +57,7 @@ export class ProfileService {
   	  Userprofile.salaryexpectationmax === undefined ||
   	  Userprofile.lastworkingday === undefined ||
   	  Userprofile.location === undefined ||
-  	  Userprofile.noticeperiod === undefined ||
+      Userprofile.noticeperiod === undefined ||
   	  Userprofile.referencename === undefined ||
   	  Userprofile.referencenumber === undefined) {
   		return 'All fileds are Required';

@@ -14,11 +14,13 @@ import { SharedModule } from '../shared/shared.module';
 import { ApplyjobComponent } from './applyjob.component';
 import { ApplyjobRoutingModule } from './applyjob-routing.module';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
+import { AlertModule } from '../../../node_modules/ngx-bootstrap/alert';
 
 
 @NgModule({
   imports: [
     CommonModule,
+    [AlertModule.forRoot()],
     ApplyjobRoutingModule,
     CommonModule,
     MatButtonModule,

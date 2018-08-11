@@ -123,7 +123,7 @@ submitprofile() {
 
 	this.userprofile.skillset = this.fruits;
   	this.userprofile.location = this.locationInfo.toString();
-   	this.validationError = this.profileService.validate(this.userprofile);
+     this.validationError = this.profileService.validate(this.userprofile);
 
 	  if (this.validationError === '') {
       this.profileService.getreferencestatus(this.userprofile.emailaddress, this.userprofile.referencename
@@ -143,7 +143,9 @@ submitprofile() {
           }
         );
 
-	  }
+	  } else {
+      this.openErrorBar(this.validationError);
+    }
 }
 
 experienceUpdate(event) {

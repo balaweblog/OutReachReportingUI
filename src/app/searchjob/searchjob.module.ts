@@ -15,9 +15,11 @@ import { SearchjobComponent } from './searchjob.component';
 import { SearchjobRoutingModule } from './searchjob-routing.module';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   imports: [
+    [AlertModule.forRoot()],
     CommonModule,
     SearchjobRoutingModule,
     CommonModule,

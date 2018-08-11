@@ -3,6 +3,7 @@ import { JobService } from '../core/job.service';
 import {Jobresult} from '../models/jobresult';
 import { AppliedJob } from '../models/appliedjob';
 import { Router } from '@angular/router';
+import { ProfileService } from '../core/profile.service';
 
 
 
@@ -17,21 +18,28 @@ filterDisplay = true;
 searchitem: any[];
 jobresults:Array<Jobresult> = [];
 appliedjob:Array<AppliedJob> = [];
+statusrefercepending: boolean = false;
+statusreferencecompleted: boolean = false;
 
 appliedjobs:string;
 
 
-  constructor(private jobservice: JobService, private router: Router) {
+  constructor(private jobservice: JobService, private profileService: ProfileService, private router: Router) {
   	this.filterDisplay = true;
   	}
 
   ngOnInit() {
       this.mode = 'indeterminate';
-      console.log(localStorage.getItem('email'));
+     this.profileService.getereferencestatusbyemail(localStorage.getItem('email')).then( res => {
+        if (res["status"] === "Reference Verification Pending") {
+            this.statusrefercepending = true;
+        } else if (res["status"] === "Reference Verification Completed") {
+          this.statusreferencecompleted = true;
+        }
+      });
       this.jobservice.getappliedjobbyemail(localStorage.getItem('email')).subscribe( res => {
             this.appliedjob = res;
-          }
-          );
+      });
 
 
 	this.mode = '';

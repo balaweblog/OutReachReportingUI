@@ -53,6 +53,7 @@ useremail: string;
 skillsetfromprofile: string;
 @ViewChild('fruitInput') fruitInput: ElementRef;
 validationError = '';
+Isprofileset: boolean;
 
 
 constructor(public dialog: MatDialog, private utilitiesService:UtilitiesService, private jobservice: JobService
@@ -72,6 +73,9 @@ ngOnInit() {
   this.useremail = localStorage.getItem('email');
 
 
+  this.profileService.hasuserprofile(this.useremail).then((result) => {
+    this.Isprofileset = !result;
+  });
   // populate skillset
   this.utilitiesService.getskillset().subscribe(
     data => {
@@ -118,8 +122,8 @@ this.validationError = this.jobservice.validate(this.usersearch);
 	 this.jobservice.getjobs(this.usersearch.skillSet, this.useremail, this.usersearch.experience, this.usersearch.salaryExpectation
 	, this.usersearch.salaryExpectationTo, this.usersearch.location).subscribe(res => this.jobresults = res);
 	 this.mode = 'determinate';
-	 this.openErrorBar('Internal Server error');
-
+ } else {
+  this.openErrorBar(this.validationError);
  }
 }
 

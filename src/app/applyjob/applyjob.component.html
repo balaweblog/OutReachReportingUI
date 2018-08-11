@@ -1,6 +1,17 @@
+
  <br><br><br>
  <mat-progress-bar [mode]="mode" class="loadingBarFixed"></mat-progress-bar>
  <br>
+ <div *ngIf ="statusreferencecompleted">
+  <alert type="success" dismissible="true" isOpen ="false" [dismissOnTimeout]="5000">
+    Reference check for your profile is Completed. Your profile will be forwarded to employers baesd on your jobs applied.
+ </alert>
+ </div>
+ <div *ngIf ="statusrefercepending" >
+  <alert type="info" dismissible="true" isOpen ="false"  [dismissOnTimeout]="5000">
+    Reference check for your profile is pending. You can still apply for jobs.
+ </alert>
+ </div>
  <mat-list-item *ngFor="let jobresult of appliedjob">
   <div class="jobliststyle">
      <div style="background-color: #9c27b0;">
