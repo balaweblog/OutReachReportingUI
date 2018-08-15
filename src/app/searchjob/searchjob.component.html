@@ -1,6 +1,7 @@
  <br><br><br>
- <mat-progress-bar [mode]="mode" class="loadingBarFixed"></mat-progress-bar>
- <div *ngIf ="Isprofileset">
+ <header><h4 style ="color:white;font-weight: bold;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">&nbsp;&nbsp;&nbsp; Search Jobs</h4>
+ </header>
+  <div *ngIf ="Isprofileset">
  <alert type="warning" dismissible="true" isOpen ="false">
    Your profile is not set. Fill in your profile details before job search.
 </alert>
@@ -8,7 +9,7 @@
 <mat-accordion class="example-headers-align">
   <mat-expansion-panel class="keep-c-expansion-panel" [expanded]="step === 0">
     <mat-expansion-panel-header>
-        <mat-panel-title style="font-weight: bold;">Search Jobs </mat-panel-title>
+        <mat-panel-title style="font-weight: bold;color:darkorchid;">Best Matching Available Jobs</mat-panel-title>
     </mat-expansion-panel-header>
 
 <div class="keep-c-input-form">

@@ -15,7 +15,7 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
-    <name>HelloCordova</name>
+    <name>Hot Cake</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -31,6 +31,12 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon density="ldpi" src="res/icon/android/hotcake-ldpi.png" />
+    <icon density="mdpi" src="res/icon/android/hotcake-mdpi.png" />
+    <icon density="hdpi" src="res/icon/android/hotcake-hdpi.png" />
+    <icon density="xhdpi" src="res/icon/android/hotcake-xhdpi.png" />
+    <icon density="xxhdpi" src="res/icon/android/hotcake-xxhdpi.png" />
+    <icon density="xxxhdpi" src="res/icon/android/hotcake-xxxhdpi.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="loadUrlTimeoutValue" value="700000" />

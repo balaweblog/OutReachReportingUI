@@ -1,7 +1,12 @@
 
  <br><br><br>
- <mat-progress-bar [mode]="mode" class="loadingBarFixed"></mat-progress-bar>
- <br>
+ <header><h4 style ="color:white;font-weight: bold;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">&nbsp;&nbsp;&nbsp; Your applied Jobs</h4>
+ </header>
+ <div *ngIf="appliedjob?.length==0">
+    <alert type="warning"  isOpen ="false">
+        You dont have any jobs submitted for status check. Please go back and search job.
+     </alert>
+ </div>
  <div *ngIf ="statusreferencecompleted">
   <alert type="success" dismissible="true" isOpen ="false" [dismissOnTimeout]="5000">
     Reference check for your profile is Completed. Your profile will be forwarded to employers baesd on your jobs applied.
@@ -12,7 +17,8 @@
     Reference check for your profile is pending. You can still apply for jobs.
  </alert>
  </div>
- <mat-list-item *ngFor="let jobresult of appliedjob">
+
+    <mat-list-item *ngFor="let jobresult of appliedjob">
   <div class="jobliststyle">
      <div style="background-color: #9c27b0;">
      <label style="text-transform: uppercase; color: #ffffff;">{{jobresult.jobinfo["0"].companyname}} </label>
