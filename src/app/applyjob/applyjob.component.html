@@ -30,13 +30,13 @@
     <mat-icon color="warn" class ="materialicons">location_on</mat-icon> {{jobresult.jobinfo["0"].location}}  <br>
     <mat-icon color="warn" class ="materialicons">whatshot </mat-icon> <span> Posted {{ datediff(jobresult.jobinfo["0"].createddate) }}  days ago </span> &nbsp; &nbsp;
     <mat-icon color="warn" class ="materialicons">update </mat-icon> <span> Applied On  {{ jobresult.appliedon | date }}  </span> <br>
-    <mat-icon color="accent" class ="materialicons">thumb_up_alt </mat-icon> <span> Your profile is   {{ jobresult.jobstatus }}  </span>
+    <mat-icon color="accent" class ="materialicons">thumb_up_alt </mat-icon> <span> Your profile is   {{ jobresult.jobstatus }}  </span> <br>
     <mat-icon color="accent" class ="materialicons">local_offer </mat-icon> <span> Job is valid till {{ jobresult.jobinfo["0"].enddate | date}}  </span>
     <span style="float:right;"> <mat-icon color="warn" (click)="deleteJob(jobresult._id)">delete_outline</mat-icon></span>
 
     </div>
     <mat-divider></mat-divider>
   </mat-list-item>
-  <button mat-mini-fab class="filter" color="primary" [disabled]="filterDisplay">
+  <!-- <button mat-mini-fab class="filter" color="primary" [disabled]="filterDisplay">
     <mat-icon>filter_list</mat-icon>
-  </button>
+  </button> -->

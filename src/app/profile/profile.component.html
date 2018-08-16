@@ -52,13 +52,13 @@
    <label class="label" > Experience : {{userprofile.experience}} years </label> <br>
 
     <ion-range-slider #sliderElement
-           min="1" max="30" from="3" hide_min_max="true" hide_from_to= "true"
+           min="1" max="30" from={{userprofile.experience}} hide_min_max="true" hide_from_to= "true"
           (onChange)="experienceUpdate($event)"></ion-range-slider>
           <br>
 
 	 <label class="label"> Salary Expectation : {{userprofile.salaryexpectationmin}} - {{userprofile.salaryexpectationmax}} lakhs </label> <br>
     <ion-range-slider #sliderElement
-    min="1" max="50" from="3" to="12" to_min="1" to_max="50"
+    min="1" max="50" from={{userprofile.salaryexpectationmin}} to={{userprofile.salaryexpectationmax}} to_min="1" to_max="50"
           type="double"
         locationInfo
           hide_min_max="true"
@@ -88,7 +88,7 @@
 	<ion-range-slider #sliderElement
           min="1"
           max="30"
-          from="10"
+          from={{userprofile.noticeperiod}}
           hide_min_max="true"
            hide_from_to= "true"
           (onChange)="noticePeriodUpdate($event)"></ion-range-slider>
