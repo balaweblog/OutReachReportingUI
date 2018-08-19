@@ -1,16 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators,FormGroupDirective, NgForm} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent, MatAutocompleteSelectedEvent, MatSnackBar} from '@angular/material';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
 import {map, startWith} from 'rxjs/operators';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 import { Userprofile } from '../models/userprofile';
 import { UtilitiesService } from '../core/utilities.service';
 import { ProfileService } from '../core/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-profile',
@@ -45,7 +54,24 @@ userphoto: string;
 
 validationError = '';
 
+emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  
+  referenceFormControl = new FormControl('', [
+    Validators.required,
+  Validators.pattern("^[0-9]*$"),
+  ]);
+  
+  contactFormControl = new FormControl('', [
+    Validators.required,
+  Validators.pattern("^[0-9]*$"),
+  ]);
+  
+  
 
+matcher = new MyErrorStateMatcher();
 
 @ViewChild('fruitInput') fruitInput: ElementRef;
 
@@ -188,7 +214,7 @@ experienceUpdate(event) {
 
   filter(name: string) {
     return this.allFruits.filter(fruit =>
-        fruit.toLowerCase().indexOf(name.toLowerCase()) === 0);
+        fruit.toLowerCase().indexOf(name.toString().toLowerCase()) === 0);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
