@@ -12,13 +12,15 @@ import { PreloadAllModules } from '@angular/router';
 
 @Injectable()
 export class JobService {
-  apiUrl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api';
+  apiUrl = 'https://localhost:3000/api';
+
+  //apiUrl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api';
 
   constructor(private http: HttpClient) { }
 
   getjobs(skillset: any[], emailaddress: string, experience: string, minsalary:string, maxsalary:string
   , location: any[]): Observable<Jobresult[]> {
-    return this.http.get(`${this.apiUrl}/core/jobs/` + skillset  + '/' + emailaddress + '/' + experience + '/' +
+    return this.http.get(`${this.apiUrl}/core/job/` + skillset  + '/' + emailaddress + '/' + experience + '/' +
      minsalary + "/" + maxsalary + "/" + location)
     .map((res:Response) => {return <Jobresult[]>res['jobinfo']; })
     .catch(this.handleError);
@@ -36,7 +38,7 @@ export class JobService {
    .catch(this.handleError);
  }
  getappliedjobbyjobid(jobid: string): Observable<Jobresult[]> {
-  return this.http.get(`${this.apiUrl}/core/appliedjobs/` + jobid).map((res:Response) => {
+  return this.http.get(`${this.apiUrl}/core/job/` + jobid).map((res:Response) => {
      return <Jobresult[]>res['jobinfo']; })
   .catch(this.handleError);
 }

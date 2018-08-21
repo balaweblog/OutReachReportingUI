@@ -52,12 +52,13 @@
 </mat-expansion-panel>
 </mat-accordion>
 
-<mat-list-item *ngFor="let jobresult of jobresults">
-  <div class="jobliststyle">
-     <div style="background-color: #9c27b0;">
-     <label style="text-transform: uppercase; color: #ffffff;">{{jobresult.companyname}} </label>
-     </div>
-     <mat-divider></mat-divider>
+<virtual-scroll [items]="jobresults" (update)="viewPortItems = $event">
+  <mat-list-item *ngFor="let jobresult of viewPortItems">
+    <div class="jobliststyle">
+      <div style="background-color: #9c27b0;">
+        <label style="text-transform: uppercase; color: #ffffff;">{{jobresult.companyname}} </label>
+      </div>
+      <mat-divider></mat-divider>
      <mat-icon color="warn" class ="materialicons">airplay</mat-icon><span>{{jobresult.role}}</span> <br>
     <mat-icon color="warn" class ="materialicons">note</mat-icon> {{ jobresult.skillset }} <br>
     <mat-icon color="warn" class ="materialicons">work_outline </mat-icon> {{ jobresult.minexperience }} - {{ jobresult.maxexperience }} Years <br>
@@ -67,10 +68,11 @@
     <mat-icon color="warn" class ="materialicons">whatshot </mat-icon> <span> Posted {{ datediff(jobresult.createddate) }}  days ago </span>
     <span style="float:right;">
       <mat-icon  (click)="applyJob(jobresult._id)" color="warn" >arrow_forward</mat-icon></span>
-
     </div>
     <mat-divider></mat-divider>
   </mat-list-item>
+ </virtual-scroll>
+
   <button mat-mini-fab class="filter" color="primary" [disabled]="filterDisplay">
     <mat-icon>filter_list</mat-icon>
   </button>

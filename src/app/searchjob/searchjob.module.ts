@@ -14,7 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { SearchjobComponent } from './searchjob.component';
 import { SearchjobRoutingModule } from './searchjob-routing.module';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
-
+import { VirtualScrollModule } from 'angular2-virtual-scroll';
 import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
@@ -26,6 +26,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     MatButtonModule,
     MatToolbarModule,
     MatMenuModule,
+    VirtualScrollModule,
     MatIconModule,
     MatFormFieldModule,
     MatSelectModule,

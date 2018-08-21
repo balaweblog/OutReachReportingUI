@@ -13,7 +13,11 @@ import { Skillset } from '../models/skillset';
 @Injectable()
 export class ProfileService {
 
-  apiUrl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api';
+  //apiUrl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api';
+
+  apiUrl = 'https://localhost:3000/api';
+
+
 
 
   constructor(private http: HttpClient) { }
@@ -29,15 +33,16 @@ export class ProfileService {
   }
 
   hasuserprofile(emailaddress: string): Promise<boolean> {
-    return  this.http.get(`${this.apiUrl}/core/hasuserprofile/` + emailaddress).toPromise()
+    return  this.http.get(`${this.apiUrl}/core/userprofile/` + emailaddress).toPromise()
    .then(res =>  res as boolean).catch(this.handleErrorPromise);
  }
   getreferencestatus(emailaddress: string, referencename: string, referencenumber: string): Promise<string> {
-  return  this.http.get(`${this.apiUrl}/core/userprofile/` + emailaddress + "/" + referencename + "/" + referencenumber).toPromise()
+  return  this.http.get(`${this.apiUrl}/core/userprofilebyreferencestatus/` + emailaddress + "/" + referencename + "/"
+   + referencenumber).toPromise()
   .then(res =>  res as string).catch(this.handleErrorPromise);
  }
   getereferencestatusbyemail(emailaddress:string): Promise<string> {
-  return  this.http.get(`${this.apiUrl}/core/profilereferencestatusbyemail/` + emailaddress).toPromise()
+  return  this.http.get(`${this.apiUrl}/core/userprofilebyreferencestatusemail/` + emailaddress).toPromise()
   .then(res => res as string).catch(this.handleErrorPromise);
  }
 

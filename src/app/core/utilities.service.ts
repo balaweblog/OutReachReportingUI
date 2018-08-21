@@ -8,7 +8,9 @@ import { Skillset } from '../models/skillset';
 
 @Injectable()
 export class UtilitiesService {
-  apiUrl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api';
+  //apiUrl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api';
+  apiUrl = 'https://localhost:3000/api';
+
 
   constructor(private http: HttpClient) { }
 
