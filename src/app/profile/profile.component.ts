@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators,FormGroupDirective, NgForm} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormGroupDirective, NgForm} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatChipInputEvent, MatAutocompleteSelectedEvent, MatSnackBar} from '@angular/material';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Rx';
@@ -58,18 +58,14 @@ emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
-  
   referenceFormControl = new FormControl('', [
     Validators.required,
   Validators.pattern("^[0-9]*$"),
   ]);
-  
   contactFormControl = new FormControl('', [
     Validators.required,
   Validators.pattern("^[0-9]*$"),
   ]);
-  
-  
 
 matcher = new MyErrorStateMatcher();
 
