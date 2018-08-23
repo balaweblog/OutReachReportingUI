@@ -28,8 +28,8 @@ export class ProfileService {
   }
 
   getprofile(emailaddress: string): Promise<Userprofile> {
-     return  this.http.get(`${this.apiUrl}/core/userprofile/` + emailaddress).toPromise()
-    .then(res =>  res["user"] as Userprofile).catch(this.handleErrorPromise);
+     return  this.http.get(`${this.apiUrl}/core/userprofilebyemail/` + emailaddress).toPromise()
+    .then(res =>  res as Userprofile).catch(this.handleErrorPromise);
   }
 
   hasuserprofile(emailaddress: string): Promise<boolean> {

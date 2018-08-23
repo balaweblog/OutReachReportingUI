@@ -14,11 +14,11 @@ export class UtilitiesService {
 
   constructor(private http: HttpClient) { }
 
-  getjoblocations(): Observable<Response> {
-    return this.http.get(`${this.apiUrl}/utilities/joblocations`).map((res: Response) => { return res; });
+  getjoblocations(): Observable<any[]> {
+    return this.http.get(`${this.apiUrl}/utilities/joblocations`).map(res => <any[]> res);
   }
 
   getskillset(): Observable<Skillset[]> {
-    return this.http.get(`${this.apiUrl}/utilities/skillset`).map((res: Response) => { return <Skillset[]>res["skillsetdetails"]; });
+    return this.http.get(`${this.apiUrl}/utilities/skillset`).map(res => <Skillset[]> res);
   }
 }

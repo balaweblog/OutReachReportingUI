@@ -22,7 +22,7 @@ export class JobService {
   , location: any[]): Observable<Jobresult[]> {
     return this.http.get(`${this.apiUrl}/core/job/` + skillset  + '/' + emailaddress + '/' + experience + '/' +
      minsalary + "/" + maxsalary + "/" + location)
-    .map((res:Response) => {return <Jobresult[]>res['jobinfo']; })
+    .map(res => <Jobresult> res)
     .catch(this.handleError);
   }
   handleError (error: Response | any) {
@@ -33,13 +33,13 @@ export class JobService {
     .then(res => res).catch(this.handleErrorPromise);
   }
   getappliedjobbyemail(emailaddress: string): Observable<AppliedJob[]> {
-   return this.http.get(`${this.apiUrl}/core/appliedjob/` + emailaddress).map((res:Response) => {
-      return <AppliedJob[]>res['appliedjobsdetails']; })
+   return this.http.get(`${this.apiUrl}/core/appliedjob/` + emailaddress)
+    .map(res => <AppliedJob> res)
    .catch(this.handleError);
  }
  getappliedjobbyjobid(jobid: string): Observable<Jobresult[]> {
-  return this.http.get(`${this.apiUrl}/core/job/` + jobid).map((res:Response) => {
-     return <Jobresult[]>res['jobinfo']; })
+  return this.http.get(`${this.apiUrl}/core/job/` + jobid)
+    .map(res => <Jobresult[]> res)
   .catch(this.handleError);
 }
 deletejobbyjobid(jobid: string): Promise<string> {

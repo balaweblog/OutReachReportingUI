@@ -103,7 +103,8 @@ matcher = new MyErrorStateMatcher();
     }
  );
   // populate job locations
-  this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res['joblocations']);
+
+  this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res);
 
   this.firstFormGroup = this._formBuilder.group({
     fullname: ['', Validators.required],
@@ -123,7 +124,6 @@ matcher = new MyErrorStateMatcher();
           this.profileService.getprofile(this.useremail).then(
             res1  => {
               this.userprofile = res1;
-
               for (let i = 0; i < this.userprofile.skillset.toString().split(',').length; i++) {
                 this.fruits.push(this.userprofile.skillset.toString().split(',')[i]);
               }

@@ -90,7 +90,7 @@ ngOnInit() {
       }
    );
    // populate job locations
-  this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res['joblocations']);
+  this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res);
 
   // filter tech options
   this.filteredTechOptions = this.techControl.valueChanges.pipe(startWith(''), map(val => this.filter(val)));
