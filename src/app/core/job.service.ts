@@ -9,12 +9,11 @@ import 'rxjs/add/operator/map';
 import { Jobresult } from '../models/jobresult';
 import { AppliedJob } from '../models/appliedjob';
 import { PreloadAllModules } from '@angular/router';
+import { GlobalVariable } from '../global';
 
 @Injectable()
 export class JobService {
-  apiUrl = 'https://localhost:3000/api';
-
-  //apiUrl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api';
+  apiUrl = GlobalVariable.BASE_API_URL;
 
   constructor(private http: HttpClient) { }
 
@@ -48,8 +47,6 @@ deletejobbyjobid(jobid: string): Promise<string> {
 hasappliedjobbyemail(email: string): Promise<Boolean> {
   return this.http.get(`${this.apiUrl}/core/appliedjobbyemail/` + email).toPromise().then(e => <Boolean>e).catch(this.handleErrorPromise);
  }
-
-
   private handleErrorPromise (error: Response | any) {
     return Promise.reject(error.message || error);
   }
@@ -58,7 +55,8 @@ hasappliedjobbyemail(email: string): Promise<Boolean> {
   	if (usersearch.skillSet.length === 0 ||
   	  usersearch.experience === undefined ||
   	  usersearch.salaryExpectation === undefined ||
-  	  usersearch.salaryExpectationTo === undefined ) {
+      usersearch.salaryExpectationTo === undefined ||
+      usersearch.location.length === 0 ) {
 
   		return 'All fileds are Required';
   	}

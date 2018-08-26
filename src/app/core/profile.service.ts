@@ -5,20 +5,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import { HttpClient } from '@angular/common/http';
-
 import { Userprofile } from '../models/userprofile';
-import { Skillset } from '../models/skillset';
-
+import { GlobalVariable } from '../global';
 
 @Injectable()
 export class ProfileService {
-
-  //apiUrl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api';
-
-  apiUrl = 'https://localhost:3000/api';
-
-
-
+  apiUrl = GlobalVariable.BASE_API_URL;
 
   constructor(private http: HttpClient) { }
 
@@ -54,20 +46,20 @@ export class ProfileService {
   }
 
   validate(Userprofile) {
-  	if (Userprofile.fullname === undefined ||
-  	  Userprofile.contactnumber === undefined ||
-  	  Userprofile.emailaddress === undefined ||
-  	  Userprofile.experience === undefined ||
-  	  Userprofile.salaryexpectationmin === undefined ||
-  	  Userprofile.salaryexpectationmax === undefined ||
-  	  Userprofile.lastworkingday === undefined ||
-  	  Userprofile.location === undefined ||
-      Userprofile.noticeperiod === undefined ||
-  	  Userprofile.referencename === undefined ||
-  	  Userprofile.referencenumber === undefined) {
+    if (Userprofile.fullname === undefined || Userprofile.fullname === '' ||
+      Userprofile.contactnumber === undefined || Userprofile.contactnumber === '' ||
+      Userprofile.emailaddress === undefined || Userprofile.emailaddress === '' ||
+      Userprofile.experience === undefined || Userprofile.experience === '' ||
+      Userprofile.salaryexpectationmin === undefined || Userprofile.salaryexpectationmin === '' ||
+      Userprofile.salaryexpectationmax === undefined || Userprofile.salaryexpectationmax === '' ||
+      Userprofile.lastworkingday === undefined || Userprofile.lastworkingday === '' ||
+      Userprofile.location === undefined || Userprofile.location.length < 1 ||
+      Userprofile.noticeperiod === undefined || Userprofile.noticeperiod === '' ||
+      Userprofile.referencename === undefined || Userprofile.referencename === '' ||
+      Userprofile.skillset === undefined || Userprofile.skillset.length < 1 ||
+      Userprofile.referencenumber === '' || Userprofile.referencenumber === undefined) {
   		return 'All fileds are Required';
   	}
-
   	return '';
   }
 }

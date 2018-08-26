@@ -14,7 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ApplyjobComponent } from './applyjob.component';
 import { ApplyjobRoutingModule } from './applyjob-routing.module';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
-import { AlertModule } from '../../../node_modules/ngx-bootstrap/alert';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 
 @NgModule({

@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
+import { GlobalVariable } from '../global';
 
 @Injectable()
 export class LoginService {
 
-  googleurl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api/auth/google';
-  facebookurl = 'https://18.222.187.103:3000/api/auth/facebook';
-  twitterurl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api/auth/twitter';
 
   constructor() { }
 
   facebookredirect() {
-    window.document.location.href = this.facebookurl;
+    window.document.location.href = GlobalVariable.FACEBOOK_API_URL;
   }
   googleredirect() {
-    window.document.location.href = this.googleurl;
+    window.document.location.href = GlobalVariable.GOOGLE_API_URL;
   }
   twitterredirect() {
-    window.document.location.href = this.twitterurl;
+    window.document.location.href = GlobalVariable.TWITTER_API_URL;
   }
 
 }

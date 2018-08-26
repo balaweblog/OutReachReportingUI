@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../core/login.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,10 @@ import { LoginService } from '../core/login.service';
 
 export class  LoginComponent implements OnInit {
 
-  constructor(private loginservice: LoginService) { }
+  constructor(private route:ActivatedRoute, private loginservice: LoginService) { }
 
   ngOnInit() {
+    console.log(this.route.snapshot.data['message']);
   }
   facebooklogin() {
     this.loginservice.facebookredirect();

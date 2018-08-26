@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { GlobalVariable } from '../global';
+
 
 @Injectable()
 export class CryptoService {
 
-  apiUrl = 'https://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:3000/api';
+  apiUrl = GlobalVariable.BASE_API_URL;
 
   constructor(private http: Http) { }
 

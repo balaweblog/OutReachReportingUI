@@ -1,10 +1,10 @@
 import {map} from 'rxjs/operators/map';
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs';
 import { startWith} from 'rxjs/operators';
 import {MatDialog} from '@angular/material';
-import 'rxjs/Rx';
+import 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatSnackBar} from '@angular/material';
@@ -104,7 +104,6 @@ ngOnInit() {
               this.usersearch.experience = res1.experience.toString();
               this.usersearch.salaryExpectation = res1.salaryexpectationmin.toString();
               this.usersearch.salaryExpectationTo = res1.salaryexpectationmax.toString();
-              this.usersearch.location = res1.location.split(',');
               for (let i = 0; i < res1.skillset.toString().split(',').length; i++) {
                 this.fruits.push(res1.skillset.toString().split(',')[i]);
               }
