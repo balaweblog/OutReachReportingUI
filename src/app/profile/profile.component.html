@@ -60,7 +60,7 @@
           hide_min_max="true"
            hide_from_to= "true"
           (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
-    <mat-select placeholder="Current Location" [formControl]="locationControl" [(ngModel)]= "userprofile.location" multiple>
+    <mat-select placeholder="Current Location" [formControl]="locationControl" [(ngModel)]= "locationInfo" multiple>
       <mat-optgroup>
         <mat-option *ngFor="let location of locationGroups" [value]="location.city" >
 	        {{ location.city }}

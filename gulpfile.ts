@@ -22,7 +22,7 @@ gulp.task('tslint', () => {
 
 //build
 gulp.task("build", ["clean", "tslint"] , (cb) => {
-  exec('ng build --prod', function (err, stdout, stderr) {
+  exec('ng build --target production --build-optimizer --vendor-chunk', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);

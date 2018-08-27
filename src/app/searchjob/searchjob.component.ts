@@ -101,6 +101,7 @@ ngOnInit() {
               this.usersearch.experience = res1.experience.toString();
               this.usersearch.salaryExpectation = res1.salaryexpectationmin.toString();
               this.usersearch.salaryExpectationTo = res1.salaryexpectationmax.toString();
+              this.usersearch.location = res1.location.split(',');
               for (let i = 0; i < res1.skillset.toString().split(',').length; i++) {
                 this.skillfamiliyclustergroup.push(res1.skillset.toString().split(',')[i]);
               }

@@ -52,8 +52,7 @@
 </mat-expansion-panel>
 </mat-accordion>
 
-<virtual-scroll [items]="jobresults" (update)="visibleElements = $event">
-  <mat-list-item *ngFor="let jobresult of visibleElements">
+  <mat-list-item *ngFor="let jobresult of jobresults">
     <div class="jobliststyle">
       <div style="background-color: #9c27b0;">
         <label style="text-transform: uppercase; color: #ffffff;">{{jobresult.companyname}} </label>
@@ -71,8 +70,3 @@
     </div>
     <mat-divider></mat-divider>
   </mat-list-item>
- </virtual-scroll>
-
-  <button mat-mini-fab class="filter" color="primary" [disabled]="filterDisplay">
-    <mat-icon>filter_list</mat-icon>
-  </button>

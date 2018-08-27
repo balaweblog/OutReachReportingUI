@@ -18,6 +18,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatIconModule, MatMenuModule } from '@angular/material';
 import { FooterComponent } from './layout/footer/footer.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

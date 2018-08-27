@@ -101,9 +101,10 @@ matcher = new MyErrorStateMatcher();
               for (let i = 0; i < this.userprofile.skillset.toString().split(',').length; i++) {
                 this.skillsetgroupcluster.push(this.userprofile.skillset.toString().split(',')[i]);
               }
-              for ( let i = 0; i < this.userprofile.location.split(',').length; i++ ) {
-                  this.locationInfo.push(this.userprofile.location.split(',')[i]);
+              for (let i = 0; i < this.userprofile.location.split(',').length; i++) {
+                  this.locationInfo.push(this.userprofile.location.toString().split(',')[i]);
               }
+              console.log(this.locationInfo);
             }
           );
         } else {
