@@ -16,15 +16,15 @@
   <label class="error-message">{{errMessage}}</label>
   <mat-form-field class="input-full-width">
   <mat-chip-list #chipList >
-    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)" >
-      {{fruit}}
+    <mat-chip *ngFor="let skill of skillfamiliyclustergroup" [selectable]="selectable" [removable]="removable" (removed)="remove(skill)" >
+      {{skill}}
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
-    <input placeholder="Job Title" #fruitInput [formControl]="fruitCtrl"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+    <input placeholder="Job Title" #skillInput [formControl]="skillfamilyCtrl"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"/>
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit"> {{ fruit }} </mat-option>
+    <mat-option *ngFor="let skill of filteredskillfamily | async" [value]="skill"> {{ skill }} </mat-option>
   </mat-autocomplete>
 </mat-form-field>
 
@@ -52,8 +52,8 @@
 </mat-expansion-panel>
 </mat-accordion>
 
-<virtual-scroll [items]="jobresults" (update)="viewPortItems = $event">
-  <mat-list-item *ngFor="let jobresult of viewPortItems">
+<virtual-scroll [items]="jobresults" (update)="visibleElements = $event">
+  <mat-list-item *ngFor="let jobresult of visibleElements">
     <div class="jobliststyle">
       <div style="background-color: #9c27b0;">
         <label style="text-transform: uppercase; color: #ffffff;">{{jobresult.companyname}} </label>
@@ -76,10 +76,3 @@
   <button mat-mini-fab class="filter" color="primary" [disabled]="filterDisplay">
     <mat-icon>filter_list</mat-icon>
   </button>
-
-
-
-
-
-
-

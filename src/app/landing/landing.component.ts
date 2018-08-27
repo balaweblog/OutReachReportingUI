@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { CryptoService } from '../core/crypto.service';
-import { MasterheaderComponent } from '../layout/masterheader/masterheader.component';
 import { JobService } from '../core/job.service';
 import { ProfileService } from '../core/profile.service';
 

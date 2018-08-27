@@ -7,19 +7,10 @@ import {map, startWith} from 'rxjs/operators';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {ErrorStateMatcher} from '@angular/material/core';
-
 import { Userprofile } from '../models/userprofile';
 import { UtilitiesService } from '../core/utilities.service';
 import { ProfileService } from '../core/profile.service';
-import { ActivatedRoute, Router } from '@angular/router';
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -30,13 +21,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class ProfileComponent implements OnInit {
 
 userprofile: Userprofile;
-
 skillfamily: string;
 firstFormGroup: FormGroup;
 secondFormGroup: FormGroup;
 techControl: FormControl;
 techoptions: string[] = [];
-allFruits:string[] = [];
+skillsetcluster:string[] = [];
 filteredTechOptions: Observable<string[]>;
 locationControl: FormControl;
 locationGroups: any[];
@@ -46,43 +36,33 @@ selectable: boolean = true;
 removable: boolean = true;
 addOnBlur: boolean = false;
 separatorKeysCodes = [ENTER, COMMA];
-fruitCtrl: FormControl;
-filteredFruits: Observable<any[]>;
-fruits = [];
+skillfamilyCtrl: FormControl;
+filteredskillfamily: Observable<any[]>;
+skillsetgroupcluster = [];
 useremail: string;
 userphoto: string;
 
 validationError = '';
 
-emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  referenceFormControl = new FormControl('', [
-    Validators.required,
-  Validators.pattern("^[0-9]*$"),
-  ]);
-  contactFormControl = new FormControl('', [
-    Validators.required,
-  Validators.pattern("^[0-9]*$"),
-  ]);
+emailFormControl = new FormControl('', [ Validators.required, Validators.email]);
+referenceFormControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
+contactFormControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
 
 matcher = new MyErrorStateMatcher();
 
-@ViewChild('fruitInput') fruitInput: ElementRef;
-
+@ViewChild('skillInput') skillInput: ElementRef;
 
  constructor(private _formBuilder: FormBuilder, public dialog: MatDialog,
-  private utilitiesService: UtilitiesService, private profileService: ProfileService
-, private router: Router, private snackBar: MatSnackBar) {
-  this.techControl = new FormControl();
-  this.locationControl = new FormControl();
-  this.fruitCtrl = new FormControl();
-  this.userprofile  = new Userprofile();
+    private utilitiesService: UtilitiesService, private profileService: ProfileService
+,   private router: Router, private snackBar: MatSnackBar) {
+      this.techControl = new FormControl();
+      this.locationControl = new FormControl();
+      this.skillfamilyCtrl = new FormControl();
+      this.userprofile  = new Userprofile();
 
-  this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-  startWith(null),
-  map((fruit: string | null) => fruit ? this.filter(fruit) : this.allFruits.slice()));
+    this.filteredskillfamily = this.skillfamilyCtrl.valueChanges.pipe(
+    startWith(null),
+    map((skill: string | null) => skill ? this.filter(skill) : this.skillsetcluster.slice()));
 }
  ngOnInit() {
   this.useremail = localStorage.getItem('email');
@@ -96,26 +76,20 @@ matcher = new MyErrorStateMatcher();
  this.utilitiesService.getskillset().subscribe(
   data => {
        for (let key in data) {
-         if (!this.allFruits.some(x => x === data[key].primary)) {
-                this.allFruits.push(data[key].primary);
+         if (!this.skillsetcluster.some(x => x === data[key].primary)) {
+                this.skillsetcluster.push(data[key].primary);
          }
        }
     }
  );
   // populate job locations
-
   this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res);
 
-  this.firstFormGroup = this._formBuilder.group({
-    fullname: ['', Validators.required],
-    contactnumber: ['', Validators.required],
+  this.firstFormGroup = this._formBuilder.group({ fullname: ['', Validators.required], contactnumber: ['', Validators.required],
     emailaddress: ['', Validators.required],
   });
-  this.secondFormGroup = this._formBuilder.group({
-    skillset: ['', Validators.required],
-    lastworkingday: ['', Validators.required],
-    referencename: ['', Validators.required],
-    referencenumber: ['', Validators.required]
+  this.secondFormGroup = this._formBuilder.group({ skillset: ['', Validators.required], lastworkingday: ['', Validators.required],
+    referencename: ['', Validators.required], referencenumber: ['', Validators.required]
   });
 
   this.profileService.hasuserprofile(this.useremail).then(
@@ -125,7 +99,7 @@ matcher = new MyErrorStateMatcher();
             res1  => {
               this.userprofile = res1;
               for (let i = 0; i < this.userprofile.skillset.toString().split(',').length; i++) {
-                this.fruits.push(this.userprofile.skillset.toString().split(',')[i]);
+                this.skillsetgroupcluster.push(this.userprofile.skillset.toString().split(',')[i]);
               }
               for ( let i = 0; i < this.userprofile.location.split(',').length; i++ ) {
                   this.locationInfo.push(this.userprofile.location.split(',')[i]);
@@ -137,34 +111,31 @@ matcher = new MyErrorStateMatcher();
         }
     }
   );
-
-
 }
 
 submitprofile() {
-  this.userprofile.skillset = this.fruits;
+  this.userprofile.skillset = this.skillsetgroupcluster;
   this.userprofile.location = this.locationInfo.toString();
   this.userprofile.status = "Active";
 
 
-	this.userprofile.skillset = this.fruits;
-  	this.userprofile.location = this.locationInfo.toString();
-     this.validationError = this.profileService.validate(this.userprofile);
+	this.userprofile.skillset = this.skillsetgroupcluster;
+  this.userprofile.location = this.locationInfo.toString();
+  this.validationError = this.profileService.validate(this.userprofile);
 
-	  if (this.validationError === '') {
+  if (this.validationError === '') {
       this.profileService.getreferencestatus(this.userprofile.emailaddress, this.userprofile.referencename
         , this.userprofile.referencenumber).then(
           res1  => {
-            console.log(res1);
             if (res1 === undefined || res1 === null) {
                 this.userprofile.referencestatus = "Reference Verification Pending";
             } else  {
               if (res1["referencestatus"] !== "Reference Verification Completed") {
-              this.userprofile.referencestatus = "Reference Verification Pending";
+                this.userprofile.referencestatus = "Reference Verification Pending";
               }
             }
             this.profileService.addprofile(this.userprofile).then(userprof => {
-              this.router.navigate(['/searchjob']);
+                this.router.navigate(['/searchjob']);
             });
           }
         );
@@ -177,58 +148,61 @@ submitprofile() {
 experienceUpdate(event) {
     this.userprofile.experience = event.from;
  }
- salaryExpectationOnUpdate(event) {
-  this.userprofile.salaryexpectationmin = event.from;
-  this.userprofile.salaryexpectationmax = event.to;
+salaryExpectationOnUpdate(event) {
+    this.userprofile.salaryexpectationmin = event.from;
+    this.userprofile.salaryexpectationmax = event.to;
   }
-  noticePeriodUpdate(event) {
-  	this.userprofile.noticeperiod = event.from;
+noticePeriodUpdate(event) {
+   this.userprofile.noticeperiod = event.from;
   }
 
-    add(event: MatChipInputEvent): void {
+add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
     if ((value || '').trim()) {
-      this.fruits.push(value.trim());
+      this.skillsetgroupcluster.push(value.trim());
     }
-    // Reset the input value
     if (input) {
       input.value = '';
     }
-    this.fruitCtrl.setValue(null);
+    this.skillfamilyCtrl.setValue(null);
   }
 
-  remove(fruit: any): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(chipval: any): void {
+    const index = this.skillsetgroupcluster.indexOf(chipval);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.skillsetgroupcluster.splice(index, 1);
     }
   }
 
   filter(name: string) {
-    return this.allFruits.filter(fruit =>
-        fruit.toLowerCase().indexOf(name.toString().toLowerCase()) === 0);
+    return this.skillsetcluster.filter(chipval =>
+      chipval.toLowerCase().indexOf(name.toString().toLowerCase()) === 0);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+    this.skillsetgroupcluster.push(event.option.viewValue);
+    this.skillInput.nativeElement.value = '';
+    this.skillfamilyCtrl.setValue(null);
   }
   datediff(date1): Number {
     var dateOut1 = new Date(date1);
     var dateOut2 = new Date(Date.now());
-   var timeDiff = Math.abs(dateOut2.getTime() - dateOut1.getTime());
-   var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-   return diffDays;
+    var timeDiff = Math.abs(dateOut2.getTime() - dateOut1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return diffDays;
   }
 
   openErrorBar(message: string) {
-    this.snackBar.open(message, '', {
-      duration: 5000,
-    });
+    this.snackBar.open(message, '', { duration: 5000});
+  }
+}
+ /** Error when invalid control is dirty, touched, or submitted. */
+ export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }

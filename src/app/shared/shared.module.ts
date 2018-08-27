@@ -11,8 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { SkillfamilyComponent } from './skillfamily/skillfamily.component';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -46,8 +44,8 @@ import { SkillfamilyComponent } from './skillfamily/skillfamily.component';
     FormsModule
   ],
   exports: [
-    SkillfamilyComponent
+
   ],
-  declarations: [ SkillfamilyComponent]
+  declarations: [ ]
 })
 export class SharedModule { }

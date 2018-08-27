@@ -32,27 +32,17 @@
     <form [formGroup]="secondFormGroup">
       <!-- 2 Office Details -->
 	    <ng-template matStepLabel>Office Details</ng-template>
-      <!-- <mat-form-field class="input-full-width">
-        <input type="text" placeholder="Skill Set" class="input-full-width" aria-label="Number" matInput
-        [formControl]="techControl" [matAutocomplete]="auto" formControlName="skillset" matInput [(ngModel)]="userprofile.skillset">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-           <mat-option *ngFor="let option of filteredTechOptions | async" [value]="option">
-              {{ option }}
-           </mat-option>
-        </mat-autocomplete>
-       </mat-form-field> -->
-
        <mat-form-field class="input-full-width">
         <mat-chip-list #chipList>
-          <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)"  >
-            {{fruit}}
+          <mat-chip *ngFor="let skill of skillsetgroupcluster" [selectable]="selectable" [removable]="removable" (removed)="remove(skill)"  >
+            {{skill}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input placeholder="Job Title, Keywords" #fruitInput [formControl]="fruitCtrl"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          <input placeholder="Job Title, Keywords" #skillInput [formControl]="skillfamilyCtrl"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" [(ngModel)] = 'userprofile.skillset'/>
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit"> {{ fruit }} </mat-option>
+          <mat-option *ngFor="let skill of filteredskillfamily | async" [value]="skill"> {{ skill }} </mat-option>
         </mat-autocomplete>
       </mat-form-field>
 
@@ -77,8 +67,6 @@
 	      </mat-option>
       </mat-optgroup>
     </mat-select>
-
-
   	<br>
 	<mat-form-field class="input-full-width">
     <input matInput [matDatepicker]="picker" placeholder="Last working day" formControlName="lastworkingday" [(ngModel)]="userprofile.lastworkingday">

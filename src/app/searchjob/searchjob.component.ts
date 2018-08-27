@@ -8,15 +8,12 @@ import 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {ElementRef, ViewChild} from '@angular/core';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatSnackBar} from '@angular/material';
-
 import {Usersearch} from '../models/usersearch';
 import {Jobresult} from '../models/jobresult';
 import { UtilitiesService } from '../core/utilities.service';
 import { JobService } from '../core/job.service';
 import { AppliedJob } from '../models/appliedjob';
 import { ProfileService } from '../core/profile.service';
-import { Userprofile } from '../models/userprofile';
-
 
 @Component({
   selector: 'app-searchjob',
@@ -33,7 +30,7 @@ skillfamily: string;
 skillset: string;
 techControl:FormControl;
 techoptions:string[] = [];
-allFruits:string[] = [];
+skillfamilycluster:string[] = [];
 filteredTechOptions: Observable<string[]>;
 locationControl: FormControl;
 step = 0;
@@ -45,26 +42,25 @@ selectable: boolean = true;
 removable: boolean = true;
 addOnBlur: boolean = false;
 separatorKeysCodes = [ENTER, COMMA];
-fruitCtrl: FormControl;
-filteredFruits: Observable<any[]>;
-fruits = [];
+skillfamilyCtrl: FormControl;
+filteredskillfamily: Observable<any[]>;
+skillfamiliyclustergroup = [];
 appliedjob: AppliedJob;
 useremail: string;
 skillsetfromprofile: string;
-@ViewChild('fruitInput') fruitInput: ElementRef;
+@ViewChild('skillInput') skillInput: ElementRef;
 validationError = '';
 Isprofileset: boolean;
 
-
 constructor(public dialog: MatDialog, private utilitiesService:UtilitiesService, private jobservice: JobService
-, private profileService: ProfileService, private snackBar: MatSnackBar) {
+    , private profileService: ProfileService, private snackBar: MatSnackBar) {
 this.usersearch  = new Usersearch();
 this.locationControl = new FormControl();
-this.fruitCtrl = new FormControl();
+this.skillfamilyCtrl = new FormControl();
 
-this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+this.filteredskillfamily = this.skillfamilyCtrl.valueChanges.pipe(
   startWith(null),
-  map((fruit: string | null) => fruit ? this.filter(fruit) : this.allFruits.slice()));
+  map((skill: string | null) => skill ? this.filter(skill) : this.skillfamilycluster.slice()));
 }
 
 ngOnInit() {
@@ -75,20 +71,21 @@ ngOnInit() {
   this.locationControl = new FormControl();
   this.useremail = localStorage.getItem('email');
 
-
   this.profileService.hasuserprofile(this.useremail).then((result) => {
     this.Isprofileset = !result;
   });
+
   // populate skillset
   this.utilitiesService.getskillset().subscribe(
     data => {
          for (let key in data) {
-           if (!this.allFruits.some(x => x === data[key].primary)) {
-                  this.allFruits.push(data[key].primary);
+           if (!this.skillfamilycluster.some(x => x === data[key].primary)) {
+                  this.skillfamilycluster.push(data[key].primary);
            }
          }
       }
    );
+
    // populate job locations
   this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res);
 
@@ -105,86 +102,77 @@ ngOnInit() {
               this.usersearch.salaryExpectation = res1.salaryexpectationmin.toString();
               this.usersearch.salaryExpectationTo = res1.salaryexpectationmax.toString();
               for (let i = 0; i < res1.skillset.toString().split(',').length; i++) {
-                this.fruits.push(res1.skillset.toString().split(',')[i]);
+                this.skillfamiliyclustergroup.push(res1.skillset.toString().split(',')[i]);
               }
-              }
-          );
-        }
+          }
+      );
     }
-  );
+  });
 }
 
 searchJob() {
-this.usersearch.skillSet = this.fruits;
-this.validationError = this.jobservice.validate(this.usersearch);
- if (this.validationError === '') {
-	 this.mode = 'indeterminate';
-	 this.step = 1;
-	 this.filterDisplay = false;
-	 this.jobservice.getjobs(this.usersearch.skillSet, this.useremail, this.usersearch.experience, this.usersearch.salaryExpectation
-	, this.usersearch.salaryExpectationTo, this.usersearch.location).subscribe(res => this.jobresults = res);
-	 this.mode = 'determinate';
- } else {
-  this.openErrorBar(this.validationError);
+  this.usersearch.skillSet = this.skillfamiliyclustergroup;
+  this.validationError = this.jobservice.validate(this.usersearch);
+  if (this.validationError === '') {
+	  this.mode = 'indeterminate';
+	  this.step = 1;
+	  this.filterDisplay = false;
+	  this.jobservice.getjobs(this.usersearch.skillSet, this.useremail, this.usersearch.experience, this.usersearch.salaryExpectation
+	  , this.usersearch.salaryExpectationTo, this.usersearch.location).subscribe(res => this.jobresults = res);
+	    this.mode = 'determinate';
+  } else {
+    this.openErrorBar(this.validationError);
  }
 }
 
-  applyJob(jobId) {
-
-    console.log(jobId);
-    this.appliedjob = new AppliedJob(localStorage.getItem('email'), new Date(), jobId, "Submitted");
-
-    this.jobservice.applyjob(this.appliedjob).then(userprof => {
+applyJob(jobId) {
+  this.appliedjob = new AppliedJob(localStorage.getItem('email'), new Date(), jobId, "Submitted");
+  this.jobservice.applyjob(this.appliedjob).then(userprof => {
       var filterarr = this.jobresults.filter(e => e._id === jobId);
       const index = this.jobresults.indexOf(filterarr[0]);
       if (index >= 0) {
-        console.log(filterarr);
-        console.log(index);
         this.jobresults.splice(index, 1);
       }
     });
   }
 
 
-  experienceUpdate(event) {
+experienceUpdate(event) {
     this.usersearch.experience = event.from;
-  }
-  salaryExpectationOnUpdate(event) {
+}
+salaryExpectationOnUpdate(event) {
     this.usersearch.salaryExpectation = event.from;
     this.usersearch.salaryExpectationTo = event.to;
-  }
-  add(event: MatChipInputEvent): void {
+}
+add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
     if ((value || '').trim()) {
-      this.fruits.push(value.trim());
+      this.skillfamiliyclustergroup.push(value.trim());
     }
-    // Reset the input value
     if (input) {
       input.value = '';
     }
-    this.fruitCtrl.setValue(null);
+    this.skillfamilyCtrl.setValue(null);
   }
 
-  remove(fruit: any): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(skill: any): void {
+    const index = this.skillfamiliyclustergroup.indexOf(skill);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.skillfamiliyclustergroup.splice(index, 1);
     }
   }
 
   filter(name: string) {
-    return this.allFruits.filter(fruit =>
-        fruit.toLowerCase().indexOf(name.toLowerCase()) === 0);
+    return this.skillfamilycluster.filter(skill => skill.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+    this.skillfamiliyclustergroup.push(event.option.viewValue);
+    this.skillInput.nativeElement.value = '';
+    this.skillfamilyCtrl.setValue(null);
   }
   datediff(date1): Number {
     var dateOut1 = new Date(date1);
@@ -194,9 +182,7 @@ this.validationError = this.jobservice.validate(this.usersearch);
    return diffDays;
   }
 
-  openErrorBar(message: string) {
-    this.snackBar.open(message, '', {
-      duration: 5000,
-    });
+ openErrorBar(message: string) {
+    this.snackBar.open(message, '', { duration: 5000});
   }
 }

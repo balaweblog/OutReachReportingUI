@@ -27,25 +27,26 @@ export class ProfileService {
   hasuserprofile(emailaddress: string): Promise<boolean> {
     return  this.http.get(`${this.apiUrl}/core/userprofile/` + emailaddress).toPromise()
    .then(res =>  res as boolean).catch(this.handleErrorPromise);
- }
+  }
+
   getreferencestatus(emailaddress: string, referencename: string, referencenumber: string): Promise<string> {
   return  this.http.get(`${this.apiUrl}/core/userprofilebyreferencestatus/` + emailaddress + "/" + referencename + "/"
    + referencenumber).toPromise()
   .then(res =>  res as string).catch(this.handleErrorPromise);
- }
+  }
   getereferencestatusbyemail(emailaddress:string): Promise<string> {
   return  this.http.get(`${this.apiUrl}/core/userprofilebyreferencestatusemail/` + emailaddress).toPromise()
   .then(res => res as string).catch(this.handleErrorPromise);
- }
+  }
 
-  handleError (error: Response | any) {
+  private handleError (error: Response | any) {
     return Observable.throw(error.message || error);
   }
   private handleErrorPromise (error: Response | any) {
     return Promise.reject(error.message || error);
   }
 
-  validate(Userprofile) {
+ validate(Userprofile) {
     if (Userprofile.fullname === undefined || Userprofile.fullname === '' ||
       Userprofile.contactnumber === undefined || Userprofile.contactnumber === '' ||
       Userprofile.emailaddress === undefined || Userprofile.emailaddress === '' ||

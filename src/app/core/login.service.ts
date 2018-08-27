@@ -4,7 +4,6 @@ import { GlobalVariable } from '../global';
 @Injectable()
 export class LoginService {
 
-
   constructor() { }
 
   facebookredirect() {

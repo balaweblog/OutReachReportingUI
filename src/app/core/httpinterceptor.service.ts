@@ -9,10 +9,6 @@ export class HttpInterceptorService implements HttpInterceptor {
   webtoken: string;
 
   constructor(private router: Router) {  }
-  unauthorised(): Observable<any> {
-      this.router.navigate(['/login']);
-      return Observable.empty();
-  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       this.webtoken = "JWT" + " " + window.localStorage.getItem('token');
@@ -24,20 +20,19 @@ export class HttpInterceptorService implements HttpInterceptor {
         }
         return resp;
     }).catch(err => {
-      console.log(err.status);
-      console.log(err.status >= 400);
         if (err.status >= 400 ) {
           return this.unauthorised();
         }
         if (err.message === "Http failure response for (unknown url): 0 Unknown Error") {
             return this.unauthorised();
         }
-        console.log(err);
         if (err instanceof HttpResponse) {
-            // console.log(err.status);
-            //console.log(err.body);
         }
         return Observable.of(err);
     });
+  }
+  private unauthorised(): Observable<any> {
+    this.router.navigate(['/login']);
+    return Observable.empty();
   }
 }

@@ -3,7 +3,6 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { GlobalVariable } from '../global';
 
-
 @Injectable()
 export class CryptoService {
 
@@ -24,8 +23,8 @@ export class CryptoService {
   private handleErrorPromise (error: Response | any) {
     console.error(error.message || error);
     return Promise.reject(error.message || error);
-}
-  handleError (error: Response | any) {
+  }
+  private handleError (error: Response | any) {
     return Observable.throw(error.message || error);
   }
 }

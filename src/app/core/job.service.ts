@@ -5,7 +5,6 @@ import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-
 import { Jobresult } from '../models/jobresult';
 import { AppliedJob } from '../models/appliedjob';
 import { PreloadAllModules } from '@angular/router';
@@ -35,32 +34,29 @@ export class JobService {
    return this.http.get(`${this.apiUrl}/core/appliedjob/` + emailaddress)
     .map(res => <AppliedJob> res)
    .catch(this.handleError);
- }
+  }
  getappliedjobbyjobid(jobid: string): Observable<Jobresult[]> {
   return this.http.get(`${this.apiUrl}/core/job/` + jobid)
     .map(res => <Jobresult[]> res)
   .catch(this.handleError);
-}
-deletejobbyjobid(jobid: string): Promise<string> {
+ }
+ deletejobbyjobid(jobid: string): Promise<string> {
  return this.http.delete(`${this.apiUrl}/core/appliedjob/` + jobid).toPromise().then(e => <string>e).catch(this.handleErrorPromise);
-}
-hasappliedjobbyemail(email: string): Promise<Boolean> {
+ }
+ hasappliedjobbyemail(email: string): Promise<Boolean> {
   return this.http.get(`${this.apiUrl}/core/appliedjobbyemail/` + email).toPromise().then(e => <Boolean>e).catch(this.handleErrorPromise);
  }
-  private handleErrorPromise (error: Response | any) {
+ private handleErrorPromise (error: Response | any) {
     return Promise.reject(error.message || error);
-  }
+ }
 
-  validate(usersearch) {
-  	if (usersearch.skillSet.length === 0 ||
-  	  usersearch.experience === undefined ||
-  	  usersearch.salaryExpectation === undefined ||
-      usersearch.salaryExpectationTo === undefined ||
+public validate(usersearch) {
+  	if (usersearch.skillSet.length === 0 || usersearch.experience === undefined ||
+  	  usersearch.salaryExpectation === undefined || usersearch.salaryExpectationTo === undefined ||
       usersearch.location.length === 0 ) {
 
   		return 'All fileds are Required';
   	}
   	return '';
   }
-
 }
