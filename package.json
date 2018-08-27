@@ -4,8 +4,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gulp build",
-    "deploy": "gulp deploy",
-    "release": "standard-version"
+    "deploy": "gulp deploy"
   },
   "private": true,
   "dependencies": {
