@@ -7,19 +7,19 @@
       <!-- 1 Personal Details -->
 	    <ng-template matStepLabel>Personal Details</ng-template>
 	  <mat-form-field class="input-full-width">
-      <input matInput placeholder="Last name, First name" formControlName="fullname" [(ngModel)]="userprofile.fullname"/>
+      <input matInput placeholder="Last name, First name" formControlName="fullname" onkeypress="return (event.charCode >= 65 && event.charCode <= 122) || event.charCode ==44" pattern ="[a-zA-Z ]+"[(ngModel)]="userprofile.fullname"/>
     </mat-form-field>
 	  <br>
 	<mat-form-field class="input-full-width">
 	<span matPrefix>+91 &nbsp;</span>
-      <input matInput type="tel" placeholder="Contact Number" [formControl]="contactFormControl"class="input-full-width" [(ngModel)]="userprofile.contactnumber"/>
-      <mat-error *ngIf="contactFormControl.hasError('pattern') && !contactFormControl.hasError('required')">
+      <input matInput type="tel" placeholder="Contact Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" pattern="\d{10}" maxlength ="10" [formControl]="contactFormControl"class="input-full-width" [(ngModel)]="userprofile.contactnumber"/>
+      <mat-error *ngIf="contactFormControl.hasError('pattern') && !contactFormControl.hasError('required')" required>
       Please enter a valid mobile Number
     </mat-error>
     </mat-form-field>
 	  <br>
 	  <mat-form-field class="input-full-width">
-      <input matInput placeholder="Email Address" class="input-full-width" [(ngModel)]="userprofile.emailaddress"  [formControl]="emailFormControl" [errorStateMatcher]="matcher"/>
+      <input matInput placeholder="Email Address" readonly="true" class="input-full-width" [(ngModel)]="userprofile.emailaddress"  [formControl]="emailFormControl" [errorStateMatcher]="matcher"/>
       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
       Please enter a valid email address
     </mat-error>
@@ -92,8 +92,8 @@
 	<br>
 	<mat-form-field class="input-full-width">
 	<span matPrefix>+91 &nbsp;</span>
-    <input matInput type="tel" placeholder="Reference Number" [formControl]="referenceFormControl" class="input-full-width" [(ngModel)]="userprofile.referencenumber">
-	<mat-error *ngIf="referenceFormControl.hasError('pattern') && !referenceFormControl.hasError('required')">
+    <input matInput type="tel" placeholder="Reference Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength ="10" maxlength ="10" [formControl]="referenceFormControl" class="input-full-width" [(ngModel)]="userprofile.referencenumber">
+	<mat-error *ngIf="referenceFormControl.hasError('pattern') && !referenceFormControl.hasError('required')" required>
       Please enter a valid mobile Number
     </mat-error>
 	</mat-form-field>
