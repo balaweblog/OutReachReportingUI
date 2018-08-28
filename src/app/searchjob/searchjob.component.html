@@ -51,8 +51,8 @@
   </div>
 </mat-expansion-panel>
 </mat-accordion>
-
-  <mat-list-item *ngFor="let jobresult of jobresults">
+<virtual-scroll [items]="jobresults" (update)="viewPortItems = $event">
+  <mat-list-item *ngFor="let jobresult of viewPortItems">
     <div class="jobliststyle">
       <div style="background-color: #9c27b0;">
         <label style="text-transform: uppercase; color: #ffffff;">{{jobresult.companyname}} </label>
@@ -70,3 +70,5 @@
     </div>
     <mat-divider></mat-divider>
   </mat-list-item>
+</virtual-scroll>
+

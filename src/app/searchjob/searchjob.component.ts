@@ -51,6 +51,7 @@ skillsetfromprofile: string;
 @ViewChild('skillInput') skillInput: ElementRef;
 validationError = '';
 Isprofileset: boolean;
+viewPortItems: any;
 
 constructor(public dialog: MatDialog, private utilitiesService:UtilitiesService, private jobservice: JobService
     , private profileService: ProfileService, private snackBar: MatSnackBar) {

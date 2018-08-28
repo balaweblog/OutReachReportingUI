@@ -17,8 +17,8 @@
     Reference check for your profile is pending. You can still apply for jobs.
  </alert>
  </div>
-
-    <mat-list-item *ngFor="let jobresult of appliedjob">
+ <virtual-scroll [items]="appliedjob" (update)="viewPortItems = $event">
+    <mat-list-item *ngFor="let jobresult of viewPortItems">
   <div class="jobliststyle">
      <div style="background-color: #9c27b0;">
      <label style="text-transform: uppercase; color: #ffffff;">{{jobresult.jobinfo["0"].companyname}} </label>
@@ -36,3 +36,4 @@
     </div>
     <mat-divider></mat-divider>
   </mat-list-item>
+</virtual-scroll>

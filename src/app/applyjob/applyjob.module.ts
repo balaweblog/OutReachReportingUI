@@ -12,6 +12,7 @@ import { ApplyjobComponent } from './applyjob.component';
 import { ApplyjobRoutingModule } from './applyjob-routing.module';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { VirtualScrollModule } from 'ngx-virtual-scroll-plus';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     MatButtonModule,
     MatToolbarModule,
     MatMenuModule,
+    VirtualScrollModule,
     MatIconModule,
     MatFormFieldModule,
     MatSelectModule,

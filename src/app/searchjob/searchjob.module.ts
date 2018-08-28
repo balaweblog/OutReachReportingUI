@@ -12,6 +12,7 @@ import { SearchjobComponent } from './searchjob.component';
 import { SearchjobRoutingModule } from './searchjob-routing.module';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { VirtualScrollModule } from 'ngx-virtual-scroll-plus';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     MatAutocompleteModule,
     MatSelectModule,
     MatMenuModule,
+    VirtualScrollModule,
     MatIconModule,
     MatDialogModule,
     MatStepperModule,

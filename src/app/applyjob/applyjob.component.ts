@@ -21,6 +21,7 @@ appliedjob:Array<AppliedJob> = [];
 statusrefercepending: boolean = false;
 statusreferencecompleted: boolean = false;
 appliedjobs:string;
+viewPortItems: any;
 
 
 constructor(private jobservice: JobService, private profileService: ProfileService, private router: Router) {
