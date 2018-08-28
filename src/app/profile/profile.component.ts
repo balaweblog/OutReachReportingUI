@@ -41,6 +41,8 @@ filteredskillfamily: Observable<any[]>;
 skillsetgroupcluster = [];
 useremail: string;
 userphoto: string;
+minDate = new Date();
+maxDate = new Date();
 
 validationError = '';
 
@@ -71,6 +73,9 @@ matcher = new MyErrorStateMatcher();
   this.userprofile.salaryexpectationmin = 3;
   this.userprofile.salaryexpectationmax = 12;
   this.userprofile.noticeperiod = 10;
+  this.minDate.setDate(this.minDate.getDate() - 10);
+  this.maxDate.setDate(this.maxDate.getDate() + 30);
+
 
  // populate skillset
  this.utilitiesService.getskillset().subscribe(
@@ -104,7 +109,7 @@ matcher = new MyErrorStateMatcher();
               for (let i = 0; i < this.userprofile.location.split(',').length; i++) {
                   this.locationInfo.push(this.userprofile.location.toString().split(',')[i]);
               }
-              console.log(this.locationInfo);
+              this.locationInfo = res1.location.split(',');
             }
           );
         } else {

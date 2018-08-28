@@ -60,7 +60,7 @@
           hide_min_max="true"
            hide_from_to= "true"
           (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
-    <mat-select placeholder="Current Location" [formControl]="locationControl" [(ngModel)]= "locationInfo" multiple>
+    <mat-select placeholder="Current Location" [formControl]="locationControl" multiple [(ngModel)]= "locationInfo" >
       <mat-optgroup>
         <mat-option *ngFor="let location of locationGroups" [value]="location.city" >
 	        {{ location.city }}
@@ -69,7 +69,7 @@
     </mat-select>
   	<br>
 	<mat-form-field class="input-full-width">
-    <input matInput [matDatepicker]="picker" placeholder="Last working day" formControlName="lastworkingday" [(ngModel)]="userprofile.lastworkingday">
+    <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Last working day" formControlName="lastworkingday" [(ngModel)]="userprofile.lastworkingday">
 	  <mat-datepicker-toggle matSuffix [for]="picker">
     </mat-datepicker-toggle>
 	  <mat-datepicker #picker>
@@ -87,7 +87,7 @@
           <br>
 
 	<mat-form-field class="input-full-width">
-    <input matInput placeholder="Reference Name" formControlName="referencename" class="input-full-width" [(ngModel)]="userprofile.referencename">
+    <input matInput placeholder="Reference Name" onkeypress="return (event.charCode >= 65 && event.charCode <= 122) || event.charCode ==44" pattern ="[a-zA-Z ]+" formControlName="referencename" class="input-full-width" [(ngModel)]="userprofile.referencename">
 	</mat-form-field>
 	<br>
 	<mat-form-field class="input-full-width">
