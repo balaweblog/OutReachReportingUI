@@ -7,6 +7,8 @@ const tslint = require('gulp-tslint');
 var exec = require('child_process').exec;
 var connect = require('gulp-connect');
 const minify = require('gulp-minify');
+var connectpm2 = require('gulp-connect-pm2');
+const pm2 = require('pm2');
 
 
 
