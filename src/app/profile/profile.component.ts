@@ -205,7 +205,23 @@ add(event: MatChipInputEvent): void {
   openErrorBar(message: string) {
     this.snackBar.open(message, '', { duration: 5000});
   }
+  numberOnly(event): Boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode >= 48 && charCode <= 57) {
+      return true;
+    }
+    return false;
+  }
+
+  textOnly(event): Boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode >= 65 && charCode <= 122) || charCode ==44) {
+      return true;
+    }
+    return false;
 }
+}
+
  /** Error when invalid control is dirty, touched, or submitted. */
  export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
