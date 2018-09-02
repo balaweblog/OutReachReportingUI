@@ -7,12 +7,12 @@
       <!-- 1 Personal Details -->
 	    <ng-template matStepLabel>Personal Details</ng-template>
 	  <mat-form-field class="input-full-width">
-      <input matInput placeholder="Last name, First name" formControlName="fullname" (keypress)= "textOnly($event)" pattern ="[a-zA-Z ]+"[(ngModel)]="userprofile.fullname"/>
+      <input matInput placeholder="Last name, First name" formControlName="fullname" (keypress)= "textOnly($event)" [(ngModel)]="userprofile.fullname"/>
     </mat-form-field>
 	  <br>
 	<mat-form-field class="input-full-width">
 	<span matPrefix>+91 &nbsp;</span>
-      <input matInput type="tel" placeholder="Contact Number" (keypress)= "numberOnly($event)" pattern="\d{10}" maxlength ="10" [formControl]="contactFormControl"class="input-full-width" [(ngModel)]="userprofile.contactnumber"/>
+      <input matInput type="tel" placeholder="Contact Number" (keypress)= "numberOnly($event)" pattern="\d{10}" maxlength ="10" [formControl]="contactFormControl" class="input-full-width" [(ngModel)]="userprofile.contactnumber"/>
       <mat-error *ngIf="contactFormControl.hasError('pattern') && !contactFormControl.hasError('required')" required>
       Please enter a valid mobile Number
     </mat-error>
@@ -20,9 +20,6 @@
 	  <br>
 	  <mat-form-field class="input-full-width">
       <input matInput placeholder="Email Address" readonly="true" class="input-full-width" [(ngModel)]="userprofile.emailaddress"  [formControl]="emailFormControl" [errorStateMatcher]="matcher"/>
-      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
-    </mat-error>
     </mat-form-field>
     <br>
    </form>
@@ -38,11 +35,11 @@
             {{skill}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input placeholder="Job Title, Keywords" #skillInput [formControl]="skillfamilyCtrl"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          <input  placeholder="Job Title, Keywords" formControlName ="SkillsetControlName"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" [(ngModel)] = 'userprofile.skillset'/>
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let skill of filteredskillfamily | async" [value]="skill"> {{ skill }} </mat-option>
+          <mat-option *ngFor="let skill of filteredskillfamily | async" [value]="skill" remove-selected ="true"> {{ skill }} </mat-option>
         </mat-autocomplete>
       </mat-form-field>
 
@@ -60,16 +57,19 @@
           hide_min_max="true"
            hide_from_to= "true"
           (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
-    <mat-select placeholder="Current Location" [formControl]="locationControl" multiple [(ngModel)]= "locationInfo" >
+   <mat-form-field class="input-full-width">
+    <mat-select placeholder="Current Location" matInput formControlName ="locationControlName" multiple [(ngModel)]= "locationInfo" >
       <mat-optgroup>
         <mat-option *ngFor="let location of locationGroups" [value]="location.city" >
 	        {{ location.city }}
 	      </mat-option>
       </mat-optgroup>
     </mat-select>
+  </mat-form-field>
+
   	<br>
 	<mat-form-field class="input-full-width">
-    <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Last working day" formControlName="lastworkingday" [(ngModel)]="userprofile.lastworkingday">
+    <input matInput [matDatepicker]="picker" readonly="true"  [min]="minDate" [max]="maxDate" placeholder="Last working day" formControlName="lastworkingdayName" [(ngModel)]="userprofile.lastworkingday">
 	  <mat-datepicker-toggle matSuffix [for]="picker">
     </mat-datepicker-toggle>
 	  <mat-datepicker #picker>
@@ -87,12 +87,12 @@
           <br>
 
 	<mat-form-field class="input-full-width">
-    <input matInput placeholder="Reference Name" (keypress)= "textOnly($event)" pattern ="[a-zA-Z ]+"formControlName="referencename" class="input-full-width" [(ngModel)]="userprofile.referencename">
+    <input matInput placeholder="Reference Name" (keypress)= "textOnly($event)" formControlName="referencename" class="input-full-width" [(ngModel)]="userprofile.referencename">
 	</mat-form-field>
 	<br>
 	<mat-form-field class="input-full-width">
 	<span matPrefix>+91 &nbsp;</span>
-    <input matInput type="tel" placeholder="Reference Number" (keypress)= "numberOnly($event)" minlength ="10" maxlength ="10" [formControl]="referenceFormControl" class="input-full-width" [(ngModel)]="userprofile.referencenumber">
+    <input matInput type="tel" placeholder="Reference Number" (keypress)= "numberOnly($event)" minlength ="10" maxlength ="10" formControlName ="referencenumber" class="input-full-width" [(ngModel)]="userprofile.referencenumber">
 	<mat-error *ngIf="referenceFormControl.hasError('pattern') && !referenceFormControl.hasError('required')" required>
       Please enter a valid mobile Number
     </mat-error>

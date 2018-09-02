@@ -49,6 +49,8 @@ validationError = '';
 emailFormControl = new FormControl('', [ Validators.required, Validators.email]);
 referenceFormControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
 contactFormControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
+fullnameControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
+
 
 matcher = new MyErrorStateMatcher();
 
@@ -87,14 +89,16 @@ matcher = new MyErrorStateMatcher();
        }
     }
  );
+
   // populate job locations
   this.utilitiesService.getjoblocations().subscribe(res => this.locationGroups = res);
 
   this.firstFormGroup = this._formBuilder.group({ fullname: ['', Validators.required], contactnumber: ['', Validators.required],
     emailaddress: ['', Validators.required],
   });
-  this.secondFormGroup = this._formBuilder.group({ skillset: ['', Validators.required], lastworkingday: ['', Validators.required],
-    referencename: ['', Validators.required], referencenumber: ['', Validators.required]
+  this.secondFormGroup = this._formBuilder.group({ skillset: ['', Validators.required], lastworkingdayName: ['', Validators.required],
+    referencename: ['', Validators.required], referencenumber: ['', Validators.required], locationControlName: ['', Validators.required],
+    SkillsetControlName: ['', Validators.required]
   });
 
   this.profileService.hasuserprofile(this.useremail).then(
@@ -215,7 +219,7 @@ add(event: MatChipInputEvent): void {
 
   textOnly(event): Boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
-    if ((charCode >= 65 && charCode <= 122) || charCode ==44) {
+    if ((charCode >= 65 && charCode <= 122) || charCode === 44) {
       return true;
     }
     return false;
