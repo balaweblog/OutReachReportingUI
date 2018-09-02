@@ -49,7 +49,7 @@ validationError = '';
 emailFormControl = new FormControl('', [ Validators.required, Validators.email]);
 referenceFormControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
 contactFormControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
-fullnameControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
+yskillsetcrl = new FormControl('', [Validators.required]);
 
 
 matcher = new MyErrorStateMatcher();
@@ -97,9 +97,7 @@ matcher = new MyErrorStateMatcher();
     emailaddress: ['', Validators.required],
   });
   this.secondFormGroup = this._formBuilder.group({ skillset: ['', Validators.required], lastworkingdayName: ['', Validators.required],
-    referencename: ['', Validators.required], referencenumber: ['', Validators.required], locationControlName: ['', Validators.required],
-    SkillsetControlName: ['', Validators.required]
-  });
+    referencename: ['', Validators.required], referencenumber: ['', Validators.required], locationControlName: ['', Validators.required]  });
 
   this.profileService.hasuserprofile(this.useremail).then(
     res => {

@@ -8,7 +8,7 @@
 	    <ng-template matStepLabel>Personal Details</ng-template>
 	  <mat-form-field class="input-full-width">
       <input matInput placeholder="Last name, First name" formControlName="fullname" (keypress)= "textOnly($event)" [(ngModel)]="userprofile.fullname"/>
-    </mat-form-field>
+     </mat-form-field>
 	  <br>
 	<mat-form-field class="input-full-width">
 	<span matPrefix>+91 &nbsp;</span>
@@ -30,12 +30,12 @@
       <!-- 2 Office Details -->
 	    <ng-template matStepLabel>Office Details</ng-template>
        <mat-form-field class="input-full-width">
-        <mat-chip-list #chipList>
+        <mat-chip-list #chipList  [formControl] ="skillsetcrl">
           <mat-chip *ngFor="let skill of skillsetgroupcluster" [selectable]="selectable" [removable]="removable" (removed)="remove(skill)"  >
             {{skill}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input  placeholder="Job Title, Keywords" formControlName ="SkillsetControlName"  [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          <input  placeholder="Job Title, Keywords" #skillInput   [formControl] ="skillfamilyCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
             [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" [(ngModel)] = 'userprofile.skillset'/>
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
