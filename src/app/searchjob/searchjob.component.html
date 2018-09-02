@@ -31,14 +31,15 @@
 
 <br>
 	 <label>Experience: {{usersearch.experience}} years</label>
-   <ion-range-slider #sliderElement min="1" max="30" from={{usersearch.experience}} hide_min_max="true" hide_from_to= "true"
+   <ion-range-slider #sliderElement min="1" max="30" from={{usersearch.experience}} data-postfix ="  years"
    (onChange)="experienceUpdate($event)"></ion-range-slider>
 <br>
 	  <label>Salary Expectation: {{usersearch.salaryExpectation}} - {{usersearch.salaryExpectationTo}} lakhs </label>
     <ion-range-slider #sliderElement type="double" min="1" max="30" from={{usersearch.salaryExpectation} to={{usersearch.salaryExpectationTo}} to_min="1" to_max="50"
-     hide_min_max="true"hide_from_to= "true" (onChange)="salaryExpectationOnUpdate($event)">
+    data-postfix ="  lakhs" (onChange)="salaryExpectationOnUpdate($event)">
     </ion-range-slider>
 <br>
+
 	  <mat-select placeholder="Preferred location" [formControl]="locationControl" multiple  [(ngModel)]='usersearch.location'>
 	    <mat-optgroup>
 	      <mat-option *ngFor="let location of locationGroups" [value]="location.city">
@@ -51,6 +52,14 @@
   </div>
 </mat-expansion-panel>
 </mat-accordion>
+<br>
+<div *ngIf ="nosearch" style ="color:white;font-weight: bold;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+    No jobs available for the above search criteria. Please come back again for more jobs.
+ </div>
+ <div *ngIf ="count > 0 && nosearch ===false" style ="color:white;font-weight: bold;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+    Number of matching Jobs {{ count }}
+ </div>
+<br>
 <virtual-scroll [items]="jobresults" (update)="viewPortItems = $event">
   <mat-list-item *ngFor="let jobresult of viewPortItems">
     <div class="jobliststyle">

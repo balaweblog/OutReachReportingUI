@@ -7,8 +7,11 @@
       <!-- 1 Personal Details -->
 	    <ng-template matStepLabel>Personal Details</ng-template>
 	  <mat-form-field class="input-full-width">
-      <input matInput placeholder="Last name, First name" formControlName="fullname" (keypress)= "textOnly($event)" [(ngModel)]="userprofile.fullname"/>
-     </mat-form-field>
+      <input matInput placeholder="Last name, First name" [formControl]="fullname" pattern="[a-zA-Z]*[,]{1}[a-zA-Z].*" (keypress)= "textOnly($event)" [(ngModel)]="userprofile.fullname"/>
+      <mat-error *ngIf="fullname.hasError('pattern') && !fullname.hasError('required')" required>
+        Please enter a last name, first name
+      </mat-error>
+    </mat-form-field>
 	  <br>
 	<mat-form-field class="input-full-width">
 	<span matPrefix>+91 &nbsp;</span>
@@ -46,17 +49,15 @@
    <label class="label" > Experience : {{userprofile.experience}} years </label> <br>
 
     <ion-range-slider #sliderElement
-           min="1" max="30" from={{userprofile.experience}} hide_min_max="true" hide_from_to= "true"
+           min="1" max="30" from={{userprofile.experience}}     data-postfix ="  years"
           (onChange)="experienceUpdate($event)"></ion-range-slider>
           <br>
 
 	 <label class="label"> Salary Expectation : {{userprofile.salaryexpectationmin}} - {{userprofile.salaryexpectationmax}} lakhs </label> <br>
     <ion-range-slider #sliderElement
     min="1" max="50" from={{userprofile.salaryexpectationmin}} to={{userprofile.salaryexpectationmax}} to_min="1" to_max="50"
-          type="double"
-          hide_min_max="true"
-           hide_from_to= "true"
-          (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
+    data-postfix ="  lakhs"
+    type="double" (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
    <mat-form-field class="input-full-width">
     <mat-select placeholder="Current Location" matInput formControlName ="locationControlName" multiple [(ngModel)]= "locationInfo" >
       <mat-optgroup>
@@ -79,25 +80,25 @@
  <label class="label">Notice period : {{userprofile.noticeperiod}} days </label><br>
 	<ion-range-slider #sliderElement
           min="1"
-          max="30"
+          max="30" data-postfix ="  days"
           from={{userprofile.noticeperiod}}
-          hide_min_max="true"
-           hide_from_to= "true"
           (onChange)="noticePeriodUpdate($event)"></ion-range-slider>
           <br>
 
-	<mat-form-field class="input-full-width">
-    <input matInput placeholder="Reference Name" (keypress)= "textOnly($event)" formControlName="referencename" class="input-full-width" [(ngModel)]="userprofile.referencename">
-	</mat-form-field>
+   <mat-form-field class="input-full-width">
+      <input matInput placeholder="Reference Name" [formControl]="referencename" pattern="[a-zA-Z]*[,]{1}[a-zA-Z].*" (keypress)= "textOnly($event)" [(ngModel)]="userprofile.fullname"/>
+      <mat-error *ngIf="referencename.hasError('pattern') && !referencename.hasError('required')" required>
+        Please enter a last name, first name
+      </mat-error>
+    </mat-form-field>
 	<br>
 	<mat-form-field class="input-full-width">
 	<span matPrefix>+91 &nbsp;</span>
-    <input matInput type="tel" placeholder="Reference Number" (keypress)= "numberOnly($event)" minlength ="10" maxlength ="10" formControlName ="referencenumber" class="input-full-width" [(ngModel)]="userprofile.referencenumber">
+    <input matInput type="tel" placeholder="Reference Number" (keypress)= "numberOnly($event)" pattern="\d{10}" maxlength ="10"  [formControl] ="referenceFormControl" class="input-full-width" [(ngModel)]="userprofile.referencenumber">
 	<mat-error *ngIf="referenceFormControl.hasError('pattern') && !referenceFormControl.hasError('required')" required>
       Please enter a valid mobile Number
     </mat-error>
 	</mat-form-field>
-
 	<div>
 		<button mat-raised-button color="primary" (click)="submitprofile()">Submit</button>
 	</div>

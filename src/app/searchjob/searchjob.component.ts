@@ -51,7 +51,9 @@ skillsetfromprofile: string;
 @ViewChild('skillInput') skillInput: ElementRef;
 validationError = '';
 Isprofileset: boolean;
+nosearch: boolean;
 viewPortItems: any;
+count: number;
 
 constructor(public dialog: MatDialog, private utilitiesService:UtilitiesService, private jobservice: JobService
     , private profileService: ProfileService, private snackBar: MatSnackBar) {
@@ -120,7 +122,18 @@ searchJob() {
 	  this.step = 1;
 	  this.filterDisplay = false;
 	  this.jobservice.getjobs(this.usersearch.skillSet, this.useremail, this.usersearch.experience, this.usersearch.salaryExpectation
-	  , this.usersearch.salaryExpectationTo, this.usersearch.location).subscribe(res => this.jobresults = res);
+    , this.usersearch.salaryExpectationTo, this.usersearch.location).subscribe(res => 
+      {
+        this.nosearch = false;
+        this.jobresults = res;
+        this.count = this.jobresults.length;
+      },
+      error => { 
+        this.nosearch = true
+        this.jobresults = null;
+        this.count = 0;
+      }
+    );
 	    this.mode = 'determinate';
   } else {
     this.openErrorBar(this.validationError);

@@ -20,7 +20,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         }
         return resp;
     }).catch(err => {
-        if (err.status >= 400 ) {
+        if (err.status === 405 ) {
           return this.unauthorised();
         }
         if (err.message === "Http failure response for (unknown url): 0 Unknown Error") {

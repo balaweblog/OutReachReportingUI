@@ -47,10 +47,11 @@ maxDate = new Date();
 validationError = '';
 
 emailFormControl = new FormControl('', [ Validators.required, Validators.email]);
-referenceFormControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
-contactFormControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
-yskillsetcrl = new FormControl('', [Validators.required]);
-
+referenceFormControl = new FormControl('', [Validators.required]);
+referencename = new FormControl('', [Validators.required]);
+contactFormControl = new FormControl('', [Validators.required]);
+skillsetcrl = new FormControl('', [Validators.required]);
+fullname = new FormControl('', [Validators.required]);
 
 matcher = new MyErrorStateMatcher();
 
