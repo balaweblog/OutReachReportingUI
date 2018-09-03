@@ -98,7 +98,8 @@ matcher = new MyErrorStateMatcher();
     emailaddress: ['', Validators.required],
   });
   this.secondFormGroup = this._formBuilder.group({ skillset: ['', Validators.required], lastworkingdayName: ['', Validators.required],
-    referencename: ['', Validators.required], referencenumber: ['', Validators.required], locationControlName: ['', Validators.required]  });
+    referencename: ['', Validators.required], referencenumber: ['', Validators.required],
+    locationControlName: ['', Validators.required]  });
 
   this.profileService.hasuserprofile(this.useremail).then(
     res => {

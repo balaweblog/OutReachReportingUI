@@ -40,7 +40,7 @@
     </ion-range-slider>
 <br>
 
-	  <mat-select placeholder="Preferred location" [formControl]="locationControl" multiple  [(ngModel)]='usersearch.location'>
+	  <mat-select placeholder="Preferred location" [formControl]="locationControl" multiple  required formcontrolName ="locationcontrolinfo" [(ngModel)]='usersearch.location'>
 	    <mat-optgroup>
 	      <mat-option *ngFor="let location of locationGroups" [value]="location.city">
           {{ location.city }}

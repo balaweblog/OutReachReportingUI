@@ -58,6 +58,7 @@
     min="1" max="50" from={{userprofile.salaryexpectationmin}} to={{userprofile.salaryexpectationmax}} to_min="1" to_max="50"
     data-postfix ="  lakhs"
     type="double" (onChange)="salaryExpectationOnUpdate($event)"></ion-range-slider><br>
+
    <mat-form-field class="input-full-width">
     <mat-select placeholder="Current Location" matInput formControlName ="locationControlName" multiple [(ngModel)]= "locationInfo" >
       <mat-optgroup>

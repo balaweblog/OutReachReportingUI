@@ -9,3 +9,15 @@
   margin:auto;
   display:block;
 }
+.loginmessage {
+  width: 70%;
+  color:white
+}
+.loginmessagesub {
+  width: 100%;
+  color:white
+}
+.materialicons {
+  font-size: 17px;
+  color:green
+}
