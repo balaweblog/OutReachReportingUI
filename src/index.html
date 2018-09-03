@@ -18,6 +18,15 @@ body {
     background-color: #303030;
 }
 </style>
+ <script>
+   // when no internet connection
+  function onDeviceReady() {
+    if (navigator.connection.type == Connection.NONE) {
+      navigator.notification.alert('An internet connection is required to continue');
+    }
+  }
+  document.addEventListener("deviceready", onDeviceReady, false);
+</script>
 <body>
   <app-root></app-root>
 </body>

@@ -1,3 +1,9 @@
+<div *ngIf ="alertmessage">
+    <alert type="warning" dismissible="true" isOpen ="false" [dismissOnTimeout]="12000">
+      Unknown error happen Please try again later.
+   </alert>
+  </div>
+
 <div class ="loginmessage">
   <h3>
     &nbsp;&nbsp;Apply to jobs on the go

@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HelloCordova</name>
+    <name>Hot Cake</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Hot Cake - Your Job Search Portal
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="dev@cordova.apache.org" href="http://cordova.io"> hbb
         Apache Cordova Team
     </author>
-    <content src="index.html" />
+    <content src="http://ec2-18-222-187-103.us-east-2.compute.amazonaws.com:4200/login" />
     <access origin="*" />
     <allow-navigation href="*" />
     <allow-intent href="http://*/*" />

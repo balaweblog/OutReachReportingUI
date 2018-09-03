@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../core/login.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,16 @@ import { LoginService } from '../core/login.service';
 
 export class  LoginComponent implements OnInit {
 
-  constructor(private loginservice: LoginService) { }
+  alertmessage: boolean = false;
+  constructor(private loginservice: LoginService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    if (this.route.snapshot.paramMap.get('id') !== '') {
+        this.alertmessage = true;
+    } else {
+      this.alertmessage = false;
+    }
   }
   facebooklogin() {
     this.loginservice.facebookredirect();

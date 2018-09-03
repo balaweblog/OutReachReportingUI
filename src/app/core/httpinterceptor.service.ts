@@ -20,7 +20,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         }
         return resp;
     }).catch(err => {
-        if (err.status === 405 ) {
+        if (err.status >= 400 && err.status !== 404) {
           return this.unauthorised();
         }
         if (err.message === "Http failure response for (unknown url): 0 Unknown Error") {
@@ -32,7 +32,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     });
   }
   private unauthorised(): Observable<any> {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login', {id: "unauthorized error"}]);
     return Observable.empty();
   }
 }
