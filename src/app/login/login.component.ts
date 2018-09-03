@@ -14,11 +14,10 @@ export class  LoginComponent implements OnInit {
   constructor(private loginservice: LoginService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
-    if (this.route.snapshot.paramMap.get('id') !== '') {
-        this.alertmessage = true;
+    if (this.route.snapshot.paramMap.get('id') === null) {
+        this.alertmessage = false;
     } else {
-      this.alertmessage = false;
+      this.alertmessage = true;
     }
   }
   facebooklogin() {
