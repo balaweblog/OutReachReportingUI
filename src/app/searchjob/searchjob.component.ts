@@ -122,14 +122,13 @@ searchJob() {
 	  this.step = 1;
 	  this.filterDisplay = false;
 	  this.jobservice.getjobs(this.usersearch.skillSet, this.useremail, this.usersearch.experience, this.usersearch.salaryExpectation
-    , this.usersearch.salaryExpectationTo, this.usersearch.location).subscribe(res => 
-      {
+    , this.usersearch.salaryExpectationTo, this.usersearch.location).subscribe(res => {
         this.nosearch = false;
         this.jobresults = res;
         this.count = this.jobresults.length;
       },
-      error => { 
-        this.nosearch = true
+      error => {
+        this.nosearch = true;
         this.jobresults = null;
         this.count = 0;
       }
