@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { BaselayoutComponent } from './layout/baselayout/baselayout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BaselayoutComponent,
     children: [
       { path: 'login', component: LoginComponent },
       { path: '', redirectTo: '/login', pathMatch: 'full' },

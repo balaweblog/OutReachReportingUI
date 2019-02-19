@@ -6,14 +6,7 @@ export class LoginService {
 
   constructor() { }
 
-  facebookredirect() {
-    window.document.location.href = GlobalVariable.FACEBOOK_API_URL;
+  login() {
+   //do nothing
   }
-  googleredirect() {
-    window.document.location.href = GlobalVariable.GOOGLE_API_URL;
-  }
-  twitterredirect() {
-    window.document.location.href = GlobalVariable.TWITTER_API_URL;
-  }
-
 }

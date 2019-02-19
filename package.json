@@ -12,14 +12,14 @@
   "dependencies": {
     "@angular-devkit/build-angular": "^0.6.5",
     "@angular/animations": "^5.2.6",
-    "@angular/cdk": "^5.2.2",
+    "@angular/cdk": "5.2.5",
     "@angular/cdk-experimental": "6.4.6",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
     "@angular/core": "^5.2.0",
     "@angular/forms": "^5.2.0",
     "@angular/http": "^5.2.0",
-    "@angular/material": "^5.2.2",
+    "@angular/material": "5.2.5",
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
@@ -61,7 +61,7 @@
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "~1.7.1",
+    "@angular/cli": "1.7.4",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",

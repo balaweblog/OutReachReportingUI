@@ -13,6 +13,7 @@ export class HttpInterceptorService implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       this.webtoken = "JWT" + " " + window.localStorage.getItem('token');
       const newrequest = request.clone({ setHeaders: {"Authorization": this.webtoken }});
+
       return next.handle(newrequest).
       map(resp => {
         if (resp instanceof HttpResponse) {

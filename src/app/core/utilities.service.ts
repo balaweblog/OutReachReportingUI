@@ -2,7 +2,6 @@ import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Skillset } from '../models/skillset';
 import { GlobalVariable } from '../global';
 
 @Injectable()
@@ -11,11 +10,7 @@ export class UtilitiesService {
 
   constructor(private http: HttpClient) { }
 
-  getjoblocations(): Observable<any[]> {
-    return this.http.get(`${this.apiUrl}/utilities/joblocations`).map(res => <any[]> res);
-  }
-
-  getskillset(): Observable<Skillset[]> {
-    return this.http.get(`${this.apiUrl}/utilities/skillset`).map(res => <Skillset[]> res);
+  getloca(): Observable<any[]> {
+    return this.http.get(`${this.apiUrl}/test/test`).map(res => <any[]> res);
   }
 }

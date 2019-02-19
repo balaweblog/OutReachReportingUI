@@ -20,13 +20,4 @@ export class  LoginComponent implements OnInit {
       this.alertmessage = true;
     }
   }
-  facebooklogin() {
-    this.loginservice.facebookredirect();
-  }
-  googlelogin() {
-    this.loginservice.googleredirect();
-  }
-  twitterlogin() {
-    this.loginservice.twitterredirect();
-  }
 }
